@@ -37,8 +37,8 @@
 
 STRETCHES
 
-- Payment credit card details (have to think about storing card and hashing card#)
+- As a service provider/ admin I should be able to take credit card details when confirming task BECAUSE I want to ensure payment is made for services provided.
 
-- Calling - to show scope of work
+- As a user I should be able to call a service provider before accepting services BECAUSE I want to make sure the task can be accomplished by the provider.
 
 - Proximity from user
