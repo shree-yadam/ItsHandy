@@ -36,6 +36,7 @@
 
 
 STRETCHES
+
 - Payment credit card details (have to think about storing card and hashing card#)
 
 - Calling - to show scope of work
