@@ -7,7 +7,7 @@ CREATE TABLE users(
   email VARCHAR(50) NOT NULL,
   password VARCHAR(50) NOT NULL,
   phone_number VARCHAR(32) NOT NULL,
-  img_url VARCHAR(255),
+  img_url VARCHAR,
   is_provider BOOLEAN DEFAULT false,
   avg_rating INTEGER
 );
