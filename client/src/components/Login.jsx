@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 import './login.scss';
 import Button from './Button';
 
-export default function Login() {
+export default function Login({currentUserDetails, setCurrentUserDetails}) {
   const [email, setUser] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,8 +21,16 @@ export default function Login() {
     })
     .then((res) => {
       console.log(res);
-      //Redirect to dashboard
-      history.push("/Dashboard");
+      //TBD:: Check user state setting
+        setCurrentUserDetails({
+        id: res.id,
+        first_name: res.first_name,
+        last_name: res.last_name,
+        email: res.email,
+        is_provider: res.is_provider
+      });
+      //TBD:: Redirect to Dashboard
+      history.push("/dashboard");
     })
     .catch((err) => {
       console.log(err);
