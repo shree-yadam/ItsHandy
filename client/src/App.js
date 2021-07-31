@@ -1,46 +1,40 @@
 import "./App.css";
-import React, { useContext, createContext } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch, useHistory} from "react-router-dom";
 import Login  from "./components/Login";
 import Register from "./components/Register"
 import NavBar from "./components/NavBar";
-import ProviderDashboard from './components/ProviderDashboard';
 import RequestListItem from "./components/RequestListItem";
+import Dashboard from "./components/Dashboard";
 import NewJobList from "./components/NewJobListItem";
 
 
 function App() {
-  //const [user, setUser] = createContext();
-  // const [currentUserDetails, setCurrentUSerDetails] = set
-  // const currentUser =useContext(null);
-  const currentUser = {
-    id: 1,
-    first_name: 'service',
-    last_name: 'provider',
-    is_provider: true
-  };
-
+  const [currentUserDetails, setCurrentUserDetails] = useState(null);
   return (
 
     <Router>
       <div className="App">
         <Switch>
           <main>
-          <NavBar currentUser={currentUser}></NavBar>
+          <NavBar currentUserDetails={currentUserDetails}></NavBar>
             <Route path="/" exact>
               {/* <Home /> */}
             </Route>
             <Route path="/login">
-              <Login currentUser={currentUser} />
+              <Login currentUserDetails={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails} />
             </Route>
             <Route path="/register">
-              <Register currentUser={currentUser}/>
+              <Register currentUser={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails}/>
               <Register />
               <Route path="/requests">
                 <RequestListItem />
               </Route>
             </Route>
             <Route path="/dashboard">
+              <div>
+                <Dashboard currentUserDetails={currentUserDetails} />
+              </div>
             </Route >
             <Route path="/listings">
               <NewJobList  currentUser={currentUser} openJobListingByCategory={openJobListingByCategory} />

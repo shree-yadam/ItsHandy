@@ -18,10 +18,8 @@ module.exports = (db) => {
   /* POST login */
   router.post("/login", function (req, res) {
     const { email, password } = req.body;
-    console.log(email, password)
     usersDbHelper.getUserWithEmail(db, email)
       .then((result) => {
-        console.log("user details: ", result);
         if (result.password === password) {
           req.session.userId = result.id;
           res.send(result);

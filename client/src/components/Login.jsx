@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 import './login.scss';
 import Button from './Button';
 
-export default function Login() {
+export default function Login({currentUserDetails, setCurrentUserDetails}) {
   const [email, setUser] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,15 +14,19 @@ export default function Login() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log(email, password);
     axios.post('api/users/login', {
       email,
       password
     })
     .then((res) => {
-      console.log(res);
-      //Redirect to dashboard
-      history.push("/Dashboard");
+        setCurrentUserDetails({
+        id: res.data.id,
+        first_name: res.data.first_name,
+        last_name: res.data.last_name,
+        email: res.data.email,
+        is_provider: res.data.is_provider
+      });
+      history.push("/dashboard");
     })
     .catch((err) => {
       console.log(err);
