@@ -5,6 +5,7 @@ import Login  from "./components/Login";
 import Register from "./components/Register"
 import NavBar from "./components/NavBar";
 import ProviderDashboard from './components/ProviderDashboard';
+import RequestListItem from "./components/RequestListItem";
 
 
 function App() {
@@ -32,7 +33,14 @@ function App() {
               <Login currentUser={currentUser} />
             </Route>
             <Route path="/register">
+<<<<<<< HEAD
               <Register currentUser={currentUser}/>
+=======
+              <Register />
+              <Route path="/requests">
+                <RequestListItem />
+              </Route>
+>>>>>>> master
             </Route>
             <Route path="/dashboard" currentUser={currentUser}>
             </Route >
