@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { Form } from 'react-bootstrap';
 import './login.scss';
 import Button from './Button';
@@ -8,16 +9,20 @@ export default function Login() {
   const [email, setUser] = useState('');
   const [password, setPassword] = useState('');
 
+  // Browser History
+  const history = useHistory();
 
   const handleLogin = (event) => {
     event.preventDefault();
     console.log(email, password);
-    axios.post('api/login', {
+    axios.post('api/users/login', {
       email,
       password
     })
     .then((res) => {
       console.log(res);
+      //Redirect to dashboard
+      history.push("/Dashboard");
     })
     .catch((err) => {
       console.log(err);

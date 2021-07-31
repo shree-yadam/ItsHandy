@@ -1,26 +1,41 @@
 import "./App.css";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import React, { useContext, createContext } from 'react';
+import { BrowserRouter as Router, Link, Route, Switch, useHistory} from "react-router-dom";
 import Login  from "./components/Login";
 import Register from "./components/Register"
 import NavBar from "./components/NavBar";
+import ProviderDashboard from './components/ProviderDashboard';
 
 
 function App() {
+  //const [user, setUser] = createContext();
+  // const [currentUserDetails, setCurrentUSerDetails] = set
+  // const currentUser =useContext(null);
+  const currentUser = {
+    id: 1,
+    first_name: 'Joe',
+    last_name: 'Smith',
+    email: 'joe@smith.com'
+  };
+
   return (
+
     <Router>
       <div className="App">
         <Switch>
           <main>
-          <NavBar></NavBar>
+          <NavBar currentUser={currentUser}></NavBar>
             <Route path="/" exact>
               {/* <Home /> */}
             </Route>
             <Route path="/login">
-              <Login />
+              <Login currentUser={currentUser} />
             </Route>
             <Route path="/register">
-              <Register />
+              <Register currentUser={currentUser}/>
             </Route>
+            <Route path="/dashboard" currentUser={currentUser}>
+            </Route >
           </main>
         </Switch>
       </div>
