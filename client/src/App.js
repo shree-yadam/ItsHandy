@@ -33,14 +33,11 @@ function App() {
               <Login currentUser={currentUser} />
             </Route>
             <Route path="/register">
-<<<<<<< HEAD
               <Register currentUser={currentUser}/>
-=======
               <Register />
               <Route path="/requests">
                 <RequestListItem />
               </Route>
->>>>>>> master
             </Route>
             <Route path="/dashboard" currentUser={currentUser}>
             </Route >
