@@ -6,6 +6,7 @@ import Register from "./components/Register"
 import NavBar from "./components/NavBar";
 import ProviderDashboard from './components/ProviderDashboard';
 import RequestListItem from "./components/RequestListItem";
+import NewJobList from "./components/NewJobListItem";
 
 
 function App() {
@@ -14,9 +15,9 @@ function App() {
   // const currentUser =useContext(null);
   const currentUser = {
     id: 1,
-    first_name: 'Joe',
-    last_name: 'Smith',
-    email: 'joe@smith.com'
+    first_name: 'service',
+    last_name: 'provider',
+    is_provider: true
   };
 
   return (
@@ -39,8 +40,11 @@ function App() {
                 <RequestListItem />
               </Route>
             </Route>
-            <Route path="/dashboard" currentUser={currentUser}>
+            <Route path="/dashboard">
             </Route >
+            <Route path="/listings">
+              <NewJobList  currentUser={currentUser} openJobListingByCategory={openJobListingByCategory} />
+            </Route>
           </main>
         </Switch>
       </div>
