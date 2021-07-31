@@ -14,22 +14,18 @@ export default function Login({currentUserDetails, setCurrentUserDetails}) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log(email, password);
     axios.post('api/users/login', {
       email,
       password
     })
     .then((res) => {
-      console.log(res);
-      //TBD:: Check user state setting
         setCurrentUserDetails({
-        id: res.id,
-        first_name: res.first_name,
-        last_name: res.last_name,
-        email: res.email,
-        is_provider: res.is_provider
+        id: res.data.id,
+        first_name: res.data.first_name,
+        last_name: res.data.last_name,
+        email: res.data.email,
+        is_provider: res.data.is_provider
       });
-      //TBD:: Redirect to Dashboard
       history.push("/dashboard");
     })
     .catch((err) => {
