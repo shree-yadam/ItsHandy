@@ -1,8 +1,8 @@
-// example for querying the database
 
+// example for querying the database
 const getUsers = function (db) {
-  const query = "SELECT * FROM users";
-  return db.query(query)
+  const queryString = "SELECT * FROM users";
+  return db.query(queryString)
     .then((result) => {
       console.log(result.rows);
       return result.rows;

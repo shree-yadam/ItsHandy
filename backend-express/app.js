@@ -32,5 +32,8 @@ db.connect();
 const usersRouter = require("./routes/users");
 app.use("/api/users", usersRouter(db));
 
+const requestsRouter = require("./routes/requests");
+app.use("/api/requests", requestsRouter(db));
+
 
 module.exports = app;
