@@ -13,45 +13,50 @@ import NavBar from "./components/NavBar";
 import RequestListItem from "./components/RequestListItem";
 import Dashboard from "./components/Dashboard";
 import RequestForm from "./components/RequestForm";
+import NewJobList from "./components/NewJobList";
 
 function App() {
-  //const [user, setUser] = createContext();
-  const [currentUserDetails, setCurrentUserDetails] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+
   return (
     <Router>
       <div className="App">
+        <NavBar currentUser={currentUser}></NavBar>
         <Switch>
-          <main>
-            <NavBar currentUserDetails={currentUserDetails}></NavBar>
-            <Route path="/" exact>
-              {/* <Home /> */}
-            </Route>
-            <Route path="/login">
-              <Login
-                currentUserDetails={currentUserDetails}
-                setCurrentUserDetails={setCurrentUserDetails}
-              />
-            </Route>
-            <Route path="/register">
-              <Register
-                currentUser={currentUserDetails}
-                setCurrentUserDetails={setCurrentUserDetails}
-              />
-              </Route>
- 
-              <Route exact path="/requests">
-                <RequestListItem />
-              </Route>
-              <Route  exact path="/requests/new">
-                <RequestForm/>
-              </Route>
-            <Route path="/dashboard">
-              <div>
-                <p>HERE!! </p>
-                <Dashboard currentUserDetails={currentUserDetails} />
-              </div>
-            </Route>
-          </main>
+          <Route path="/" exact>
+            {/* <Home /> */}
+          </Route>
+
+          <Route path="/login">
+            <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          </Route>
+
+          <Route path="/register">
+            <Register
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          </Route>
+
+          <Route exact path="/requests">
+            <RequestListItem />
+          </Route>
+
+          <Route exact path="/requests/new">
+            <RequestForm />
+          </Route>
+
+          <Route path="/dashboard">
+            <Dashboard currentUser={currentUser} />
+          </Route>
+
+          <Route path="/listings">
+            <NewJobList currentUser={currentUser} />
+          </Route>
+
+          <Route path="*">
+            <h2>404 NOT FOUND</h2>
+          </Route>
         </Switch>
       </div>
     </Router>

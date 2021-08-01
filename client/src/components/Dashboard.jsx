@@ -1,18 +1,18 @@
-export default function Dashboard({currentUserDetails}){
+export default function Dashboard({currentUserDetails: currentUser}){
   return (
     <>
-    {currentUserDetails && currentUserDetails.is_provider &&
+    {currentUser && currentUser.is_provider &&
       //TBD ::Display Provider Dashboard
       <div>
-        <p>{currentUserDetails.id}</p>
-        <p>{currentUserDetails.first_name}</p>
+        <p>{currentUser.id}</p>
+        <p>{currentUser.first_name}</p>
       </div>
     }
-    {currentUserDetails && !currentUserDetails.is_provider &&
+    {currentUser && !currentUser.is_provider &&
     //TBD:: Display Client Dashboard
       <div>
-        <p>{currentUserDetails.id}</p>
-        <p>{currentUserDetails.first_name}</p>
+        <p>{currentUser.id}</p>
+        <p>{currentUser.first_name}</p>
       </div>
     }
     </>
