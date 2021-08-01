@@ -1,7 +1,5 @@
-import RequestItemInfo from "./RequestItemInfo";
 import Button from "./Button";
-import { Link } from "react-router-dom";
-import NavBar from "./NavBar";
+
 
 export default function RequestListItem() {
 
@@ -25,13 +23,10 @@ console.log("DELETED REQUEST")
 
   return (
     <div>
-      <NavBar></NavBar>
-      <Link>
-        {" "}
-        <button> Request Service </button>{" "}
-      </Link>
+        <button> Request Service </button>
+  
       <div className="listitem-container">
-        <RequestItemInfo ></RequestItemInfo>
+       
         <div classname="listitem-footer">
           <Button variant="primary" type="submit" onClick={deleteRequest}>
             Delete
