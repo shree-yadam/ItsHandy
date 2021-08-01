@@ -14,29 +14,23 @@ function App() {
 
     <Router>
       <div className="App">
-        <Switch>
-          <main>
-          <NavBar currentUserDetails={currentUserDetails}></NavBar>
-            <Route path="/" exact>
-              {/* <Home /> */}
-            </Route>
-            <Route path="/login">
-              <Login currentUserDetails={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails} />
-            </Route>
-            <Route path="/register">
-              <Register currentUser={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails}/>
-              <Register />
-              <Route path="/requests">
-                <RequestListItem />
-              </Route>
-            </Route>
-            <Route path="/dashboard">
-              <div>
-                <p>HERE!! </p>
-                <Dashboard currentUserDetails={currentUserDetails} />
-              </div>
-            </Route >
-          </main>
+      <NavBar currentUserDetails={currentUserDetails}></NavBar>
+      <Switch>
+        <Route path="/" exact>
+          {/* <Home /> */}
+        </Route>
+        <Route path="/login">
+          <Login currentUserDetails={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails} />
+        </Route>
+        <Route path="/register">
+          <Register currentUser={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails} />
+        </Route>
+        <Route path="/requests">
+          <RequestListItem />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard currentUserDetails={currentUserDetails} />
+        </Route >
         </Switch>
       </div>
     </Router>

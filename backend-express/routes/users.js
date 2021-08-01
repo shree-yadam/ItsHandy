@@ -23,6 +23,9 @@ module.exports = (db) => {
         if (result.password === password) {
           req.session.userId = result.id;
           res.send(result);
+        } else {
+          res.status(401);
+          res.send({error: "Invalid username or password"});
         }
       })
       .catch((err) => {

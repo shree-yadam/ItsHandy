@@ -8,7 +8,7 @@ import Button from './Button';
 export default function Login({currentUserDetails, setCurrentUserDetails}) {
   const [email, setUser] = useState('');
   const [password, setPassword] = useState('');
-
+  const [error, setError] = useState(null);
   // Browser History
   const history = useHistory();
 
@@ -19,6 +19,7 @@ export default function Login({currentUserDetails, setCurrentUserDetails}) {
       password
     })
     .then((res) => {
+      setError(null);
         setCurrentUserDetails({
         id: res.data.id,
         first_name: res.data.first_name,
@@ -30,11 +31,15 @@ export default function Login({currentUserDetails, setCurrentUserDetails}) {
     })
     .catch((err) => {
       console.log(err);
+      setError("Invalid email or password");
     })
   }
 
   return (
     <div className="form-container">
+      {error &&
+      <p>{error}</p>
+      }
       <Form className="login-form">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
