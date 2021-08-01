@@ -68,6 +68,7 @@ const handleRegister =(event) => {
       <Button variant="primary" size="lg" type="submit" onClick={handleRegister}>
         Submit
       </Button>
+
     </Form>
 
     </div>

@@ -6,6 +6,7 @@ import Register from "./components/Register"
 import NavBar from "./components/NavBar";
 import RequestListItem from "./components/RequestListItem";
 import Dashboard from "./components/Dashboard";
+import RequestForm from "./components/RequestForm";
 
 function App() {
   //const [user, setUser] = createContext();
@@ -25,9 +26,12 @@ function App() {
             </Route>
             <Route path="/register">
               <Register currentUser={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails}/>
-              <Register />
+              <Route />
               <Route path="/requests">
                 <RequestListItem />
+              </Route>
+              <Route path="/requests/new">
+                <RequestForm></RequestForm>
               </Route>
             </Route>
             <Route path="/dashboard">
