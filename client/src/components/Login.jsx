@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 import './login.scss';
 import Button from './Button';
 
-export default function Login({currentUserDetails, setCurrentUserDetails}) {
+export default function Login({setCurrentUser}) {
   const [email, setUser] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,7 +19,7 @@ export default function Login({currentUserDetails, setCurrentUserDetails}) {
       password
     })
     .then((res) => {
-        setCurrentUserDetails({
+        setCurrentUser({
         id: res.data.id,
         first_name: res.data.first_name,
         last_name: res.data.last_name,

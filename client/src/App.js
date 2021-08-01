@@ -10,36 +10,36 @@ import NewJobList from "./components/NewJobListItem";
 
 
 function App() {
-  const [currentUserDetails, setCurrentUserDetails] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+
   return (
 
     <Router>
       <div className="App">
+          <NavBar currentUser={currentUser}></NavBar>
         <Switch>
-          <main>
-          <NavBar currentUserDetails={currentUserDetails}></NavBar>
             <Route path="/" exact>
               {/* <Home /> */}
             </Route>
             <Route path="/login">
-              <Login currentUserDetails={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails} />
+              <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
             </Route>
             <Route path="/register">
-              <Register currentUser={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails}/>
+              <Register currentUser={currentUser} setCurrentUser={setCurrentUser}/>
               <Register />
               <Route path="/requests">
                 <RequestListItem />
               </Route>
             </Route>
             <Route path="/dashboard">
-              <div>
-                <Dashboard currentUserDetails={currentUserDetails} />
-              </div>
+                <Dashboard currentUser={currentUser} />
             </Route >
             <Route path="/listings">
-              <NewJobList  currentUser={currentUser} openJobListingByCategory={openJobListingByCategory} />
+              <NewJobList  currentUser={currentUser} />
             </Route>
-          </main>
+            <Route path="*">
+              <h2>404 NOT FOUND</h2>
+            </Route>
         </Switch>
       </div>
     </Router>

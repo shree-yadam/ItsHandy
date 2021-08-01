@@ -30,7 +30,9 @@ db.connect();
 
 // Routes and passing the db connection
 const usersRouter = require("./routes/users");
+const providersRouter = require("./routes/providers")
 app.use("/api/users", usersRouter(db));
+app.use("/api/providers", providersRouter(db));
 
 
 module.exports = app;
