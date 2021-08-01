@@ -25,7 +25,7 @@ function App() {
             </Route>
             <Route path="/register">
               <Register currentUser={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails}/>
-              <Register />
+              <Route />
               <Route path="/requests">
                 <RequestListItem />
               </Route>
