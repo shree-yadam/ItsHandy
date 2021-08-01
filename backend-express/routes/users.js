@@ -17,6 +17,10 @@ module.exports = (db) => {
 
   /* POST login */
   router.post("/login", function (req, res) {
+    if(req.session.userId) {
+      res.status(400).send();
+      return;
+    }
     const { email, password } = req.body;
     usersDbHelper.getUserWithEmail(db, email)
       .then((result) => {
@@ -30,6 +34,7 @@ module.exports = (db) => {
       })
       .catch((err) => {
         console.log(err);
+        res.status(500).send();
       });
   });
 
@@ -38,6 +43,26 @@ module.exports = (db) => {
     req.session = null;
     res.status(200);
     res.send();
+  });
+
+  /* POST REGISTER */
+  router.post("/register", function (req, res) {
+    console.log("In register: ", req.body);
+    if(req.session.userId) {
+      console.log("User already logged in");
+      res.status(400).send();
+      return;
+    }
+    //TBD: Check if email already exists in DB
+    usersDbHelper.addNewClient(db, req.body)
+    .then((result) => {
+      req.session.userId = result.id;
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send();
+    });
   });
 
   return router;

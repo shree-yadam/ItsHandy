@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NavLink, Link, Redirect, Router , useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from './Button';
 
 export default function NavBar ({currentUser, setCurrentUser}){
@@ -19,7 +19,7 @@ return (
 
 <nav className = "navbar-menu">
   <div className = "navbar-menu">
-    <Link to="/" >Home</Link>
+  <Button onClick={()=> history.push("/")}>Home</Button>
 
       {!currentUser &&
         <div>

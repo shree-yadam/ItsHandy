@@ -2,10 +2,8 @@ import "./App.css";
 import React, { useState } from "react";
 import {
   BrowserRouter as Router,
-  Link,
   Route,
-  Switch,
-  useHistory,
+  Switch
 } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
