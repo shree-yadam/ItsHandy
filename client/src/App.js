@@ -6,7 +6,7 @@ import Register from "./components/Register"
 import NavBar from "./components/NavBar";
 import RequestListItem from "./components/RequestListItem";
 import Dashboard from "./components/Dashboard";
-import NewJobList from "./components/NewJobListItem";
+import NewJobList from "./components/NewJobList";
 
 
 function App() {

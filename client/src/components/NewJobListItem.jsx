@@ -20,7 +20,8 @@ date
 
   return (
     <div>
-{/*
+
+
       <RequestItemInfo title={title} description={description} category={category} date={date} />
 
       <label for="quote">Quote:</label>
@@ -31,7 +32,7 @@ date
 
         <Button variant="primary" type="submit"  onClick={goToDetails}>
          Details
-        </Button> */}
+        </Button>
     </div>
   );
 }
