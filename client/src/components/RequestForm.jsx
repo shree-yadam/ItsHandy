@@ -4,6 +4,7 @@ import Button from "./Button";
 import { Form } from "react-bootstrap";
 
 export default function RequestForm() {
+  console.log("IN THE REQUEST FORM......")
   const [newRequest, setNewRequest] = useState({
     title: "",
     street_address: "",
@@ -18,6 +19,9 @@ export default function RequestForm() {
   const handleRequestSubmit = (event) => {
     event.preventDefault();
     console.log("REQUEST FORM SUBMITTED");
+    axios.post('api/users/requests/new', {
+    
+    })
   };
   const handleDropdownChange = (event) => {
     event.preventDefault();
