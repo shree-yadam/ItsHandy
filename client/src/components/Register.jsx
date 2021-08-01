@@ -19,14 +19,13 @@ export default function Register() {
 const handleRegister =(event) => {
   event.preventDefault();
   console.log(newUser);
-axios.post('/api/register', {...newUser})
-.then((res) => {
-  console.log("THIS IS RES-HANDLE REGISTER:", res);
-})
-.catch((error) => {
-
-  console.log("THIS IS ERROR", error);
-})
+  axios.post('/api/users/register', {...newUser})
+  .then((res) => {
+    console.log("THIS IS RES-HANDLE REGISTER:", res);
+  })
+  .catch((error) => {
+    console.log("THIS IS ERROR", error);
+  })
 
 };
 

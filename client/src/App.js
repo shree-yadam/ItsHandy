@@ -1,30 +1,41 @@
 import "./App.css";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Link, Route, Switch, useHistory} from "react-router-dom";
 import Login  from "./components/Login";
 import Register from "./components/Register"
 import NavBar from "./components/NavBar";
 import RequestListItem from "./components/RequestListItem";
-
+import Dashboard from "./components/Dashboard";
 
 function App() {
+  //const [user, setUser] = createContext();
+  const [currentUserDetails, setCurrentUserDetails] = useState(null);
   return (
+
     <Router>
       <div className="App">
         <Switch>
           <main>
-          <NavBar></NavBar>
+          <NavBar currentUserDetails={currentUserDetails}></NavBar>
             <Route path="/" exact>
               {/* <Home /> */}
             </Route>
             <Route path="/login">
-              <Login />
+              <Login currentUserDetails={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails} />
             </Route>
             <Route path="/register">
+              <Register currentUser={currentUserDetails} setCurrentUserDetails={setCurrentUserDetails}/>
               <Register />
               <Route path="/requests">
                 <RequestListItem />
               </Route>
             </Route>
+            <Route path="/dashboard">
+              <div>
+                <p>HERE!! </p>
+                <Dashboard currentUserDetails={currentUserDetails} />
+              </div>
+            </Route >
           </main>
         </Switch>
       </div>
