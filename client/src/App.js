@@ -17,7 +17,7 @@ function App() {
     <Router>
       <div className="App">
 
-        <NavBar currentUser={currentUser}></NavBar>
+        <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}></NavBar>
         <Switch>
 
           <Route path="/" exact>

@@ -33,5 +33,12 @@ module.exports = (db) => {
       });
   });
 
+  /* POST logout */
+  router.post("/logout", function(req, res) {
+    req.session = null;
+    res.status(200);
+    res.send();
+  });
+
   return router;
 };
