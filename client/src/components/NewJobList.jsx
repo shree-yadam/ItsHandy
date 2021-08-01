@@ -11,8 +11,10 @@ export default function NewJobList({currentUser}) {
     .then((data) => console.log(data))
     .catch((err) => console.log("Error: ", err));
   },[newJobs, currentUser]);
+  console.log("In New Job List!!");
   return(
     <div>
+      HERE!!!!!!! NewJobList
       {/* {currentUser && currentUser.is_provider && newJobs &&
         newJobs.map((newJob) =>
         <NewJobListItem
