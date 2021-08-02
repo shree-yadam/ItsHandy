@@ -2,3 +2,23 @@
   top: 5em;
   position: relative;
 }
+
+.details-and-map-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.offer-button {
+  display: flex;
+  justify-content: center;
+}
+
+.mb-3{
+  width: 15em;
+  margin: 1em;
+}
+
+.offer-button {
+  height: 2em;
+  margin-top: 2em;
+}
