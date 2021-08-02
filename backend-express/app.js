@@ -31,13 +31,13 @@ db.connect();
 
 // Routes and passing the db connection
 
-const offersRouter = require("./routes/offers");
-app.use("/api/users", offersRouter(db));
 
 const usersRouter = require("./routes/users");
 const providersRouter = require("./routes/providers")
-app.use("/api/users", usersRouter(db));
 app.use("/api/providers", providersRouter(db));
+const offersRouter = require("./routes/offers");
+app.use("/api/users", offersRouter(db));
+app.use("/api/users", usersRouter(db));
 
 
 
