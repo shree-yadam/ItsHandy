@@ -1,12 +1,17 @@
 import "./App.css";
-import React, { useContext, createContext } from 'react';
-import { BrowserRouter as Router, Link, Route, Switch, useHistory} from "react-router-dom";
-import Login  from "./components/Login";
-import Register from "./components/Register"
+import React, { useContext, createContext } from "react";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  useHistory,
+} from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import NavBar from "./components/NavBar";
-import ProviderDashboard from './components/ProviderDashboard';
-import RequestListItem from "./components/RequestListItem";
-
+import ProviderDashboard from "./components/ProviderDashboard";
+import RequestList from "./components/RequestList";
 
 function App() {
   //const [user, setUser] = createContext();
@@ -14,37 +19,39 @@ function App() {
   // const currentUser =useContext(null);
   const currentUser = {
     id: 1,
-    first_name: 'Joe',
-    last_name: 'Smith',
-    email: 'joe@smith.com'
+    first_name: "Joe",
+    last_name: "Smith",
+    email: "joe@smith.com",
   };
 
   return (
+    <div className="App">
+      <Router>
+        <NavBar currentUser={currentUser} />
 
-    <Router>
-      <div className="App">
-        <Switch>
-          <main>
-          <NavBar currentUser={currentUser}></NavBar>
+        <main>
+          <Switch>
             <Route path="/" exact>
               {/* <Home /> */}
             </Route>
             <Route path="/login">
               <Login currentUser={currentUser} />
             </Route>
+
             <Route path="/register">
-              <Register currentUser={currentUser}/>
-              <Register />
-              <Route path="/requests">
-                <RequestListItem />
-              </Route>
+              <Register currentUser={currentUser} />
             </Route>
+
+            <Route path="/requests" currentUser={currentUser}>
+              <RequestList />
+            </Route>
+
             <Route path="/dashboard" currentUser={currentUser}>
-            </Route >
-          </main>
+            </Route>
         </Switch>
-      </div>
-    </Router>
+          </main>
+      </Router>
+    </div >
   );
 }
 
