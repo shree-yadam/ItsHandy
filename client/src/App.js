@@ -13,6 +13,7 @@ import Dashboard from "./components/Dashboard";
 import RequestForm from "./components/RequestForm";
 import NewJobList from "./components/NewJobList";
 import AssignedJobList from "./components/AssignedJobsList";
+import Home from "./components/Home";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -23,8 +24,8 @@ function App() {
 
         <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}></NavBar>
         <Switch>
-          <Route path="/" exact>
-            {/* <Home /> */}
+          <Route path="/" exact >
+            <Home />
           </Route>
 
           <Route path="/login">
