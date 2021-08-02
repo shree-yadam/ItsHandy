@@ -18,18 +18,18 @@ export default function NewJobList({currentUser}) {
 
   return(
     <div>
-      <div>
+      <h2>New Job Listing</h2>
         {newJobs &&
           newJobs.map((newJob) =>
           <NewJobListItem
           key={newJob.id}
+          id={newJob.id}
           title={newJob.title}
           description={newJob.description}
           preferred_date={newJob.preferred_date}
           category={newJob.category}
           />)
         }
-      </div>
     </div>
   );
 }

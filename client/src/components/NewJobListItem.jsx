@@ -3,6 +3,7 @@ import Button from "./Button";
 import React, { useState } from 'react';
 
 export default function NewJobListItem({
+  id,
   title,
 description,
 category,

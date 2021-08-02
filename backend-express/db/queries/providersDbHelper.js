@@ -8,7 +8,7 @@ const getNewListingByCategory = function(db, provider_id) {
     SELECT requests.*
     FROM requests
     JOIN provider_categories ON requests.category_id= provider_categories.category_id
-    WHERE provider_categories.provider_id = $1
+    WHERE provider_categories.provider_id = $1 AND requests.provider_id is NULL
     ORDER BY preferred_date ASC
      `;
   const queryParams = [provider_id];
