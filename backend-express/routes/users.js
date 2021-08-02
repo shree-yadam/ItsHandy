@@ -23,13 +23,13 @@ module.exports = (db) => {
     }
     const { email, password } = req.body;
     usersDbHelper.getUserWithEmail(db, email)
-      .then((data) => {
-        if (data.password === password) {
-          req.session.userId = data.id;
-          res.send(data);
-        } else {
+      .then((user) => {
+        if(!user || !bcrypt.compareSync(password, user.password)) {
           res.status(401);
           res.send({error: "Invalid username or password"});
+        } else {
+          req.session.userId = user.id;
+          res.send(user);
         }
       })
       .catch((err) => {
@@ -55,7 +55,9 @@ module.exports = (db) => {
     }
     usersDbHelper.getUserWithEmail(db, req.body.email)
     .then((data) => {
-      if(!data) {usersDbHelper.addNewClient(db, req.body)
+      if(!data) {
+        const password = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
+        usersDbHelper.addNewClient(db, {...req.body, password})
         .then((data) => {
           console.log(data);
           req.session.userId = data.id;

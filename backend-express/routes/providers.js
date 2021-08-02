@@ -26,7 +26,6 @@ module.exports = (db) => {
       providersDbHelper.getUnfinishedAssignedJobs(db, req.params.id)
         .then((result) => {
           console.log(result);
-          console.log("!!!DATE: ", typeof(result[0].preferred_date));
           res.json(result)})
         .catch((err) => {
           console.log(err);
