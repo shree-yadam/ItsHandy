@@ -3,6 +3,9 @@ nav.navbar-menu {
   background-color: #4056A1;
   color: white;
   padding: 0.5em;
+  position: fixed;
+  top: 0;
+  z-index: 9;
 }
 
 .navbar-items-container {

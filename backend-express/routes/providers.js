@@ -38,16 +38,13 @@ module.exports = (db) => {
   });
 
   /* Mark Assigned job as completed, respond with update list of assigned jobs */
-  router.put("/:id/assignedJobs/:jobId/mark_complete", function (req, res) {
+  router.put("/:id/assignedJobs/:jobId/update", function (req, res) {
     console.log("Marking job as completed");
     if(req.session && req.session.userId === parseInt(req.params.id)) {
       providersDbHelper.updateAssignedJob(db, req.params.jobId, req.body.date)
         .then((result) => {
           console.log("TEST!!: ", result);
-          return providersDbHelper.getUnfinishedAssignedJobs(db, req.params.id)
-          .then((result) => {
-            res.json(result)
-          })
+          res.status(204).json({});
         })
         .catch((err) => {
           console.log(err);

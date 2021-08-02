@@ -9,7 +9,7 @@ export default function AssignedJobListItem({
   description,
   category,
   date,
-  setAssignedJobs
+  markJobCompleted
 }) {
 
   function handleMarkCompleted(){
@@ -18,11 +18,10 @@ export default function AssignedJobListItem({
     */
    console.log("Marking Completed");
    const date = Date.now();
-    axios.put(`api/providers/${currentUser.id}/assignedJobs/${id}/mark_complete`, {date})
+    axios.put(`api/providers/${currentUser.id}/assignedJobs/${id}/update`, {date})
     .then((res) => {
       //set assigned jobs to new list
-      console.log(res.data);
-      setAssignedJobs(res.data);
+      markJobCompleted(id);
     })
     .catch((err) => console.log("Error: ", err));
 

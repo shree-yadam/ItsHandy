@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AssignedJobListItem from "./AssignedJobListItem";
+import './AssignedJobList.scss';
 
 export default function AssignedJobList({currentUser}){
 
@@ -17,10 +18,15 @@ export default function AssignedJobList({currentUser}){
       console.log(assignedJobs);
   },[]);
 
+  function markJobCompleted(id) {
+    const newAssignedJobs = assignedJobs.filter(job => job.id !== id);
+    setAssignedJobs(newAssignedJobs);
+  }
+
   return (
-    <div>
+    <div className="assigned-jobs-container">
       <h2>Asssigned Jobs</h2>
-      {assignedJobs && assignedJobs.map(assignedJob => <AssignedJobListItem
+      {assignedJobs && assignedJobs.map((assignedJob) => <AssignedJobListItem
       key={assignedJob.id}
       currentUser={currentUser}
       id={assignedJob.id}
@@ -29,7 +35,7 @@ export default function AssignedJobList({currentUser}){
       category={assignedJob.name}
       date={assignedJob.preferred_date}
       img_url={assignedJob.img_url}
-      setAssignedJobs={setAssignedJobs}
+      markJobCompleted={markJobCompleted}
       />)}
     </div>
   );
