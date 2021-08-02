@@ -11,7 +11,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavBar";
 import ProviderDashboard from "./components/ProviderDashboard";
-import RequestList from "./components/RequestList";
+import RequestList from "./components/userRequests/RequestList";
 
 function App() {
   //const [user, setUser] = createContext();
@@ -46,12 +46,11 @@ function App() {
               <RequestList />
             </Route>
 
-            <Route path="/dashboard" currentUser={currentUser}>
-            </Route>
-        </Switch>
-          </main>
+            <Route path="/dashboard" currentUser={currentUser}></Route>
+          </Switch>
+        </main>
       </Router>
-    </div >
+    </div>
   );
 }
 

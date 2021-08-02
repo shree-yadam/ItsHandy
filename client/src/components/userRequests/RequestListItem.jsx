@@ -1,17 +1,17 @@
-import RequestItemInfo from "./RequestItemInfo";
-import Button from "./Button";
+import RequestItemInfo from "../RequestItemInfo";
+import Button from "../Button";
 import { Link } from "react-router-dom";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 
-export default function RequestListItem() {
+export default function RequestListItem(props) {
 
 
   const deleteRequest = (event) => {
-event.preventDefault()
-console.log("DELETED REQUEST")
+    event.preventDefault()
+    console.log("DELETED REQUEST")
 
 
-// TBD
+    // TBD
   };
 
 
@@ -21,7 +21,7 @@ console.log("DELETED REQUEST")
     console.log("SENT MESSAGE")
 
     // TBD
-      };
+  };
 
   return (
     <div>

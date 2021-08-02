@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import axios from 'axios';
+//import React, { useState, useEffect } from "react";
+//import axios from 'axios';
 
 import RequestListItem from "./RequestListItem";
+import useRequestListData from "../../Hooks/useRequestListData.js";
 /**
  * This component renders Requests List for submitted by a specific customer through mapping and using RequstListItem component
  * No props are passed to this function yet (Should take array of requests)
@@ -28,20 +29,19 @@ const RequestList = (props) => {
     price: null
   }
    */
+  const { requestListState, setRequstListState } = useRequestListData();
 
-  // Id of user who made the requests
-  const id = 1;
 
-  const requestListResult = axios.get(`http://localhost:3001/api/requests/${id}`)
-    .then(result => result.data)
-    .catch(err => console.log(err.message))
-  //console.log(requestListResult);
-  return (
-    <div>
-      <h1>Requests List</h1>
-      
-    </div>
-  );
+
+
+  // const requestsList = requestListState.requestList.map(requestItem => {
+  //   return (
+  //     <RequestListItem {...requestItem} />
+  //   )
+  // })
+  return (<div>
+    {/* {requestsList} */}
+  </div>)
 };
 
 export default RequestList;
