@@ -9,7 +9,7 @@ module.exports = (db) => {
   /* GET users listing. */
   router.get("/", function (req, res) {
     usersDbHelper.getUsers(db)
-      .then((result) => res.json(result))
+      .then((data) => res.json(data))
       .catch((err) => {
         console.log(err);
       });
@@ -23,10 +23,10 @@ module.exports = (db) => {
     }
     const { email, password } = req.body;
     usersDbHelper.getUserWithEmail(db, email)
-      .then((result) => {
-        if (result.password === password) {
-          req.session.userId = result.id;
-          res.send(result);
+      .then((data) => {
+        if (data.password === password) {
+          req.session.userId = data.id;
+          res.send(data);
         } else {
           res.status(401);
           res.send({error: "Invalid username or password"});
@@ -53,16 +53,27 @@ module.exports = (db) => {
       res.status(400).send();
       return;
     }
-    //TBD: Check if email already exists in DB
-    usersDbHelper.addNewClient(db, req.body)
-    .then((result) => {
-      req.session.userId = result.id;
-      res.send(result);
+    usersDbHelper.getUserWithEmail(db, req.body.email)
+    .then((data) => {
+      if(!data) {usersDbHelper.addNewClient(db, req.body)
+        .then((data) => {
+          console.log(data);
+          req.session.userId = data.id;
+          res.send(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).send();
+        });
+      } else {
+        res.status(409).send();
+      }
     })
     .catch((err) => {
       console.log(err);
       res.status(500).send();
     });
+
   });
 
   return router;
