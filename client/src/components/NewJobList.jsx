@@ -28,6 +28,7 @@ export default function NewJobList({currentUser}) {
           description={newJob.description}
           preferred_date={newJob.preferred_date}
           category={newJob.category}
+          img_url={newJob.img_url}
           />)
         }
     </div>

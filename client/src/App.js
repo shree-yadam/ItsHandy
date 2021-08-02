@@ -13,6 +13,7 @@ import Dashboard from "./components/Dashboard";
 import RequestForm from "./components/RequestForm";
 import NewJobList from "./components/NewJobList";
 import AssignedJobList from "./components/AssignedJobsList";
+import JobDetails from "./components/JobDetails";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -50,12 +51,16 @@ function App() {
             <Dashboard currentUser={currentUser} />
           </Route>
 
-          <Route path="/listings">
+          <Route path="/new_listings">
             <NewJobList currentUser={currentUser} />
           </Route>
 
           <Route path="/assigned_jobs">
             <AssignedJobList currentUser={currentUser} />
+          </Route>
+
+          <Route path="/new_listing_detail">
+            <JobDetails />
           </Route>
 
           <Route path="*">
