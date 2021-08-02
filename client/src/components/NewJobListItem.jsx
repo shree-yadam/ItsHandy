@@ -31,7 +31,8 @@ export default function NewJobListItem({
 
     history.push({
       pathname: "/new_listing_detail",
-      state: {id,
+      state: {
+        id,
         title,
         description,
         category,

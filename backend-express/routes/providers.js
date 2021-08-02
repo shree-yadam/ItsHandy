@@ -36,6 +36,24 @@ module.exports = (db) => {
     }
   });
 
+  /* Add an offer */
+  router.post("/:id/offer", function (req, res) {
+    console.log("Offer received");
+    // if(req.session && req.session.userId === parseInt(req.params.id)) {
+    //   providersDbHelper.updateAssignedJob(db, req.params.jobId, req.body.date)
+    //     .then((result) => {
+    //       console.log("TEST!!: ", result);
+    //       res.status(204).json({});
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //       res.status(500).send();
+    //     });
+    // } else {
+    //   res.status(401).send();
+    // }
+  });
+
   /* Mark Assigned job as completed, respond with update list of assigned jobs */
   router.put("/:id/assignedJobs/:jobId/update", function (req, res) {
     console.log("Marking job as completed");

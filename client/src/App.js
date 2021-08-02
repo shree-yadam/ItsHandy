@@ -60,7 +60,7 @@ function App() {
           </Route>
 
           <Route path="/new_listing_detail">
-            <JobDetails />
+            <JobDetails currentUser={currentUser}/>
           </Route>
 
           <Route path="*">

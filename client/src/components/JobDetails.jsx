@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import JobDetailsDescription from "./JobDetailsDescription";
 import { InputGroup, FormControl } from "react-bootstrap";
 import Button from "./Button";
 import "./JobDetails.scss";
+import { makeOffer } from '../helpers/offerHelper';
 
 export default function JobDetails(props) {
+  const [quote, setQuote] = useState();
   const location = useLocation();
   const  {id,
     title,
@@ -13,6 +16,8 @@ export default function JobDetails(props) {
     date,
     img_url
   } = location.state;
+  console.log(location.state);
+  const comment = ""; //TBD : Add comment component
 
   return (
     <div className="job-details-container">
@@ -25,14 +30,18 @@ export default function JobDetails(props) {
         date={date}
         img_url={img_url}
         />
-        <div>{/*For Map*/}</div>
+        <div>FOR MAP !!</div>
       </div>
       <div className="offer-button">
         <InputGroup size="sm" className="mb-3">
-          <InputGroup.Text id="offer-quote">Quote</InputGroup.Text>
+          <InputGroup.Text id="offer-quote" value={quote} onChange={(event) => setQuote(event.target.value)}>Quote</InputGroup.Text>
           <FormControl aria-label="offer-quote" />
         </InputGroup>
-        <Button variant="primary" type="submit" className="offer-button">Make an offer</Button>
+        <Button className="offer-button"
+        onClick={() => makeOffer(id,
+          props.currentUser.id,
+          quote,
+          comment)}>Make an offer</Button>
       </div>
 
     </div>
