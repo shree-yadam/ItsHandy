@@ -12,6 +12,7 @@ import RequestListItem from "./components/RequestListItem";
 import Dashboard from "./components/Dashboard";
 import RequestForm from "./components/RequestForm";
 import NewJobList from "./components/NewJobList";
+import AssignedJobList from "./components/AssignedJobsList";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -51,6 +52,10 @@ function App() {
 
           <Route path="/listings">
             <NewJobList currentUser={currentUser} />
+          </Route>
+
+          <Route path="/assigned_jobs">
+            <AssignedJobList currentUser={currentUser} />
           </Route>
 
           <Route path="*">

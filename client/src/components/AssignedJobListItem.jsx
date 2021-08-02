@@ -1,18 +1,30 @@
+import axios from "axios";
 import RequestItemInfo from "./RequestItemInfo";
 import Button from "./Button";
 
 export default function AssignedJobListItem({
+  currentUser,
   id,
   title,
   description,
   category,
-  date
+  date,
+  setAssignedJobs
 }) {
 
   function handleMarkCompleted(){
     /*TBD
-
+    axios request to backend to with date_completed for requests/:id
     */
+   console.log("Marking Completed");
+   const date = Date.now();
+    axios.put(`api/providers/${currentUser.id}/assignedJobs/${id}/mark_complete`, {date})
+    .then((res) => {
+      //set assigned jobs to new list
+      console.log(res.data);
+      setAssignedJobs(res.data);
+    })
+    .catch((err) => console.log("Error: ", err));
 
   }
 

@@ -10,7 +10,7 @@ export default function RequestItemInfo({
       <h2>Title: <strong>{title}</strong></h2>
       <p>Description: {description}</p>
       <p>Category: {category}</p>
-      <p>Date needed: {date}</p>
+      <p>Date needed: {date.split('T')[0]}</p>
       </div>
     </div>
   );
