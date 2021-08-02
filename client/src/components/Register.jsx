@@ -75,6 +75,7 @@ return (
     {error &&
     <p>{error}</p>
     }
+    <h2>Sign Up</h2>
     {!currentUser &&
       <Form className="register-form">
         <Form.Group as={Row} className="mb-3" controlId="firstname">

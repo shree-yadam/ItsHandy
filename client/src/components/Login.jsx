@@ -41,6 +41,7 @@ export default function Login({setCurrentUser}) {
       {error &&
       <p>{error}</p>
       }
+      <h2>Login</h2>
       <Form className="login-form">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
