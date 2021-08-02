@@ -39,6 +39,9 @@ const offersRouter = require("./routes/offers");
 app.use("/api/users", offersRouter(db));
 app.use("/api/users", usersRouter(db));
 
+const requestsRouter = require("./routes/requests");
+app.use("/api/requests", requestsRouter(db));
+
 
 
 module.exports = app;
