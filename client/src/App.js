@@ -1,56 +1,86 @@
 import "./App.css";
-import React, { useContext, createContext } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
-  Link,
   Route,
-  Switch,
-  useHistory,
+  Switch
 } from "react-router-dom";
+
+
+// App components
+import Home from "./components/Home"
 import Login from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavBar";
-import ProviderDashboard from "./components/ProviderDashboard";
 import RequestList from "./components/userRequests/RequestList";
+import Dashboard from "./components/Dashboard";
+import RequestForm from "./components/RequestForm";
+import NewJobList from "./components/NewJobList";
+import AssignedJobList from "./components/AssignedJobsList";
+import ProviderDashboard from "./components/ProviderDashboard";
+
 
 function App() {
-  //const [user, setUser] = createContext();
+    //const [user, setUser] = createContext();
   // const [currentUserDetails, setCurrentUSerDetails] = set
   // const currentUser =useContext(null);
-  const currentUser = {
-    id: 1,
-    first_name: "Joe",
-    last_name: "Smith",
-    email: "joe@smith.com",
-  };
+
+  // const currentUser = {
+  //   id: 1,
+  //   first_name: "Joe",
+  //   last_name: "Smith",
+  //   email: "joe@smith.com",
+  // };
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
-    <div className="App">
-      <Router>
-        <NavBar currentUser={currentUser} />
+      <div className="App">
+    <Router>
+        <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}></NavBar>
+<main>
+        <Switch>
+        <Route path="/" exact >
+            <Home />
+          </Route>
 
-        <main>
-          <Switch>
-            <Route path="/" exact>
-              {/* <Home /> */}
-            </Route>
-            <Route path="/login">
-              <Login currentUser={currentUser} />
-            </Route>
+          <Route path="/login">
+            <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          </Route>
 
-            <Route path="/register">
-              <Register currentUser={currentUser} />
-            </Route>
+          <Route path="/register">
+            <Register
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          </Route>
 
-            <Route path="/requests" currentUser={currentUser}>
+          <Route path="/requests" currentUser={currentUser}>
               <RequestList />
             </Route>
 
-            <Route path="/dashboard" currentUser={currentUser}></Route>
-          </Switch>
+          <Route exact path="/requests/new">
+            <RequestForm />
+          </Route>
+
+          <Route path="/dashboard">
+            <Dashboard currentUser={currentUser} />
+          </Route>
+
+          <Route path="/listings">
+            <NewJobList currentUser={currentUser} />
+          </Route>
+
+          <Route path="/assigned_jobs">
+            <AssignedJobList currentUser={currentUser} />
+          </Route>
+
+          <Route path="*">
+            <h2>404 NOT FOUND</h2>
+          </Route>
+        </Switch>
         </main>
-      </Router>
-    </div>
+    </Router>
+      </div>
   );
 }
 
