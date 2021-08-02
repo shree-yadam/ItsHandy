@@ -3,8 +3,10 @@
 
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../Hooks/useRequestListData.js";
+
+
 /**
- * This component renders Requests List for submitted by a specific customer through mapping and using RequstListItem component
+ * This component renders Requests List submitted by a specific customer through mapping and using RequstListItem component
  * No props are passed to this function yet (Should take array of requests)
  * @returns single request
  */
@@ -32,15 +34,13 @@ const RequestList = (props) => {
   const { requestListState, setRequstListState } = useRequestListData();
 
 
-
-
-  // const requestsList = requestListState.requestList.map(requestItem => {
-  //   return (
-  //     <RequestListItem {...requestItem} />
-  //   )
-  // })
   return (<div>
-    {/* {requestsList} */}
+    {/* This check is to not map if this was not loaded the first time */}
+    {requestListState.requestList && requestListState.requestList.map(requestItem => {
+      return (
+        <RequestListItem {...requestItem} />
+      )
+    })}
   </div>)
 };
 
