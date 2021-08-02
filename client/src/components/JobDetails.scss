@@ -11,14 +11,15 @@
 .offer-button {
   display: flex;
   justify-content: center;
-}
-
-.mb-3{
-  width: 15em;
-  margin: 1em;
-}
-
-.offer-button {
   height: 2em;
   margin-top: 2em;
+}
+
+.map-container {
+  width:40%;
+}
+
+.quote-input {
+  margin-left: 1em;
+  margin-right: 1em;
 }

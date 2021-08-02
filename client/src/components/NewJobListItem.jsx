@@ -9,7 +9,8 @@ export default function NewJobListItem({
   description,
   category,
   date,
-  img_url
+  img_url,
+  setNewJobs
   }) {
   const [quote, setQuote] = useState("");
 
@@ -48,7 +49,7 @@ export default function NewJobListItem({
 
       <RequestItemInfo title={title} description={description} category={category} date={date} />
 
-      <label for="quote">Quote:</label>
+      <label>Quote:</label>
       <input name="quote" value={quote} onChange={(event) => setQuote(event.target.value)} />
       <Button variant="primary" type="submit"  onClick={handleOffer}>
           Make a quick Offer

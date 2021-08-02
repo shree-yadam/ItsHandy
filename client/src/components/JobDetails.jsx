@@ -1,48 +1,70 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import JobDetailsDescription from "./JobDetailsDescription";
-import { InputGroup, FormControl } from "react-bootstrap";
 import Button from "./Button";
 import "./JobDetails.scss";
-import { makeOffer } from '../helpers/offerHelper';
+import axios from 'axios';
 
 export default function JobDetails(props) {
+  const [madeOffer, setMadeOffer] = useState(false);
   const [quote, setQuote] = useState();
+  const [comment, setComment] = useState();
+  console.log(props);
   const location = useLocation();
-  const  {id,
-    title,
-    description,
-    category,
-    date,
-    img_url
-  } = location.state;
-  console.log(location.state);
-  const comment = ""; //TBD : Add comment component
+  const  job = location.state;
+  const history = useHistory();
+
+  const makeOffer = () => {
+    console.log("makeOffer");
+    return axios.post(`api/providers/${props.currentUser.id}}/offer`, {
+      request_id: job.id,
+      quote,
+      comment
+    })
+    .then((res) => {
+      console.log("Offer posted", res);
+      setMadeOffer(true);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }
+
+
+  console.log(location.state);//TBD : Add comment component
 
   return (
     <div className="job-details-container">
       <h2>Job Details</h2>
       <div className="details-and-map-container">
         <JobDetailsDescription
-        title={title}
-        description={description}
-        category={category}
-        date={date}
-        img_url={img_url}
+        title={job.title}
+        description={job.description}
+        category={job.category}
+        date={job.date}
+        img_url={job.img_url}
         />
-        <div>FOR MAP !!</div>
+        <div className="map-container">FOR MAP !!</div>
       </div>
+      { !madeOffer &&
       <div className="offer-button">
-        <InputGroup size="sm" className="mb-3">
-          <InputGroup.Text id="offer-quote" value={quote} onChange={(event) => setQuote(event.target.value)}>Quote</InputGroup.Text>
-          <FormControl aria-label="offer-quote" />
-        </InputGroup>
+        <label>Add comments with quote (optional)
+          <input className="quote-input" value={comment} onChange={(event)=> setComment(event.target.value)}/></label>
+        <label>Quote
+          <input className="quote-input" value={quote} onChange={(event)=> setQuote(event.target.value)}/></label>
         <Button className="offer-button"
-        onClick={() => makeOffer(id,
-          props.currentUser.id,
-          quote,
-          comment)}>Make an offer</Button>
+        onClick={makeOffer}>Make an offer</Button>
       </div>
+      }
+      { madeOffer &&
+      <div className="offer-button">
+        <p>Comment: {comment}</p>
+        <p>Quote: {quote}</p>
+        <Button className="offer-button"
+        onClick={() => history.push("/new_listings")}>Back</Button>
+      </div>
+      }
 
     </div>
   );
