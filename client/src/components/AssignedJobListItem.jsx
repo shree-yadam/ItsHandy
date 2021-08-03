@@ -13,9 +13,6 @@ export default function AssignedJobListItem({
 }) {
 
   function handleMarkCompleted(){
-    /*TBD
-    axios request to backend to with date_completed for requests/:id
-    */
    console.log("Marking Completed");
    const date = Date.now();
     axios.put(`api/providers/${currentUser.id}/assignedJobs/${id}/update`, {date})

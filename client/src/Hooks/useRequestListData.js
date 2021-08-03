@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 /**
- * The first reason for creating this component because state needs to be passed down
- * so we map over it and pass it down to the request list items components
+ * Handles requests data
  */
 export default function useRequstListData() {
   const { userId } = useParams();
@@ -39,6 +38,7 @@ export default function useRequstListData() {
     []
   );
 
+  // Gets offers and requests from db
   useEffect(() => {
     Promise.all([
       axios.get(`http://localhost:3001/api/client/${userId}/requests`),
@@ -56,17 +56,5 @@ export default function useRequstListData() {
       })
       .catch((err) => err.message);
   },[userId]);
-
-  // Sets initial request state
-  //   useEffect(() => {
-  //     setRequstListState(
-  //       axios
-  //         .get(`http://localhost:3001/api/requests/${clientId}`)
-  //         .then((response) =>
-  //           setRequstListState({ requestList: [...response.data] })
-  //         )
-  //         .catch((err) => console.log(err.message))
-  //     );
-  //   }, []);
   return { requestListState, setRequstListState };
 }

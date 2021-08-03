@@ -13,8 +13,15 @@ module.exports = (db) => {
     requestsdbHelper
       .getUserRequestsById(db, req.params.id)
       .then((result) => res.json(result))
-      .catch((err) => console.log(err.message));
-  });
+      .catch((err) => console.log(err.message));  
+  
+    });
+
+    router.post("/", (req, res) => {
+      console.log("In request form post", req.body)
+      requestsdbHelper.addNewRequest(db, req.body)
+      .then((result) => res.send(result))
+    });
 
   // Gets all offers for user effects
   router.get("/:id/requests/offers", (req, res) => {

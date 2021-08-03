@@ -1,5 +1,5 @@
 import Button from "../Button";
-import { Link } from "react-router-dom";
+
 
 
 export default function RequestListItem(props) {
@@ -46,6 +46,8 @@ export default function RequestListItem(props) {
 
   return (
     <div>
+
+
       <div className="listitem-container">
 
         <div>
@@ -60,23 +62,23 @@ export default function RequestListItem(props) {
             <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
           </div>
         </div>
-        <div classname="listitem-footer">
+        <div className="listitem-footer">
           <Button variant="primary" type="submit" onClick={deleteRequest}>
             Delete
           </Button>
           <Button>Review And Complete</Button>
           <Button variant="primary" type="submit" onClick={sendMessage}>Message</Button>
           {props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 && <Button variant="primary" type="button" onClick={() => {
-            <Link
-              to={{
-                pathname: "/tylermcginnis",
-                state: {
-                  "offers": props.OffersRequests.requestOffers,
-                },
-              }}
-            >
-            Tyler McGinnis
-          </Link>
+            // <Link
+            //   to={{
+            //     pathname: "/tylermcginnis",
+            //     state: {
+            //       "offers": props.OffersRequests.requestOffers,
+            //     },
+            //   }}
+            // >
+            //   Tyler McGinnis
+            // </Link>
           }}>Show offers</Button>}
         </div>
       </div>

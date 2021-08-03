@@ -1,0 +1,28 @@
+.main-container {
+
+  display: flex;
+  padding-top: 8em;
+  align-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 3px;
+  border-color: black;
+  border-style: solid;
+  text-align: left;
+  padding: 10px;
+
+}
+
+.about p {
+
+
+
+}

@@ -13,6 +13,7 @@ import RequestForm from "./components/RequestForm";
 import NewJobList from "./components/NewJobList";
 import AssignedJobList from "./components/AssignedJobsList";
 import NoMatch from "./components/NoMatch";
+import JobDetails from "./components/JobDetails";
 //import ProviderDashboard from "./components/ProviderDashboard";
 
 function App() {
@@ -30,11 +31,15 @@ function App() {
 
   return (
     <div className="App">
+
       <Router>
+
         <NavBar
           currentUser={currentUser}
-          setCurrentUser={setCurrentUser}
-        ></NavBar>
+          setCurrentUser={setCurrentUser}>
+        </NavBar>
+
+
         <main>
           <Switch>
             {/* <Route path="/" exact>
@@ -67,20 +72,30 @@ function App() {
               <RequestForm />
             </Route>
 
+            <Route exact path="/requests" currentUser={currentUser}>
+              <RequestList />
+            </Route>
+
             <Route path="/dashboard">
               <Dashboard currentUser={currentUser} />
             </Route>
 
-            <Route path="/listings">
+            <Route path="/new_listings">
               <NewJobList currentUser={currentUser} />
             </Route>
 
             <Route path="/assigned_jobs">
               <AssignedJobList currentUser={currentUser} />
             </Route>
+
+            <Route path="/new_listing_detail">
+              <JobDetails currentUser={currentUser} />
+            </Route>
+
             <Route path="*">
               <NoMatch />
             </Route>
+            
           </Switch>
         </main>
       </Router>
