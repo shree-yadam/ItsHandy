@@ -31,14 +31,11 @@ function App() {
 
   return (
     <div className="App">
-
       <Router>
-
         <NavBar
           currentUser={currentUser}
-          setCurrentUser={setCurrentUser}>
-        </NavBar>
-
+          setCurrentUser={setCurrentUser}
+        ></NavBar>
 
         <main>
           <Switch>
@@ -65,11 +62,12 @@ function App() {
               exact
               currentUser={currentUser}
             >
-              <RequestList />
+              <RequestList currentUser={currentUser}/>
             </Route>
 
-            <Route exact path="/requests/new">
-              <RequestForm currentUser={currentUser}/>
+            {/* Route for creating new requests by logged in user */}
+            <Route path={`/client/:userId/requests/new`} exact>
+              <RequestForm currentUser={currentUser} />
             </Route>
 
             <Route path="/provider_dashboard">
@@ -91,7 +89,6 @@ function App() {
             <Route path="*">
               <NoMatch />
             </Route>
-
           </Switch>
         </main>
       </Router>

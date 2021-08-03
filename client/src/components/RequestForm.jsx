@@ -1,11 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import  Button  from 'react-bootstrap/Button';
+import React, { useState  } from "react";
+import { useHistory,useParams } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
 
-export default function RequestForm({currentUser}) {
-  console.log("IN THE REQUEST FORM......");
+export default function RequestForm({ currentUser }) {
+  // Get user id from ur param
+  const {userId} = useParams();
+
+
   const [newRequest, setNewRequest] = useState({
     title: "",
     street_address: "",
@@ -15,24 +18,25 @@ export default function RequestForm({currentUser}) {
     preferred_time: "",
     job_image: "",
     description: "",
-    client_id: currentUser && currentUser.id
+    client_id: userId
   });
   const history = useHistory();
 
 
   const handleRequestSubmit = (event) => {
     event.preventDefault();
-    console.log("REQUEST FORM SUBMITTED");
-    console.log(event);
-    console.log(newRequest)
-    axios.post("/api/requests", {...newRequest})
-    .then((result) => { console.log("This is handlerqform", result);
-    history.push("/requests");
-})
-.catch((error) => {console.log(error)});
-
-
+    // console.log("REQUEST FORM SUBMITTED");
+    // console.log(event);
+    // console.log(newRequest)
+    axios.post(`/api/client/${userId}/requests`, { ...newRequest })
+      .then((result) => {
+        console.log("This is handler form", result);
+        // history.push("/requests");
+      })
+      .catch((error) => { console.log(error) });
   };
+
+  
   const handleDropdownChange = (event) => {
     event.preventDefault();
     console.log(event.target[event.target.selectedIndex].text);
@@ -95,7 +99,7 @@ export default function RequestForm({currentUser}) {
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Job Description</Form.Label>
         <Form.Control
-        as="textarea" rows={3} columns={11}
+          as="textarea" rows={3} columns={11}
           placeholder="Enter Work Details"
           value={newRequest.description}
           onChange={(event) =>
