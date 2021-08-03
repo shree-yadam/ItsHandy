@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Button from "./Button";
 import { Form } from "react-bootstrap";
 
 export default function RequestForm() {
-  console.log("IN THE REQUEST FORM......")
+  console.log("IN THE REQUEST FORM......");
   const [newRequest, setNewRequest] = useState({
     title: "",
     street_address: "",
@@ -15,17 +16,27 @@ export default function RequestForm() {
     job_image: "",
     description: "",
   });
+  const history = useHistory();
+
 
   const handleRequestSubmit = (event) => {
     event.preventDefault();
     console.log("REQUEST FORM SUBMITTED");
-    axios.post('api/users/requests/new', {
-    
-    })
+    console.log(event);
+    console.log(newRequest)
+    axios.post("/api/requests", {...newRequest})
+    .then((result) => { console.log("This is handlerqform", result);
+    history.push("/requests");
+})
+.catch((error) => {console.log(error)});
+
+
   };
   const handleDropdownChange = (event) => {
     event.preventDefault();
-    console.log("DROPDOWN INITIATED");
+    console.log(event.target[event.target.selectedIndex].text);
+
+    setNewRequest((prev) => ({ ...prev, category: event.target[event.target.selectedIndex].text }))
   };
 
   return (
@@ -71,8 +82,8 @@ export default function RequestForm() {
         />
       </Form.Group>
 
-      <label for="categories"> Choose A Category </label>
-      <select id="dropdown" onChange={(event) => handleDropdownChange}>
+      <label> Choose A Category </label>
+      <select id="dropdown" onChange={handleDropdownChange}>
         <option value="N/A">N/A</option>
         <option value="Plumbing">Plumbing</option>
         <option value="Electrician">Electrician</option>

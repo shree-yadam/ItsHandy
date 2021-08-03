@@ -11,4 +11,23 @@ const getUserRequestsById = (db, id) => {
     return result.rows;
   });
 };
-module.exports = {getUserRequestsById};
+/**
+ * Add a new request to the requests table
+ * @param {Object} requestDetails The details of the request including
+ * title, street_address, city, category_id, preferred_date, description, client_id
+ * @return {Promise<{}>} A promise to the customer.
+ */
+const addNewRequest = function(db, requestDetails) {
+
+  const queryString = `INSERT INTO requests(title, street_address, city, category_id, preferred_date, description, client_id) VALUES ($1, $2, $3, $4, $5, $6, $7)
+  RETURNING *;`;
+
+  const queryParams = [requestDetails.title, requestDetails.street_address, requestDetails.city, requestDetails.category_id, requestDetails.preferred_date === ''? null : preferred_date, requestDetails.description, requestDetails.client_id];
+  return db.query(queryString, queryParams)
+  .then((result) => {
+    console.log("addnewrequest", result.rows);
+    return result.rows[0];
+    
+  })
+}
+module.exports = {getUserRequestsById, addNewRequest};

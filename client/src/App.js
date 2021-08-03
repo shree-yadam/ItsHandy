@@ -54,12 +54,12 @@ function App() {
               />
             </Route>
 
-            <Route path="/requests" currentUser={currentUser}>
-              <RequestList />
-            </Route>
-
             <Route exact path="/requests/new">
               <RequestForm />
+            </Route>
+
+            <Route exact path="/requests" currentUser={currentUser}>
+              <RequestList />
             </Route>
 
             <Route path="/dashboard">

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 INSERT INTO requests (title, street_address, city, category_id, img_url, description, client_id)
 
 VALUES 
@@ -9,7 +8,6 @@ INSERT INTO requests (title, street_address, city, category_id, img_url, descrip
 
 VALUES 
 ('Broken Fan', '111 King Street East', 'Toronto', 2, 'https://c8.alamy.com/comp/WDF2GC/close-up-of-abandoned-floor-fan-WDF2GC.jpg', 'Fan not working. Blades are broken and need someone to replace', 1);
-=======
 INSERT INTO requests(
   title,
   street_address,
@@ -37,4 +35,3 @@ INSERT INTO requests (title, street_address, city, category_id,
   preferred_date, img_url, description, client_id, provider_id)
 VALUES
 ('Clogged Toilet', '4261 rue Levy', 'Quebec', 1, '2-AUG-2021', 'https://previews.123rf.com/images/engraver/engraver1412/engraver141200045/34972389-broken-sink-old-interior.jpg', 'Toilet floods when flushed.', 1, 2);
->>>>>>> master

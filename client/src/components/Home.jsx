@@ -2,13 +2,12 @@ import React from 'react';
 import NewJobList from './NewJobList';
 import { useHistory } from 'react-router-dom'
 import Button from './Button';
-import { Link } from 'react-router-dom'
 import './home.scss'
 
 
 
 export default function Home(currentUser) {
-
+const history = useHistory()
 return (
   <div className = "main-container">
 <div className = 'about'>
@@ -27,7 +26,7 @@ return (
 
 
 <div className = "request-job-btn">
-<Button component={Link} to="/requests/new"> Request Form </Button>
+<Button onClick={()=> history.push('/requests/new')}> Request Form </Button>
 </div>
 
 </div>
