@@ -8,6 +8,7 @@ INSERT INTO requests (title, street_address, city, category_id, img_url, descrip
 
 VALUES 
 ('Broken Fan', '111 King Street East', 'Toronto', 2, 'https://c8.alamy.com/comp/WDF2GC/close-up-of-abandoned-floor-fan-WDF2GC.jpg', 'Fan not working. Blades are broken and need someone to replace', 1);
+
 INSERT INTO requests(
   title,
   street_address,

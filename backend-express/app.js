@@ -33,19 +33,18 @@ const db = new Pool(dbParams);
 db.connect();
 
 // Routes and passing the db connection
-
-
 const usersRouter = require("./routes/users");
-const providersRouter = require("./routes/providers")
+const providersRouter = require("./routes/providers");
 app.use("/api/providers", providersRouter(db));
-const offersRouter = require("./routes/offers");
-app.use("/api/users", offersRouter(db));
+
 app.use("/api/users", usersRouter(db));
 
+// User requests routes and offers for all requests made by user
 const requestsRouter = require("./routes/requests");
-app.use("/api/requests", requestsRouter(db));
-app.use("/api/requests/new", requestsRouter(db));
+app.use(`/api/client`, requestsRouter(db));
 
+// need to be refactored to match the new sturcture for creating these
+//app.use("/api/requests/new", requestsRouter(db));
 
 
 module.exports = app;

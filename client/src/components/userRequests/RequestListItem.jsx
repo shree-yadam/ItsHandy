@@ -2,7 +2,10 @@ import Button from "../Button";
 
 
 
-export default function RequestListItem({ title, street_address, city,preferred_date, category_id, description, category, date }) {
+export default function RequestListItem(props) {
+  // const title = props.requestItem.title;
+  // const description = props.requestItem.description;
+  // const street_address
   /**
    * Data Sample: List of objects like this
    *   {
@@ -36,26 +39,27 @@ export default function RequestListItem({ title, street_address, city,preferred_
 
   const sendMessage = (event) => {
     event.preventDefault()
-    console.log("SENT MESSAGE")
+
 
     // TBD
   };
 
   return (
     <div>
-      
-        
-      
+
+
       <div className="listitem-container">
-        {/* <RequestItemInfo ></RequestItemInfo> */}
+
         <div>
+
           <div>
-            <h2>Title: <strong>{title}</strong></h2>
-            <p>Description: {description}</p>
-            <p>Street Address: {street_address}</p>
-            <p>City: {city}</p>
-            <p>Category: {category}</p>
-            <p>Date needed: {preferred_date}</p>
+            <h2>Title: <strong>{props.OffersRequests.requestItem.title}</strong></h2>
+            <p>Description: {props.OffersRequests.requestItem.description}</p>
+            <p>Street Address: {props.OffersRequests.requestItem.street_address}</p>
+            <p>City: {props.OffersRequests.requestItem.city}</p>
+            <p>Category: {props.OffersRequests.requestItem.category_name}</p>
+            <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
+            <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
           </div>
         </div>
         <div className="listitem-footer">
@@ -64,6 +68,18 @@ export default function RequestListItem({ title, street_address, city,preferred_
           </Button>
           <Button>Review And Complete</Button>
           <Button variant="primary" type="submit" onClick={sendMessage}>Message</Button>
+          {props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 && <Button variant="primary" type="button" onClick={() => {
+            // <Link
+            //   to={{
+            //     pathname: "/tylermcginnis",
+            //     state: {
+            //       "offers": props.OffersRequests.requestOffers,
+            //     },
+            //   }}
+            // >
+            //   Tyler McGinnis
+            // </Link>
+          }}>Show offers</Button>}
         </div>
       </div>
     </div>

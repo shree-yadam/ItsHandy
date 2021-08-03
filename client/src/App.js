@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // App components
-import Home from "./components/Home";
+//import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavBar";
@@ -13,6 +13,8 @@ import RequestForm from "./components/RequestForm";
 import NewJobList from "./service_provider/components/NewJobList";
 import AssignedJobList from "./service_provider/components/AssignedJobsList";
 import JobDetails from "./service_provider/components/JobDetails";
+
+import NoMatch from "./components/NoMatch";
 
 function App() {
   //const [user, setUser] = createContext();
@@ -29,16 +31,20 @@ function App() {
 
   return (
     <div className="App">
+
       <Router>
+
         <NavBar
           currentUser={currentUser}
-          setCurrentUser={setCurrentUser}
-        ></NavBar>
+          setCurrentUser={setCurrentUser}>
+        </NavBar>
+
+
         <main>
           <Switch>
-            <Route path="/" exact>
+            {/* <Route path="/" exact>
               <Home />
-            </Route>
+            </Route> */}
 
             <Route path="/login">
               <Login
@@ -54,6 +60,14 @@ function App() {
               />
             </Route>
 
+            <Route
+              path={`/client/:userId/requests`}
+              exact
+              currentUser={currentUser}
+            >
+              <RequestList />
+            </Route>
+
             <Route exact path="/requests/new">
               <RequestForm />
             </Route>
@@ -66,25 +80,26 @@ function App() {
               <ProviderDashboard currentUser={currentUser} />
             </Route>
 
-          <Route path="/new_listings">
-            <NewJobList currentUser={currentUser} />
-          </Route>
+            <Route path="/new_listings">
+              <NewJobList currentUser={currentUser} />
+            </Route>
 
             <Route path="/assigned_jobs">
               <AssignedJobList currentUser={currentUser} />
             </Route>
 
-          <Route path="/new_listing_detail">
-            <JobDetails currentUser={currentUser}/>
-          </Route>
+            <Route path="/new_listing_detail">
+              <JobDetails currentUser={currentUser} />
+            </Route>
 
-          <Route path="*">
-            <h2>404 NOT FOUND</h2>
-          </Route>
-        </Switch>
+            <Route path="*">
+              <NoMatch />
+            </Route>
+
+          </Switch>
         </main>
       </Router>
-      </div>
+    </div>
   );
 }
 
