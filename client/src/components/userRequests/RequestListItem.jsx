@@ -1,5 +1,5 @@
 import Button from "../Button";
-import { Link } from "react-router-dom";
+
 
 
 export default function RequestListItem({ title, street_address, city,preferred_date, category_id, description, category, date }) {
@@ -43,9 +43,9 @@ export default function RequestListItem({ title, street_address, city,preferred_
 
   return (
     <div>
-      <Link>
-        <button> Request Service </button>{" "}
-      </Link>
+      
+        
+      
       <div className="listitem-container">
         {/* <RequestItemInfo ></RequestItemInfo> */}
         <div>
@@ -58,7 +58,7 @@ export default function RequestListItem({ title, street_address, city,preferred_
             <p>Date needed: {preferred_date}</p>
           </div>
         </div>
-        <div classname="listitem-footer">
+        <div className="listitem-footer">
           <Button variant="primary" type="submit" onClick={deleteRequest}>
             Delete
           </Button>

@@ -3,7 +3,8 @@
 
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../Hooks/useRequestListData.js";
-
+import { useHistory } from "react-router-dom";
+import Button from "../Button";
 
 /**
  * This component renders Requests List submitted by a specific customer through mapping and using RequstListItem component
@@ -31,17 +32,23 @@ const RequestList = (props) => {
     price: null
   }
    */
-  const { requestListState, setRequstListState } = useRequestListData();
+  const { requestListState, setRequestListState } = useRequestListData();
 
+  const history = useHistory();
+  return (
+    <div>
+   
+      {/* This check is to not map if this was not loaded the first time */}
+      {requestListState.requestList &&
+        requestListState.requestList.map((requestItem) => {
+          return <RequestListItem key={requestItem.id} {...requestItem} />;
+        })}
 
-  return (<div>
-    {/* This check is to not map if this was not loaded the first time */}
-    {requestListState.requestList && requestListState.requestList.map(requestItem => {
-      return (
-        <RequestListItem {...requestItem} />
-      )
-    })}
-  </div>)
+<Button onClick={() => history.push("/requests/new")}>
+        Request Service
+      </Button>
+    </div>
+  );
 };
 
 export default RequestList;
