@@ -8,7 +8,7 @@ import useRequestListData from "../../Hooks/useRequestListData";
 import './RequestList.scss';
 import { useHistory } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
-import requestlistitem from './requestlistitem.scss'
+import './RequestListItem.scss'
 
 /**
  * This component renders Requests List including offers to pass it down to offers component submitted by a specific customer through mapping and using RequstListItem component

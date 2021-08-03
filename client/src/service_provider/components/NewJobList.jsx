@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NewJobListItem from "./NewJobListItem";
+import  "./NewJobList.scss";
 
 export default function NewJobList({currentUser}) {
   const [newJobs, setNewJobs] = useState(null);
@@ -16,7 +17,7 @@ export default function NewJobList({currentUser}) {
   },[]);
 
   return(
-    <div>
+    <div className="newlisting-main">
       <h2>New Job Listing</h2>
         {newJobs &&
           newJobs.map((newJob) =>

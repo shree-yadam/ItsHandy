@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import makeOffer from '../helpers/makeOffer'
+import  './NewJobListItem.scss';
 
 export default function NewJobListItem({
   id,
@@ -55,31 +56,39 @@ export default function NewJobListItem({
   }
 
   return (
-    <div>
+    <div className="newlisting-container">
+      <div className ="newlisting-info">
       <h2>Title: <strong>{title}</strong></h2>
       <p>Date needed: {date && date.split('T')[0]}</p>
-
+      </div>
 
       { !madeOffer &&
         <div>
-          <label>Quote:</label>
-          <input name="quote" value={quote} onChange={(event) => setQuote(event.target.value)} />
-          <Button variant="primary" type="submit"  onClick={handleOffer} >
+          <div className="make-offer">
+          <label>Quote: </label>
+          <input placeholder="Enter your quote" name="quote" value={quote} onChange={(event) => setQuote(event.target.value)} />
+          <Button className="offer-btn" variant="success" type="submit"  onClick={handleOffer} >
             Make a quick Offer
           </Button>
-          <Button variant="primary" type="submit"  onClick={goToDetails}>
+          </div>
+          <Button  variant="primary" type="submit"  onClick={goToDetails}>
             Details
           </Button>
+          <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
+            Messages
+      </Button>
         </div>
       }
       { madeOffer &&
-      <div className="offer-button">
+      <div>
         <p>Quote: {quote}</p>
-      </div>
+      
+          <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
+          Messages
+    </Button>
+    </div>
       }
-      <Button variant="primary" type="submit"  onClick={checkMessages}>
-            Messages
-      </Button>
+  
     </div>
   );
 }
