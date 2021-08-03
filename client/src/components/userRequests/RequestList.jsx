@@ -1,5 +1,6 @@
 //import React, { useState, useEffect } from "react";
 //import axios from 'axios';
+import { Link, useParams } from "react-router-dom";
 
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../Hooks/useRequestListData.js";
@@ -11,6 +12,7 @@ import useRequestListData from "../../Hooks/useRequestListData.js";
  * @returns single request
  */
 const RequestList = (props) => {
+
   /**
    * Data Sample: List of objects like this
    *   {
@@ -34,14 +36,21 @@ const RequestList = (props) => {
   const { requestListState, setRequstListState } = useRequestListData();
 
 
+//  console.log(userId);
+
   return (<div>
     {/* This check is to not map if this was not loaded the first time */}
+    <Link>
+      <button> Request Service </button>{" "}
+    </Link>
     {requestListState.requestList && requestListState.requestList.map(requestItem => {
+      // console.log("Line 45")
       return (
-        <RequestListItem {...requestItem} />
+        <RequestListItem key={requestItem.id} {...requestItem} />
       )
     })}
-  </div>)
+  </div>
+  )
 };
 
 export default RequestList;

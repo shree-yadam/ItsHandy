@@ -1,9 +1,13 @@
 import "./App.css";
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 // App components
-import Home from "./components/Home";
+//import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavBar";
@@ -36,9 +40,9 @@ function App() {
         ></NavBar>
         <main>
           <Switch>
-            <Route path="/" exact>
+            {/* <Route path="/" exact>
               <Home />
-            </Route>
+            </Route> */}
 
             <Route path="/login">
               <Login
@@ -54,7 +58,11 @@ function App() {
               />
             </Route>
 
-            <Route path="/requests" currentUser={currentUser}>
+            <Route
+              path={`/client/:userId/requests`}
+              exact
+              currentUser={currentUser}
+            >
               <RequestList />
             </Route>
 

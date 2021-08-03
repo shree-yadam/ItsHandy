@@ -1,8 +1,8 @@
 import Button from "../Button";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 
-export default function RequestListItem({ title, street_address, city,preferred_date, category_id, description, category, date }) {
+export default function RequestListItem({ title, street_address, city,preferred_date, category_name, description, category, date }) {
   /**
    * Data Sample: List of objects like this
    *   {
@@ -43,9 +43,6 @@ export default function RequestListItem({ title, street_address, city,preferred_
 
   return (
     <div>
-      <Link>
-        <button> Request Service </button>{" "}
-      </Link>
       <div className="listitem-container">
         {/* <RequestItemInfo ></RequestItemInfo> */}
         <div>
@@ -54,8 +51,8 @@ export default function RequestListItem({ title, street_address, city,preferred_
             <p>Description: {description}</p>
             <p>Street Address: {street_address}</p>
             <p>City: {city}</p>
-            <p>Category: {category}</p>
-            <p>Date needed: {preferred_date}</p>
+            <p>Category: {category_name}</p>
+            <p>Date needed: {preferred_date && preferred_date.slice(0,10)}</p>
           </div>
         </div>
         <div classname="listitem-footer">
