@@ -7,20 +7,20 @@ import { Form } from "react-bootstrap";
 export default function RequestForm({ currentUser }) {
   // Get user id from ur param
   const {userId} = useParams();
+  const history = useHistory();
 
 
   const [newRequest, setNewRequest] = useState({
     title: "",
     street_address: "",
     city: "",
-    category: "",
+    category_id: "",
     preferred_date: "",
     preferred_time: "",
     job_image: "",
     description: "",
     client_id: userId
   });
-  const history = useHistory();
 
 
   const handleRequestSubmit = (event) => {
@@ -31,7 +31,7 @@ export default function RequestForm({ currentUser }) {
     axios.post(`/api/client/${userId}/requests`, { ...newRequest })
       .then((result) => {
         console.log("This is handler form", result);
-        // history.push("/requests");
+         history.push(`/client/${userId}/requests`);
       })
       .catch((error) => { console.log(error) });
   };
@@ -39,9 +39,9 @@ export default function RequestForm({ currentUser }) {
   
   const handleDropdownChange = (event) => {
     event.preventDefault();
-    console.log(event.target[event.target.selectedIndex].text);
+    //console.log(event.target[event.target.selectedIndex].index);
 
-    setNewRequest((prev) => ({ ...prev, category: event.target[event.target.selectedIndex].text }))
+    setNewRequest((prev) => ({ ...prev, category_id: event.target[event.target.selectedIndex].index }))
   };
 
   return (
