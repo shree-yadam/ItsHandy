@@ -1,15 +1,33 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NewJobListItem from "./NewJobListItem";
+import useVisualMode from "../Hooks/useVisualMode";
+import JobDetails from "./JobDetails";
+
+const DETAIL = "DETAIL";
+const JOB_LIST = "JOB_LIST";
 
 export default function NewJobList({currentUser}) {
+  const { mode, transition } = useVisualMode(JOB_LIST);
+  const [detailJobId, setDetailJobId] = useState(null);
+
   const [newJobs, setNewJobs] = useState(null);
   useEffect(() => {
       if(currentUser) {
         axios.get(`api/providers/${currentUser.id}/newListings`)
         .then((res) => {
           console.log(res.data);
-          setNewJobs(res.data);})
+          setNewJobs(res.data);
+          const jobs = newJobs;
+          jobs.map(job => {
+            job.offer_made = false;
+            job.quote = "";
+            job.comment = "";
+            return job;
+          });
+          setNewJobs(jobs);
+
+        })
         .catch((err) => console.log("Error: ", err));
       }
       console.log(newJobs);
@@ -17,20 +35,30 @@ export default function NewJobList({currentUser}) {
 
   return(
     <div>
+      {mode === JOB_LIST &&
+      <>
       <h2>New Job Listing</h2>
         {newJobs &&
-          newJobs.map((newJob) =>
+          newJobs.map((newJob, index) =>
           <NewJobListItem
           key={newJob.id}
-          id={newJob.id}
-          title={newJob.title}
-          description={newJob.description}
-          preferred_date={newJob.preferred_date}
-          category={newJob.category}
-          img_url={newJob.img_url}
+          job={newJob}
           currentUser={currentUser}
+          setDetailJobId={setDetailJobId}
+          setMode={transition}
+          index={index}
+          setNewJobs={setNewJobs}
           />)
         }
+        </>
+      }
+      {mode === DETAIL &&
+        <JobDetails currentUser={currentUser}
+        job={newJobs[detailJobId]}
+        setMode={transition}
+        setNewJobs={setNewJobs}
+        index={detailJobId} />
+      }
     </div>
   );
 }

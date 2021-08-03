@@ -1,27 +1,32 @@
 import Button from 'react-bootstrap/Button';
-import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
 import makeOffer from '../helpers/makeOffer'
 
 export default function NewJobListItem({
-  id,
-  title,
-  description,
-  category,
-  date,
-  img_url,
-  currentUser
+  job,
+  currentUser,
+  setDetailJobId,
+  setMode,
+  index,
+  setNewJobs
   }) {
-  const [quote, setQuote] = useState("");
-  const [madeOffer, setMadeOffer] = useState(false);
-
-  // Browser History
-  const history = useHistory();
+  function setQuote(quote) {
+    setNewJobs(prev => {
+      const jobs = [...prev];
+      jobs[index].quote = quote;
+      return jobs;
+    });
+    job.quote = quote;
+  }
 
   function handleOffer(){
-    makeOffer(currentUser.id, id, quote, "")
+    makeOffer(currentUser.id, job.id, job.quote, "")
     .then (() => {
-      setMadeOffer(true);
+      setNewJobs(prev => {
+        const jobs = [...prev];
+        jobs[index].offer_made = true;
+        return jobs;
+      });
+      job.offer_made = true;
     })
     .catch((err) => {
       console.log(err);
@@ -34,36 +39,23 @@ export default function NewJobListItem({
 
   // Show listing details component
   function goToDetails(event) {
-    console.log("goToDetails")
-    console.log(id,
-      title,
-      description,
-      category,
-      date);
+    console.log("goToDetails");
 
-    history.push({
-      pathname: "/new_listing_detail",
-      state: {
-        id,
-        title,
-        description,
-        category,
-        date,
-        img_url
-      }});
+    setDetailJobId(index);
+    setMode("DETAIL");
 
   }
 
   return (
     <div>
-      <h2>Title: <strong>{title}</strong></h2>
-      <p>Date needed: {date && date.split('T')[0]}</p>
+      <h2>Title: <strong>{job.title}</strong></h2>
+      <p>Date needed: {job.date && job.date.split('T')[0]}</p>
 
 
-      { !madeOffer &&
+      { !job.offer_made &&
         <div>
           <label>Quote:</label>
-          <input name="quote" value={quote} onChange={(event) => setQuote(event.target.value)} />
+          <input name="quote" value={job.quote} onChange={(event) => setQuote(event.target.value)} />
           <Button variant="primary" type="submit"  onClick={handleOffer} >
             Make a quick Offer
           </Button>
@@ -72,9 +64,9 @@ export default function NewJobListItem({
           </Button>
         </div>
       }
-      { madeOffer &&
+      { job.offer_made &&
       <div className="offer-button">
-        <p>Quote: {quote}</p>
+        <p>Quote: {job.quote}</p>
       </div>
       }
       <Button variant="primary" type="submit"  onClick={checkMessages}>
