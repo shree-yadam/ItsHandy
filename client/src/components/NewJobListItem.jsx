@@ -9,8 +9,7 @@ export default function NewJobListItem({
   description,
   category,
   date,
-  img_url,
-  setNewJobs
+  img_url
   }) {
   const [quote, setQuote] = useState("");
 
