@@ -8,7 +8,7 @@ export default function NavBar ({currentUser, setCurrentUser}){
   const history = useHistory();
   function handleLogout(event) {
     console.log("Logout");
-    axios.post('api/users/logout')
+    axios.post('/api/users/logout')
     .then(() => {
       setCurrentUser(null);
       history.push("/");
@@ -33,18 +33,18 @@ return (
       {
         currentUser &&
         <div className = "navbar-items-container">
-          <span> 
-            
+          <span>
+
             <Button variant="success" className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
             {!currentUser.is_provider &&
             <Button onClick={()=> history.push('/requests/new')}> Request Form </Button>
             }
           </span>
           <div className="user-action-nav">
-        
+
               {currentUser.first_name} {currentUser.last_name}
               <Button variant="danger" className="navbar-items" onClick={handleLogout}>Logout</Button>
-            
+
           </div>
         </div>
       }

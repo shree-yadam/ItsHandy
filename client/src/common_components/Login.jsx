@@ -28,7 +28,11 @@ export default function Login({setCurrentUser}) {
         email: res.data.email,
         is_provider: res.data.is_provider
       });
-      history.push("/new_listings");
+      if(res.data.is_provider){
+        history.push("/new_listings");
+      } else {
+        history.push(`/client/${res.data.id}/requests`);
+      }
     })
     .catch((err) => {
       console.log(err);
