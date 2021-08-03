@@ -5,11 +5,11 @@
  */
 const getNewListingByCategory = function(db, provider_id) {
   const queryString = `
-    SELECT requests.*
-    FROM requests
-    JOIN provider_categories ON requests.category_id= provider_categories.category_id
-    WHERE provider_categories.provider_id = $1 AND requests.provider_id IS NULL
-    ORDER BY preferred_date ASC;
+  SELECT requests.*
+  FROM requests
+  JOIN provider_categories ON requests.category_id= provider_categories.category_id
+  WHERE provider_categories.provider_id = $1 AND requests.provider_id IS NULL AND requests.id NOT IN (SELECT request_id FROM offers where provider_id = $1)
+  ORDER BY preferred_date ASC;
      `;
   const queryParams = [provider_id];
   return db.query(queryString, queryParams)

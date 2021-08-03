@@ -28,7 +28,7 @@ export default function Login({setCurrentUser}) {
         email: res.data.email,
         is_provider: res.data.is_provider
       });
-      history.push("/assigned_jobs");
+      history.push("/new_listings");
     })
     .catch((err) => {
       console.log(err);

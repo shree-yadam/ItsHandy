@@ -1,6 +1,6 @@
 import axios from "axios";
-import RequestItemInfo from "./RequestItemInfo";
-import Button from "./Button";
+import RequestItemInfo from "../../components/RequestItemInfo";
+import Button from "../../components/Button";
 
 export default function AssignedJobListItem({
   currentUser,
@@ -13,9 +13,6 @@ export default function AssignedJobListItem({
 }) {
 
   function handleMarkCompleted(){
-    /*TBD
-    axios request to backend to with date_completed for requests/:id
-    */
    console.log("Marking Completed");
    const date = Date.now();
     axios.put(`api/providers/${currentUser.id}/assignedJobs/${id}/update`, {date})

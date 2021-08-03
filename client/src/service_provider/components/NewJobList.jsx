@@ -3,7 +3,6 @@ import axios from "axios";
 import NewJobListItem from "./NewJobListItem";
 
 export default function NewJobList({currentUser}) {
-
   const [newJobs, setNewJobs] = useState(null);
   useEffect(() => {
       if(currentUser) {
@@ -28,6 +27,8 @@ export default function NewJobList({currentUser}) {
           description={newJob.description}
           preferred_date={newJob.preferred_date}
           category={newJob.category}
+          img_url={newJob.img_url}
+          currentUser={currentUser}
           />)
         }
     </div>

@@ -1,0 +1,25 @@
+.job-details-container {
+  top: 5em;
+  position: relative;
+}
+
+.details-and-map-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.offer-button {
+  display: flex;
+  justify-content: center;
+  height: 2em;
+  margin-top: 2em;
+}
+
+.map-container {
+  width:40%;
+}
+
+.quote-input {
+  margin-left: 1em;
+  margin-right: 1em;
+}

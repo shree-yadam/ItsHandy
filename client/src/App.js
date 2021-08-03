@@ -8,11 +8,13 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavBar";
 import RequestList from "./components/userRequests/RequestList";
-import Dashboard from "./components/Dashboard";
+import ProviderDashboard from "./service_provider/components/ProviderDashboard";
 import RequestForm from "./components/RequestForm";
-import NewJobList from "./components/NewJobList";
-import AssignedJobList from "./components/AssignedJobsList";
-//import ProviderDashboard from "./components/ProviderDashboard";
+import NewJobList from "./service_provider/components/NewJobList";
+import AssignedJobList from "./service_provider/components/AssignedJobsList";
+import JobDetails from "./service_provider/components/JobDetails";
+
+import NoMatch from "./components/NoMatch";
 
 function App() {
   //const [user, setUser] = createContext();
@@ -29,11 +31,15 @@ function App() {
 
   return (
     <div className="App">
+
       <Router>
+
         <NavBar
           currentUser={currentUser}
-          setCurrentUser={setCurrentUser}
-        ></NavBar>
+          setCurrentUser={setCurrentUser}>
+        </NavBar>
+
+
         <main>
           <Switch>
             <Route path="/" exact>
@@ -54,19 +60,23 @@ function App() {
               />
             </Route>
 
+            <Route
+              path={`/client/:userId/requests`}
+              exact
+              currentUser={currentUser}
+            >
+              <RequestList />
+            </Route>
+
             <Route exact path="/requests/new">
               <RequestForm currentUser={currentUser}/>
             </Route>
 
-            <Route exact path="/requests" currentUser={currentUser}>
-              <RequestList />
+            <Route path="/provider_dashboard">
+              <ProviderDashboard currentUser={currentUser} />
             </Route>
 
-            <Route path="/dashboard">
-              <Dashboard currentUser={currentUser} />
-            </Route>
-
-            <Route path="/listings">
+            <Route path="/new_listings">
               <NewJobList currentUser={currentUser} />
             </Route>
 
@@ -74,9 +84,14 @@ function App() {
               <AssignedJobList currentUser={currentUser} />
             </Route>
 
-            <Route path="*">
-              <h2>404 NOT FOUND</h2>
+            <Route path="/new_listing_detail">
+              <JobDetails currentUser={currentUser} />
             </Route>
+
+            <Route path="*">
+              <NoMatch />
+            </Route>
+
           </Switch>
         </main>
       </Router>

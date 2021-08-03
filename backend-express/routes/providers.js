@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const providersDbHelper = require("../db/queries/providersDbHelper");
+const offersDbHelper = require("../db/queries/offersdbHelper");
+const e = require("express");
 
 module.exports = (db) => {
 
@@ -31,6 +33,38 @@ module.exports = (db) => {
           console.log(err);
           res.status(500).send();
         });
+    } else {
+      res.status(401).send();
+    }
+  });
+
+  /* Add an offer */
+  router.post("/:id/offer", function (req, res) {
+    console.log(req.params.id);
+    console.log("Offer received", req.body);
+    if(req.session && req.session.userId === parseInt(req.params.id)) {
+      const provider_id = req.session.userId;
+      const {request_id, quote, comment } = req.body;
+      offersDbHelper.getFirstOfferByRequestIdAndProviderId(db, request_id, provider_id)
+      .then((data) => {
+        if (data) {
+          console.log("Already exists", data);
+          res.status(400).send();
+          return;
+        }
+        offersDbHelper.addOfferForRequestByProvider(db, request_id, provider_id, quote, comment)
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).send();
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send();
+      });
     } else {
       res.status(401).send();
     }

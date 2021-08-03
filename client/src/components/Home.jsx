@@ -1,9 +1,7 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import "./home.scss";
 
 export default function Home(currentUser) {
-  const history = useHistory();
   return (
     <div className="main-container">
       <div className="about">

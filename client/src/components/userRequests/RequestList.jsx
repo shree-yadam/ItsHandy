@@ -1,21 +1,25 @@
 //import React, { useState, useEffect } from "react";
 //import axios from 'axios';
+import { Link } from "react-router-dom";
 
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../Hooks/useRequestListData.js";
+
+import './RequestList.scss';
 import { useHistory } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import requestlistitem from './requestlistitem.scss'
 
 /**
- * This component renders Requests List submitted by a specific customer through mapping and using RequstListItem component
+ * This component renders Requests List including offers to pass it down to offers component submitted by a specific customer through mapping and using RequstListItem component
  * No props are passed to this function yet (Should take array of requests)
  * @returns single request
  */
 const RequestList = (props) => {
+
   /**
    * Data Sample: List of objects like this
-   *   {
+   *   {[
     id: 2,
     title: 'Broken Fan',
     street_address: '111 King Street East',
@@ -31,27 +35,51 @@ const RequestList = (props) => {
     longitude: null,
     latitude: null,
     price: null
+  }]
+  offers:[
+      {
+    id: 2,
+    request_id: 2,
+    provider_id: null,
+    quote: '$200',
+    offer_comment: 'can fix it but need tools to help',
+    title: 'Paint Basement',
+    street_address: '4350 Robson St',
+    city: 'Vancouver',
+    price: null,
+    category_id: 3,
+    preferred_date: 2021-08-16T04:00:00.000Z,
+    preferred_time: null,
+    img_url: null,
+    description: 'Need the whole basement repainted',
+    client_id: 1,
+    date_completed: null,
+    longitude: null,
+    latitude: null
   }
+  ]
    */
   const { requestListState, setRequestListState } = useRequestListData();
 
   const history = useHistory();
-  return (
-    <div className = "request-list">
-      
-      <Button className="request-service-btn" onClick={() => history.push("/requests/new")}>
-        Request New Service
+ 
+
+  //  console.log(userId);
+
+  return (<div className="request-list">
+    {/* This check is to not map if this was not loaded the first time */}
+    <Button className="request-service-btn" onClick={() => history.push("/requests/new")}>
+        Request Service
       </Button>
-   
-      {/* This check is to not map if this was not loaded the first time */}
-      {requestListState.requestList &&
-        requestListState.requestList.map((requestItem) => {
-          return <RequestListItem key={requestItem.id} {...requestItem} />;
-        })}
-
-
-    </div>
-  );
+    {requestListState.requestList && requestListState.requestList.map(requestItem => {
+      let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
+      //console.log(requestOffers)
+      return (
+        <RequestListItem  OffersRequests={{requestItem:requestItem,requestOffers:requestOffers}}/>
+      )
+    })}
+  </div>
+  )
 };
 
 export default RequestList;
