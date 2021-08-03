@@ -24,7 +24,6 @@ return (
         <div className = "navbar-items-container">
           <span>
             <Button  className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
-            <Button onClick={()=> history.push('/requests/new')}> Request Form </Button>
           </span>
           <div className="user-action-nav">
             <Button variant="dark" className="navbar-items" onClick={()=> history.push("/login")}>Login</Button>
@@ -35,9 +34,12 @@ return (
       {
         currentUser &&
         <div className = "navbar-items-container">
-          <span>
+          <span> 
+            
             <Button variant="success" className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
+            {!currentUser.is_provider &&
             <Button onClick={()=> history.push('/requests/new')}> Request Form </Button>
+            }
           </span>
           <div className="user-action-nav">
         
