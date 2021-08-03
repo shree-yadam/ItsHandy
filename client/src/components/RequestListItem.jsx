@@ -27,7 +27,7 @@ console.log("DELETED REQUEST")
   
       <div className="listitem-container">
        
-        <div classname="listitem-footer">
+        <div className="listitem-footer">
           <Button variant="primary" type="submit" onClick={deleteRequest}>
             Delete
           </Button>

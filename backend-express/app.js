@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors"); // cors require
 const cookieSession = require("cookie-session");
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(bodyParser.urlencoded({ extended: false })); app.use(bodyParser.json());
 
 //Use cookie-parser
 app.use(
@@ -38,6 +41,10 @@ app.use("/api/providers", providersRouter(db));
 const offersRouter = require("./routes/offers");
 app.use("/api/users", offersRouter(db));
 app.use("/api/users", usersRouter(db));
+
+const requestsRouter = require("./routes/requests");
+app.use("/api/requests", requestsRouter(db));
+app.use("/api/requests/new", requestsRouter(db));
 
 
 

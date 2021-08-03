@@ -14,6 +14,5 @@ CREATE TABLE requests (
   provider_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   date_completed DATE,
   longitude DOUBLE PRECISION,
-  latitude DOUBLE PRECISION,
-  price VARCHAR(15)
+  latitude DOUBLE PRECISION
 );
