@@ -1,10 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // App components
 //import Home from "./components/Home";
@@ -16,6 +12,7 @@ import Dashboard from "./components/Dashboard";
 import RequestForm from "./components/RequestForm";
 import NewJobList from "./components/NewJobList";
 import AssignedJobList from "./components/AssignedJobsList";
+import NoMatch from "./components/NoMatch";
 //import ProviderDashboard from "./components/ProviderDashboard";
 
 function App() {
@@ -81,9 +78,8 @@ function App() {
             <Route path="/assigned_jobs">
               <AssignedJobList currentUser={currentUser} />
             </Route>
-
             <Route path="*">
-              <h2>404 NOT FOUND</h2>
+              <NoMatch />
             </Route>
           </Switch>
         </main>
