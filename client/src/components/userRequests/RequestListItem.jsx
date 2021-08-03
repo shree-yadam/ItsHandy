@@ -1,5 +1,5 @@
 import Button from "../Button";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export default function RequestListItem(props) {
@@ -39,7 +39,7 @@ export default function RequestListItem(props) {
 
   const sendMessage = (event) => {
     event.preventDefault()
-    console.log("SENT MESSAGE")
+
 
     // TBD
   };
@@ -49,6 +49,7 @@ export default function RequestListItem(props) {
       <div className="listitem-container">
 
         <div>
+
           <div>
             <h2>Title: <strong>{props.OffersRequests.requestItem.title}</strong></h2>
             <p>Description: {props.OffersRequests.requestItem.description}</p>
@@ -56,7 +57,7 @@ export default function RequestListItem(props) {
             <p>City: {props.OffersRequests.requestItem.city}</p>
             <p>Category: {props.OffersRequests.requestItem.category_name}</p>
             <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
-            <p>Number of offers received: {props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length}</p>
+            <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
           </div>
         </div>
         <div classname="listitem-footer">
@@ -65,6 +66,18 @@ export default function RequestListItem(props) {
           </Button>
           <Button>Review And Complete</Button>
           <Button variant="primary" type="submit" onClick={sendMessage}>Message</Button>
+          {props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 && <Button variant="primary" type="button" onClick={() => {
+            <Link
+              to={{
+                pathname: "/tylermcginnis",
+                state: {
+                  "offers": props.OffersRequests.requestOffers,
+                },
+              }}
+            >
+            Tyler McGinnis
+          </Link>
+          }}>Show offers</Button>}
         </div>
       </div>
     </div>

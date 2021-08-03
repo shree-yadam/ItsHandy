@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../Hooks/useRequestListData.js";
 
-
+import './RequestList.scss';
 /**
  * This component renders Requests List including offers to pass it down to offers component submitted by a specific customer through mapping and using RequstListItem component
  * No props are passed to this function yet (Should take array of requests)
@@ -60,7 +60,7 @@ const RequestList = (props) => {
 
   //  console.log(userId);
 
-  return (<div>
+  return (<div class="requstList">
     {/* This check is to not map if this was not loaded the first time */}
     <Link>
       <button> Request Service </button>{" "}
