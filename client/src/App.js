@@ -55,7 +55,7 @@ function App() {
             </Route>
 
             <Route exact path="/requests/new">
-              <RequestForm />
+              <RequestForm currentUser={currentUser}/>
             </Route>
 
             <Route exact path="/requests" currentUser={currentUser}>

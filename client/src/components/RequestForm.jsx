@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Button from "./Button";
+import  Button  from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
 
-export default function RequestForm() {
+export default function RequestForm({currentUser}) {
   console.log("IN THE REQUEST FORM......");
   const [newRequest, setNewRequest] = useState({
     title: "",
@@ -15,6 +15,7 @@ export default function RequestForm() {
     preferred_time: "",
     job_image: "",
     description: "",
+    client_id: currentUser && currentUser.id
   });
   const history = useHistory();
 
@@ -91,10 +92,10 @@ export default function RequestForm() {
         <option value="Babysitter">Babysitting</option>
       </select>
 
-      <Form.Group className="mb-3" controlId="description">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Job Description</Form.Label>
         <Form.Control
-          type="text"
+        as="textarea" rows={3} columns={11}
           placeholder="Enter Work Details"
           value={newRequest.description}
           onChange={(event) =>
@@ -107,7 +108,7 @@ export default function RequestForm() {
       </Form.Group>
 
       <Button
-        variant="primary"
+        variant="success"
         size="lg"
         type="submit"
         onClick={handleRequestSubmit}

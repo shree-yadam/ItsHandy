@@ -4,7 +4,8 @@
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../Hooks/useRequestListData.js";
 import { useHistory } from "react-router-dom";
-import Button from "../Button";
+import Button from 'react-bootstrap/Button';
+import requestlistitem from './requestlistitem.scss'
 
 /**
  * This component renders Requests List submitted by a specific customer through mapping and using RequstListItem component
@@ -36,7 +37,11 @@ const RequestList = (props) => {
 
   const history = useHistory();
   return (
-    <div>
+    <div className = "request-list">
+      
+      <Button className="request-service-btn" onClick={() => history.push("/requests/new")}>
+        Request New Service
+      </Button>
    
       {/* This check is to not map if this was not loaded the first time */}
       {requestListState.requestList &&
@@ -44,9 +49,7 @@ const RequestList = (props) => {
           return <RequestListItem key={requestItem.id} {...requestItem} />;
         })}
 
-<Button onClick={() => history.push("/requests/new")}>
-        Request Service
-      </Button>
+
     </div>
   );
 };

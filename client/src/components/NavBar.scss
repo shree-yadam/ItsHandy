@@ -11,4 +11,18 @@ nav.navbar-menu {
 .navbar-items-container {
   display: flex;
   justify-content: space-between;
+  margin: 10px;
+}
+
+.user-action-nav {
+
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.user-action-nav .navbar-items{
+
+  margin-left: 15px;
+  
 }

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import Button from './Button';
+import Button from 'react-bootstrap/Button';
 import './NavBar.scss';
+import RequestForm from './RequestForm';
 
 export default function NavBar ({currentUser, setCurrentUser}){
 
@@ -22,26 +23,28 @@ return (
       {!currentUser &&
         <div className = "navbar-items-container">
           <span>
-            <Button className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
+            <Button  className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
+            <Button onClick={()=> history.push('/requests/new')}> Request Form </Button>
           </span>
-          <span>
-            <Button className="navbar-items" onClick={()=> history.push("/login")}>Login</Button>
-            <Button className="navbar-items" onClick={()=> history.push("/register")}>Register</Button>
-          </span>
+          <div className="user-action-nav">
+            <Button variant="dark" className="navbar-items" onClick={()=> history.push("/login")}>Login</Button>
+            <Button variant="success" className="navbar-items" onClick={()=> history.push("/register")}>Register</Button>
+          </div>
         </div>
       }
       {
         currentUser &&
         <div className = "navbar-items-container">
           <span>
-            <Button className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
+            <Button variant="success" className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
+            <Button onClick={()=> history.push('/requests/new')}> Request Form </Button>
           </span>
-          <span>
-            <label>
+          <div className="user-action-nav">
+        
               {currentUser.first_name} {currentUser.last_name}
-              <Button className="navbar-items" onClick={handleLogout}>Logout</Button>
-            </label>
-          </span>
+              <Button variant="danger" className="navbar-items" onClick={handleLogout}>Logout</Button>
+            
+          </div>
         </div>
       }
 </nav>
