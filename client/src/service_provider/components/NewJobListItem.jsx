@@ -1,4 +1,4 @@
-import Button from "../../components/Button";
+import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import makeOffer from '../helpers/makeOffer'

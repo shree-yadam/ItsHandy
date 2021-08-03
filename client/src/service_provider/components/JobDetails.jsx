@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import JobDetailsDescription from "./JobDetailsDescription";
-import Button from "../../components/Button";
+import Button from 'react-bootstrap/Button';
 import "./JobDetails.scss";
 import makeOffer from "../helpers/makeOffer";
 

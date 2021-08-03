@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import './NavBar.scss';
-import RequestForm from './RequestForm';
 
 export default function NavBar ({currentUser, setCurrentUser}){
 

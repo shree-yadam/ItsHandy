@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
-import Button from './Button';
-import { Form, Row, Col, ToggleButton } from 'react-bootstrap';
+import { Form, Row, Col, ToggleButton, Button } from 'react-bootstrap';
 import './register.scss'
 
 export default function Register({currentUser, setCurrentUser}) {

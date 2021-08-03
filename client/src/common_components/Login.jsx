@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { Form } from 'react-bootstrap';
 import './login.scss';
-import Button from './Button';
+import Button from 'react-bootstrap/Button';
 
 export default function Login({setCurrentUser}) {
   const [email, setUser] = useState('');

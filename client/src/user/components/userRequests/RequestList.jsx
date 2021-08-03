@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 
 import RequestListItem from "./RequestListItem";
-import useRequestListData from "../../Hooks/useRequestListData.js";
+import useRequestListData from "../../Hooks/useRequestListData";
 
 import './RequestList.scss';
 import { useHistory } from "react-router-dom";
