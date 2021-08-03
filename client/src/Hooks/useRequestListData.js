@@ -34,6 +34,7 @@ export default function useRequstListData() {
         //     price: null,
         //   }
       ],
+      offers:[]
     },
     []
   );
@@ -51,7 +52,7 @@ export default function useRequstListData() {
             offers: all[1].data,
           };
         });
-        console.log("all[1].data", all[1].data);
+        // console.log("all[1].data", all[1].data);
       })
       .catch((err) => err.message);
   },[userId]);

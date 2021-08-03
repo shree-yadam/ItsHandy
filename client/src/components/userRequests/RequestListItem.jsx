@@ -2,7 +2,10 @@ import Button from "../Button";
 //import { Link } from "react-router-dom";
 
 
-export default function RequestListItem({ title, street_address, city,preferred_date, category_name, description, category, date }) {
+export default function RequestListItem(props) {
+  // const title = props.requestItem.title;
+  // const description = props.requestItem.description;
+  // const street_address
   /**
    * Data Sample: List of objects like this
    *   {
@@ -44,15 +47,16 @@ export default function RequestListItem({ title, street_address, city,preferred_
   return (
     <div>
       <div className="listitem-container">
-        {/* <RequestItemInfo ></RequestItemInfo> */}
+
         <div>
           <div>
-            <h2>Title: <strong>{title}</strong></h2>
-            <p>Description: {description}</p>
-            <p>Street Address: {street_address}</p>
-            <p>City: {city}</p>
-            <p>Category: {category_name}</p>
-            <p>Date needed: {preferred_date && preferred_date.slice(0,10)}</p>
+            <h2>Title: <strong>{props.OffersRequests.requestItem.title}</strong></h2>
+            <p>Description: {props.OffersRequests.requestItem.description}</p>
+            <p>Street Address: {props.OffersRequests.requestItem.street_address}</p>
+            <p>City: {props.OffersRequests.requestItem.city}</p>
+            <p>Category: {props.OffersRequests.requestItem.category_name}</p>
+            <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
+            <p>Number of offers received: {props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length}</p>
           </div>
         </div>
         <div classname="listitem-footer">
