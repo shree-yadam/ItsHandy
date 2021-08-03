@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { Form } from 'react-bootstrap';
 import './login.scss';
-import Button from './Button';
+import Button from 'react-bootstrap/Button';
 
 export default function Login({setCurrentUser}) {
   const [email, setUser] = useState('');
@@ -28,7 +28,11 @@ export default function Login({setCurrentUser}) {
         email: res.data.email,
         is_provider: res.data.is_provider
       });
-      history.push("/new_listings");
+      if(res.data.is_provider){
+        history.push("/new_listings");
+      } else {
+        history.push(`/client/${res.data.id}/requests`);
+      }
     })
     .catch((err) => {
       console.log(err);

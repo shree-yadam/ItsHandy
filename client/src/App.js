@@ -3,18 +3,17 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // App components
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import NavBar from "./components/NavBar";
-import RequestList from "./components/userRequests/RequestList";
-import ProviderDashboard from "./service_provider/components/ProviderDashboard";
-import RequestForm from "./components/RequestForm";
-import NewJobList from "./service_provider/components/NewJobList";
-import AssignedJobList from "./service_provider/components/AssignedJobsList";
-import JobDetails from "./service_provider/components/JobDetails";
-
-import NoMatch from "./components/NoMatch";
+import Home from "../src/common_components/Home";
+import Login from "../src/common_components/Login"
+import Register from "../src/common_components/Register"
+import NavBar from "../src/common_components/NavBar";
+import RequestList from "../src/user/components/userRequests/RequestList";
+import ProviderDashboard from "../src/service_provider/components/ProviderDashboard";
+import RequestForm from "../src/user/components/userRequests/RequestForm";
+import NewJobList from "../src/service_provider/components/NewJobList";
+import AssignedJobList from "../src/service_provider/components/AssignedJobsList";
+import JobDetails from "../src/service_provider/components/JobDetails";
+import NoMatch from "../src/common_components/NoMatch";
 
 function App() {
   //const [user, setUser] = createContext();

@@ -1,6 +1,6 @@
 import axios from "axios";
-import RequestItemInfo from "../../components/RequestItemInfo";
-import Button from "../../components/Button";
+import RequestItemInfo from "../../common_components/RequestItemInfo";
+import Button from 'react-bootstrap/Button';
 
 export default function AssignedJobListItem({
   currentUser,

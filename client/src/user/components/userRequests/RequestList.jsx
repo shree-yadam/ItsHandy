@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
 import RequestListItem from "./RequestListItem";
-import useRequestListData from "../../Hooks/useRequestListData.js";
+import useRequestListData from "../../Hooks/useRequestListData";
 
 
 import './RequestList.scss';
