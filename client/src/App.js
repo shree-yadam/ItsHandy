@@ -8,12 +8,11 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavBar";
 import RequestList from "./components/userRequests/RequestList";
-import Dashboard from "./components/Dashboard";
+import ProviderDashboard from "./service_provider/components/ProviderDashboard";
 import RequestForm from "./components/RequestForm";
-import NewJobList from "./components/NewJobList";
-import AssignedJobList from "./components/AssignedJobsList";
-import JobDetails from "./components/JobDetails";
-//import ProviderDashboard from "./components/ProviderDashboard";
+import NewJobList from "./service_provider/components/NewJobList";
+import AssignedJobList from "./service_provider/components/AssignedJobsList";
+import JobDetails from "./service_provider/components/JobDetails";
 
 function App() {
   //const [user, setUser] = createContext();
@@ -63,8 +62,8 @@ function App() {
               <RequestList />
             </Route>
 
-            <Route path="/dashboard">
-              <Dashboard currentUser={currentUser} />
+            <Route path="/provider_dashboard">
+              <ProviderDashboard currentUser={currentUser} />
             </Route>
 
           <Route path="/new_listings">

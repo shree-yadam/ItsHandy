@@ -1,5 +1,5 @@
 import React from 'react';
-import NewJobList from './NewJobList';
+import NewJobList from '../service_provider/components/NewJobList';
 import { useHistory } from 'react-router-dom'
 import Button from './Button';
 import './home.scss'

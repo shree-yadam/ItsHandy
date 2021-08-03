@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import JobDetailsDescription from "./JobDetailsDescription";
-import Button from "./Button";
+import Button from "../../components/Button";
 import "./JobDetails.scss";
-import axios from 'axios';
+import makeOffer from "../helpers/makeOffer";
 
 export default function JobDetails(props) {
   const [madeOffer, setMadeOffer] = useState(false);
@@ -14,21 +14,15 @@ export default function JobDetails(props) {
   const  job = location.state;
   const history = useHistory();
 
-  const makeOffer = () => {
-    console.log("makeOffer");
-    return axios.post(`api/providers/${props.currentUser.id}}/offer`, {
-      request_id: job.id,
-      quote,
-      comment
-    })
-    .then((res) => {
-      console.log("Offer posted", res);
+
+  function handleOffer(){
+    makeOffer(props.currentUser.id, job.id, quote, comment)
+    .then (() => {
       setMadeOffer(true);
     })
     .catch((err) => {
       console.log(err);
     });
-
   }
 
 
@@ -54,7 +48,7 @@ export default function JobDetails(props) {
         <label>Quote
           <input className="quote-input" value={quote} onChange={(event)=> setQuote(event.target.value)}/></label>
         <Button className="offer-button"
-        onClick={makeOffer}>Make an offer</Button>
+        onClick={handleOffer}>Make an offer</Button>
       </div>
       }
       { madeOffer &&
