@@ -17,7 +17,7 @@ module.exports = (db) => {
   
     });
 // creates a new request in the database
-    router.post("/:id/requests/new", (req, res) => {
+    router.post("/:id/requests", (req, res) => {
       console.log("In request form post", req.body)
       requestsdbHelper.addNewRequest(db, req.body)
       .then((result) => res.send(result))

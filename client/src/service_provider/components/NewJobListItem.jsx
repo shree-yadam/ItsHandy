@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import makeOffer from '../helpers/makeOffer'
+import  './NewJobListItem.scss';
 
 export default function NewJobListItem({
   job,
@@ -47,31 +48,42 @@ export default function NewJobListItem({
   }
 
   return (
-    <div>
+    <div className="newlisting-container">
+      <div className ="newlisting-info">
       <h2>Title: <strong>{job.title}</strong></h2>
       <p>Date needed: {job.date && job.date.split('T')[0]}</p>
-
+      </div>
 
       { !job.offer_made &&
         <div>
-          <label>Quote:</label>
-          <input name="quote" value={job.quote} onChange={(event) => setQuote(event.target.value)} />
-          <Button variant="primary" type="submit"  onClick={handleOffer} >
+          <div className="make-offer">
+          <label>Quote: </label>
+          <input placeholder="Enter your quote" name="quote" value={job.quote} onChange={(event) => setQuote(event.target.value)} />
+          <Button className="offer-btn" variant="success" type="submit"  onClick={handleOffer} >
             Make a quick Offer
           </Button>
-          <Button variant="primary" type="submit"  onClick={goToDetails}>
+          </div>
+          <Button  variant="primary" type="submit"  onClick={goToDetails}>
             Details
           </Button>
+          <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
+            Messages
+      </Button>
         </div>
       }
       { job.offer_made &&
-      <div className="offer-button">
+      <div>
         <p>Quote: {job.quote}</p>
-      </div>
+        <Button  variant="primary" type="submit"  onClick={goToDetails}>
+            Details
+          </Button>
+
+          <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
+          Messages
+    </Button>
+    </div>
       }
-      <Button variant="primary" type="submit"  onClick={checkMessages}>
-            Messages
-      </Button>
+
     </div>
   );
 }

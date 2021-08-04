@@ -14,13 +14,14 @@ INSERT INTO requests(
   street_address,
   city,
   category_id,
+  img_url,
   preferred_date,
   description,
   client_id)
-VALUES ('Leaky Faucet', '2146 Blind Bay Road', 'Black Pool', 1, '18-AUG-2021', 'Leaky Faucet in Kitchen.', 1),
-('Paint Basement', '4350 Robson St', 'Vancouver', 3, '16-AUG-2021', 'Need the whole basement repainted', 3),
-('Flickering Lights', '3331 Front Street', 'Toronto', 2, '17-AUG-2021', 'The lights in the study keep flickering.', 4),
-('Low water pressure in bathroom', '2147 James Street', 'St Catharines', 1, '17-AUG-2021', 'Water pressure in main bathroom ver ylow even when faucet fully open', 4);
+VALUES ('Leaky Faucet', '2146 Blind Bay Road', 'Black Pool', 1,'https://rdcnewsadvice.wpengine.com/wp-content/uploads/2018/10/leaky-faucet.jpg', '18-AUG-2021', 'Leaky Faucet in Kitchen.', 1),
+('Paint Basement', '4350 Robson St', 'Vancouver', 3,'https://www.nolanpainting.com/content/uploads/2020/02/preventing-paint-damage-by-water-leaks-425x260.jpg', '16-AUG-2021', 'Need the whole basement repainted', 3),
+('Flickering Lights', '3331 Front Street', 'Toronto', 2,'https://www.kirbyelectric.com/wp-content/uploads/2018/07/neon-tube-269365_960_720-848x480.jpg', '17-AUG-2021', 'The lights in the study keep flickering.', 4),
+('Low water pressure in bathroom', '2147 James Street', 'St Catharines', 1,'https://lentheplumber.com/wp-content/uploads/2017/11/low-water-pressure.jpg', '17-AUG-2021', 'Water pressure in main bathroom ver ylow even when faucet fully open', 4);
 
 INSERT INTO requests (title, street_address, city, category_id,
   preferred_date, img_url, description, client_id, provider_id)

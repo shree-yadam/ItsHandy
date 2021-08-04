@@ -46,8 +46,10 @@ export default function JobDetails({
   }
 
   return (
-    <div className="job-details-container">
+    <div className="job-details-main">
       <h2>Job Details</h2>
+    <div className="job-details-container">
+      
       <div className="details-and-map-container">
         <JobDetailsDescription
         title={job.title}
@@ -92,6 +94,7 @@ export default function JobDetails({
       </div>
       }
 
+    </div>
     </div>
   );
 }

@@ -3,9 +3,11 @@ import axios from "axios";
 import NewJobListItem from "./NewJobListItem";
 import useVisualMode from "../Hooks/useVisualMode";
 import JobDetails from "./JobDetails";
+import  "./NewJobList.scss";
 
 const DETAIL = "DETAIL";
 const JOB_LIST = "JOB_LIST";
+
 
 export default function NewJobList({currentUser}) {
   const { mode, transition } = useVisualMode(JOB_LIST);
@@ -34,7 +36,7 @@ export default function NewJobList({currentUser}) {
   },[]);
 
   return(
-    <div>
+    <div className="newlisting-main">
       {mode === JOB_LIST &&
       <>
       <h2>New Job Listing</h2>

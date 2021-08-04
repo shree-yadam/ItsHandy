@@ -1,6 +1,10 @@
 .job-details-container {
-  top: 5em;
+  margin: 3em;
   position: relative;
+  display:column;
+  border-color:black;
+  border-style: solid;
+  padding:30px;
 }
 
 .details-and-map-container {
@@ -10,9 +14,13 @@
 
 .offer-button {
   display: flex;
-  justify-content: center;
   height: 2em;
   margin-top: 2em;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .map-container {
@@ -22,4 +30,20 @@
 .quote-input {
   margin-left: 1em;
   margin-right: 1em;
+}
+
+.job-details-main {
+  margin-top:5em;
+}
+
+.job-details-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+img{
+  border-radius:40px;
+  max-width: 30%;
+  height: auto;
 }

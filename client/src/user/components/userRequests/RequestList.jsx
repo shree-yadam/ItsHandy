@@ -1,14 +1,14 @@
 //import React, { useState, useEffect } from "react";
-//import axios from 'axios';
-import { Link } from "react-router-dom";
+
+
+//import { Link } from "react-router-dom";
 
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../Hooks/useRequestListData";
-
 import './RequestList.scss';
 import { useHistory } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
-import requestlistitem from './requestlistitem.scss'
+import './RequestListItem.scss'
 
 /**
  * This component renders Requests List including offers to pass it down to offers component submitted by a specific customer through mapping and using RequstListItem component
@@ -62,20 +62,21 @@ const RequestList = (props) => {
   const { requestListState, setRequestListState } = useRequestListData();
 
   const history = useHistory();
- 
 
+  // const { userId } = useParams();
+  // console.log('userId :>> ', userId);
   //  console.log(userId);
 
   return (<div className="request-list">
     {/* This check is to not map if this was not loaded the first time */}
-    <Button className="request-service-btn" onClick={() => history.push("/requests/new")}>
-        Request Service
-      </Button>
+    <Button className="request-service-btn" onClick={() => history.push(`requests/new`)}>
+      Request Service
+    </Button>
     {requestListState.requestList && requestListState.requestList.map(requestItem => {
       let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
       //console.log(requestOffers)
       return (
-        <RequestListItem  OffersRequests={{requestItem:requestItem,requestOffers:requestOffers}}/>
+        <RequestListItem OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }} />
       )
     })}
   </div>
