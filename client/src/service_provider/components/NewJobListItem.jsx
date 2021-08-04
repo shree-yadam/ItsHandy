@@ -82,6 +82,9 @@ export default function NewJobListItem({
       { madeOffer &&
       <div>
         <p>Quote: {quote}</p>
+        <Button  variant="primary" type="submit"  onClick={goToDetails}>
+            Details
+          </Button>
       
           <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
           Messages
