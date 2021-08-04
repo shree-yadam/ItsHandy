@@ -2,6 +2,9 @@ import JobDetailsDescription from "./JobDetailsDescription";
 import Button from 'react-bootstrap/Button';
 import "./JobDetails.scss";
 import makeOffer from "../../helpers/makeOffer";
+import GoogleMapReact from 'google-map-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapPin } from '@fortawesome/free-solid-svg-icons'
 
 export default function JobDetails({
   job,
@@ -10,6 +13,8 @@ export default function JobDetails({
   setNewJobs,
   index
 }) {
+
+  const MapLabelComponent = () => <FontAwesomeIcon icon={faMapPin} size="4x" color="red" />;
 
   function setComment(comment){
     setNewJobs(prev => {
@@ -29,6 +34,8 @@ export default function JobDetails({
     job.quote = quote;
   }
 
+
+  console.log(job);
 
   function handleOffer(){
     makeOffer(currentUser.id, job.id, job.quote, job.comment)
@@ -58,7 +65,18 @@ export default function JobDetails({
         date={job.preferred_date}
         img_url={job.img_url}
         />
-        <div className="map-container">FOR MAP !!</div>
+        <div className="map-container">
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
+          defaultCenter={{lat: 45.421480,
+              lng: -75.694430}}
+          defaultZoom={14}>
+             <MapLabelComponent
+            lat={45.421480}
+            lng={-75.694430}
+          />
+          </GoogleMapReact>
+        </div>
       </div>
 
       { !job.offer_made &&
