@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-
 /**
  * Handles requests data
  */
@@ -35,7 +34,7 @@ export default function useRequstListData() {
         //     price: null,
         //   }
       ],
-      offers:[]
+      offers: [],
     },
     []
   );
@@ -49,7 +48,6 @@ export default function useRequstListData() {
       .then((all) => {
         setRequstListState((prev) => {
           return {
-            ...prev,
             requestList: all[0].data,
             offers: all[1].data,
           };
@@ -57,6 +55,6 @@ export default function useRequstListData() {
         // console.log("all[1].data", all[1].data);
       })
       .catch((err) => err.message);
-  },[userId]);
+  }, [userId]);
   return { requestListState, setRequstListState };
 }

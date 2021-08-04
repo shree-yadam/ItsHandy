@@ -35,6 +35,12 @@ export default function RequestListItem(props) {
   const deleteRequest = (event) => {
     event.preventDefault();
     console.log("DELETED REQUEST");
+    // const URL = baseURL+requestId(from props)
+  // Make axios request axios.delete(URL).then(
+  // if sucessfull change state of request list filter all requests.filter(request => request.id !== id);
+   //) 
+  // 
+
 
     // TBD
   };
