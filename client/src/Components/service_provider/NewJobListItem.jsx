@@ -10,6 +10,7 @@ export default function NewJobListItem({
   index,
   setNewJobs
   }) {
+
   function setQuote(quote) {
     setNewJobs(prev => {
       const jobs = [...prev];
@@ -51,7 +52,8 @@ export default function NewJobListItem({
     <div className="newlisting-container">
       <div className ="newlisting-info">
       <h2>Title: <strong>{job.title}</strong></h2>
-      <p>Date needed: {job.date && job.date.split('T')[0]}</p>
+      {job.offer_made && <p className="label-offer-made">Offer Made</p>}
+      <p>Date needed: {job.preferred_date && job.preferred_date.split('T')[0]}</p>
       </div>
 
       { !job.offer_made &&
@@ -68,20 +70,20 @@ export default function NewJobListItem({
           </Button>
           <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
             Messages
-      </Button>
+          </Button>
         </div>
       }
       { job.offer_made &&
-      <div>
-        <p>Quote: {job.quote}</p>
-        <Button  variant="primary" type="submit"  onClick={goToDetails}>
+        <div>
+          <p>Quote: {job.quote}</p>
+          <Button  variant="primary" type="submit"  onClick={goToDetails}>
             Details
           </Button>
 
           <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
-          Messages
-    </Button>
-    </div>
+            Messages
+          </Button>
+        </div>
       }
 
     </div>

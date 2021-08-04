@@ -13,20 +13,10 @@ import UserDashboard from "./Components/user/UserDashboard"
 import RequestForm from "./Components/user/RequestForm";
 import NewJobList from "./Components/service_provider/NewJobList";
 import AssignedJobList from "./Components/service_provider/AssignedJobsList";
-import JobDetails from "./Components/service_provider/JobDetails";
 import NoMatch from "./Components/NoMatch";
 
 function App() {
-  //const [user, setUser] = createContext();
-  // const [currentUserDetails, setCurrentUSerDetails] = set
-  // const currentUser =useContext(null);
 
-  // const currentUser = {
-  //   id: 1,
-  //   first_name: "Joe",
-  //   last_name: "Smith",
-  //   email: "joe@smith.com",
-  // };
   const [currentUser, setCurrentUser] = useState(null);
 
   return (
@@ -84,10 +74,6 @@ function App() {
 
             <Route path="/assigned_jobs">
               <AssignedJobList currentUser={currentUser} />
-            </Route>
-
-            <Route path="/new_listing_detail">
-              <JobDetails currentUser={currentUser} />
             </Route>
 
             <Route path="*">
