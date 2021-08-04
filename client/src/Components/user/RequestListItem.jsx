@@ -86,17 +86,18 @@ export default function RequestListItem(props) {
             Delete
           </Button>
 
-          {props.OffersRequests.requestItem.date_assigned!== null ? <Button variant="info">Review And Complete</Button>:""}
+          {props.OffersRequests.requestItem.date_assigned !== null ? <Button variant="info">Review And Complete</Button> : ""}
           <Button variant="success" type="submit"
             onClick={sendMessage}>
             Message
           </Button>
-
-          {props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 &&
+          {/* Renders show offers button if offers are received and job is not assigned*/}
+          {(props.OffersRequests.requestOffers && !props.OffersRequests.requestItem.date_assigned) && props.OffersRequests.requestOffers.length > 0 &&
             <Button variant="primary" type="button"
-              onClick={() => history.push({ 
+              onClick={() => history.push({
                 pathname: `requests/${props.OffersRequests.requestItem.id}/offers`,
-                state: { requestOffer: props.OffersRequests.requestOffers } })}>
+                state: { requestOffer: props.OffersRequests.requestOffers }
+              })}>
               Show offers
             </Button>}
         </div>
