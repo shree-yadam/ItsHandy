@@ -86,8 +86,7 @@ export default function RequestListItem(props) {
             Delete
           </Button>
 
-          <Button variant="info">Review And Complete</Button>
-
+          {props.OffersRequests.requestItem.date_assigned!== null ? <Button variant="info">Review And Complete</Button>:""}
           <Button variant="success" type="submit"
             onClick={sendMessage}>
             Message
