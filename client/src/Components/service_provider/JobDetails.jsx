@@ -5,6 +5,8 @@ import makeOffer from "../../helpers/makeOffer";
 import GoogleMapReact from 'google-map-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapPin } from '@fortawesome/free-solid-svg-icons'
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function JobDetails({
   job,
@@ -13,8 +15,20 @@ export default function JobDetails({
   setNewJobs,
   index
 }) {
-
+  const [location, setLocation] = useState({ lat: 45.421480, lng: -75.694430 });
   const MapLabelComponent = () => <FontAwesomeIcon icon={faMapPin} size="4x" color="red" />;
+
+  useEffect(() => {
+    const locationQueryString = job.street_address.split(' ').join('+') + ',' + job.city.split(' ').join('+');
+
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${locationQueryString}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
+    .then((res) => {
+      if(res.data){
+        setLocation(res.data.results[0].geometry.location);
+      }
+    })
+    .catch((err) => console.log(err));
+  }, []);
 
   function setComment(comment){
     setNewJobs(prev => {
@@ -33,9 +47,6 @@ export default function JobDetails({
     });
     job.quote = quote;
   }
-
-
-  console.log(job);
 
   function handleOffer(){
     makeOffer(currentUser.id, job.id, job.quote, job.comment)
@@ -70,11 +81,13 @@ export default function JobDetails({
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
           defaultCenter={{lat: 45.421480,
               lng: -75.694430}}
+          center={location}
           defaultZoom={14}>
              <MapLabelComponent
-            lat={45.421480}
-            lng={-75.694430}
+            lat={location.lat? location.lat:45.421480}
+            lng={location.lng? location.lng:-75.694430}
           />
+
           </GoogleMapReact>
         </div>
       </div>

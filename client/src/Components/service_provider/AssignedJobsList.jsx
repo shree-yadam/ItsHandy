@@ -25,7 +25,9 @@ export default function AssignedJobList({currentUser}){
 
   return (
     <div className="assigned-jobs-container">
+      {currentUser &&
       <h2>Assigned Jobs</h2>
+      }
       {assignedJobs && assignedJobs.map((assignedJob) => <AssignedJobListItem
       key={assignedJob.id}
       currentUser={currentUser}
@@ -37,6 +39,7 @@ export default function AssignedJobList({currentUser}){
       img_url={assignedJob.img_url}
       markJobCompleted={markJobCompleted}
       />)}
+
     </div>
   );
 }
