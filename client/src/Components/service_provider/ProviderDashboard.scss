@@ -1,9 +1,19 @@
 
 .provider-container{
-  margin-top:10em;
+  margin-top: 6em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: center;
+  align-items: center;
 }
 
-
+.provider-grid{
+border-color:black;
+border-style: solid;
+padding:100px;
+}
 // .user-dashboard-items {
 
 //   margin-top: 5em;
