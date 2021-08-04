@@ -52,6 +52,7 @@ export default function NewJobListItem({
     <div className="newlisting-container">
       <div className ="newlisting-info">
       <h2>Title: <strong>{job.title}</strong></h2>
+      {job.offer_made && <p className="label-offer-made">Offer Made</p>}
       <p>Date needed: {job.preferred_date && job.preferred_date.split('T')[0]}</p>
       </div>
 

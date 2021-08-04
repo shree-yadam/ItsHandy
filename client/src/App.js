@@ -12,20 +12,10 @@ import ProviderDashboard from "./Components/service_provider/ProviderDashboard";
 import RequestForm from "./Components/user/RequestForm";
 import NewJobList from "./Components/service_provider/NewJobList";
 import AssignedJobList from "./Components/service_provider/AssignedJobsList";
-import JobDetails from "./Components/service_provider/JobDetails";
 import NoMatch from "./Components/NoMatch";
 
 function App() {
-  //const [user, setUser] = createContext();
-  // const [currentUserDetails, setCurrentUSerDetails] = set
-  // const currentUser =useContext(null);
 
-  // const currentUser = {
-  //   id: 1,
-  //   first_name: "Joe",
-  //   last_name: "Smith",
-  //   email: "joe@smith.com",
-  // };
   const [currentUser, setCurrentUser] = useState(null);
 
   return (
