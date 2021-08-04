@@ -3,17 +3,18 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // App components
-import Home from "./Components/Home";
-import Login from "./Components/Login"
-import Register from "./Components/Register";
-import NavBar from "./Components/NavBar";
-import RequestList from "./Components/user/RequestList";
-import ProviderDashboard from "./Components/service_provider/ProviderDashboard";
-import RequestForm from "./Components/user/RequestForm";
-import NewJobList from "./Components/service_provider/NewJobList";
-import AssignedJobList from "./Components/service_provider/AssignedJobsList";
-import JobDetails from "./Components/service_provider/JobDetails";
-import NoMatch from "./Components/NoMatch";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import NavBar from "./components/NavBar";
+import RequestList from "./components/user/RequestList";
+import ProviderDashboard from "./components/service_provider/ProviderDashboard";
+import RequestForm from "./components/user/RequestForm";
+import NewJobList from "./components/service_provider/NewJobList";
+import AssignedJobList from "./components/service_provider/AssignedJobsList";
+import JobDetails from "./components/service_provider/JobDetails";
+import NoMatch from "./components/NoMatch";
+import OfferList from "./components/user/OfferList";
 
 function App() {
   //const [user, setUser] = createContext();
@@ -61,12 +62,16 @@ function App() {
               exact
               currentUser={currentUser}
             >
-              <RequestList currentUser={currentUser}/>
+              <RequestList currentUser={currentUser} />
             </Route>
 
             {/* Route for creating new requests by logged in user */}
             <Route path={`/client/:userId/requests/new`} exact>
               <RequestForm currentUser={currentUser} />
+            </Route>
+
+            <Route path={`/client/:userId/requests/:requestId/offers`} exact>
+              <OfferList currentUser={currentUser} />
             </Route>
 
             <Route path="/provider_dashboard">

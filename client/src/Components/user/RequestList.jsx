@@ -1,12 +1,10 @@
 //import React, { useState, useEffect } from "react";
-
-
 //import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../hooks/useRequestListData";
 import './RequestList.scss';
-import { useHistory } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import './RequestListItem.scss'
 
