@@ -14,7 +14,7 @@ export default function JobDetails({
   function setComment(comment){
     setNewJobs(prev => {
       const oldList = [...prev];
-      oldList[index].comment = comment;
+      oldList[index].offer_comment = comment;
       return oldList;
     });
     job.comment = comment;
@@ -65,7 +65,7 @@ export default function JobDetails({
       <div className="offer-button">
 
         <label>Add comments with quote (optional)
-          <input className="quote-input" value={job.comment} onChange={(event)=> setComment(event.target.value)}/></label>
+          <input className="quote-input" value={job.offer_comment} onChange={(event)=> setComment(event.target.value)}/></label>
 
         <label>Quote
         <input className="quote-input" value={job.quote} onChange={(event)=> setQuote(event.target.value)}/></label>
@@ -85,7 +85,6 @@ export default function JobDetails({
       <div className="offer-button">
 
         <p>Quote: {job.quote}</p>
-
         <Button className="offer-button"
         onClick={() => {
           setMode("JOB_LIST");

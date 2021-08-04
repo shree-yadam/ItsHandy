@@ -81,10 +81,6 @@ function App() {
               <AssignedJobList currentUser={currentUser} />
             </Route>
 
-            <Route path="/new_listing_detail">
-              <JobDetails currentUser={currentUser} />
-            </Route>
-
             <Route path="*">
               <NoMatch />
             </Route>

@@ -18,15 +18,13 @@ export default function NewJobList({currentUser}) {
       if(currentUser) {
         axios.get(`api/providers/${currentUser.id}/newListings`)
         .then((res) => {
-          console.log(res.data);
-          setNewJobs(res.data);
-          const jobs = newJobs;
-          jobs.map(job => {
-            job.offer_made = false;
-            job.quote = "";
-            job.comment = "";
-            return job;
-          });
+          const jobs = res.data;
+          // jobs.map(job => {
+          //   console.log(job.quote);
+          //   job.quote ? job.offer_made = true : job.offer_made = false;
+          //   console.log(job.offer_made);
+          //   return job;
+          // });
           setNewJobs(jobs);
 
         })

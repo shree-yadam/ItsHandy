@@ -77,9 +77,30 @@ const getAllOffers = function (db,id) {
     });
 }
 
+/**
+ * Get offers by provider
+ * @param {integer} providerId The id of the provider.
+ *  @return {Promise<{}>} A promise to the provider.
+ */
+
+ const getOffersForProvider = function(db, providerId) {
+  const queryString = `
+  SELECT request_id, quote, offer_comment
+  FROM offers
+  WHERE provider_id = $1;
+    `;
+  const queryParams = [providerId];
+  return db.query(queryString, queryParams)
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows;
+    });
+}
+
 module.exports = {
   getAllOffers,
   // getOffersByRequestId,
   getFirstOfferByRequestIdAndProviderId,
-  addOfferForRequestByProvider
+  addOfferForRequestByProvider,
+  getOffersForProvider
 };
