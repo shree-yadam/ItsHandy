@@ -29,7 +29,7 @@ export default function Login({setCurrentUser}) {
         is_provider: res.data.is_provider
       });
       if(res.data.is_provider){
-        history.push("/new_listings");
+        history.push(`/provider/${res.data.id}`);
       } else {
         history.push(`/client/${res.data.id}/requests`);
       }

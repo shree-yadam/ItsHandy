@@ -9,6 +9,7 @@ import Register from "./Components/Register";
 import NavBar from "./Components/NavBar";
 import RequestList from "./Components/user/RequestList";
 import ProviderDashboard from "./Components/service_provider/ProviderDashboard";
+import UserDashboard from "./Components/user/UserDashboard"
 import RequestForm from "./Components/user/RequestForm";
 import NewJobList from "./Components/service_provider/NewJobList";
 import AssignedJobList from "./Components/service_provider/AssignedJobsList";
@@ -58,11 +59,15 @@ function App() {
             <Route path={`/client/:userId/requests/new`} exact>
               <RequestForm currentUser={currentUser} />
             </Route>
-
-            <Route path="/provider_dashboard">
+{/* for provider */}
+            <Route path="/provider/:userId">
               <ProviderDashboard currentUser={currentUser} />
             </Route>
-
+{/* temp */}
+            <Route path="/client/:userId">
+              <UserDashboard currentUser={currentUser}></UserDashboard>
+            </Route>
+{/* temp */}
             <Route path="/new_listings">
               <NewJobList currentUser={currentUser} />
             </Route>

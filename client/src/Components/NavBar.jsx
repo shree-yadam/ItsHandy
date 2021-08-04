@@ -31,20 +31,26 @@ return (
         </div>
       }
       {
-        currentUser &&
+        currentUser  &&
         <div className = "navbar-items-container">
-          <span>
+          <span className = "navbar-items-container">
 
             <Button variant="success" className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
             {!currentUser.is_provider &&
+            <div className="navbar-items-container">
             <Button onClick={()=> history.push(`/client/${currentUser.id}/requests/new`)}> Request Form </Button>
+            <Button variant="success" className="navbar-items" onClick={()=> history.push(`/client/${currentUser.id}`)}>My Dashboard</Button>
+            </div>
+            }
+             {currentUser.is_provider &&
+            <div className="navbar-items-container">
+            <Button variant="success" className="navbar-items" onClick={()=> history.push(`/provider/${currentUser.id}`)}>My Dashboard</Button>
+            </div>
             }
           </span>
           <div className="user-action-nav">
-
               {currentUser.first_name} {currentUser.last_name}
               <Button variant="danger" className="navbar-items" onClick={handleLogout}>Logout</Button>
-
           </div>
         </div>
       }
