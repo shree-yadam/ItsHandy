@@ -9,19 +9,19 @@ const offersdbHelpers = require("../db/queries/offersdbHelper");
  */
 module.exports = (db) => {
   router.get("/:id/requests", (req, res) => {
-    console.log(req.params.id)
+    console.log(req.params.id);
     requestsdbHelper
       .getUserRequestsById(db, req.params.id)
       .then((result) => res.json(result))
-      .catch((err) => console.log(err.message));  
-  
-    });
-// creates a new request in the database
-    router.post("/:id/requests", (req, res) => {
-      console.log("In request form post", req.body)
-      requestsdbHelper.addNewRequest(db, req.body)
-      .then((result) => res.send(result))
-    });
+      .catch((err) => console.log(err.message));
+  });
+  // creates a new request in the database
+  router.post("/:id/requests", (req, res) => {
+    console.log("In request form post", req.body);
+    requestsdbHelper
+      .addNewRequest(db, req.body)
+      .then((result) => res.send(result));
+  });
 
   // Gets all offers for user effects
   router.get("/:id/requests/offers", (req, res) => {
