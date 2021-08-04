@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // App components
-import Home from "../src/common_components/Home";
-import Login from "../src/common_components/Login"
-import Register from "../src/common_components/Register"
-import NavBar from "../src/common_components/NavBar";
-import RequestList from "../src/user/components/userRequests/RequestList";
+import Home from "./common_components/Home";
+import Login from "./common_components/Login"
+import Register from "./common_components/Register"
+import NavBar from "./common_components/NavBar";
+import RequestList from "./user/components/userRequests/RequestList";
 import ProviderDashboard from "../src/service_provider/components/ProviderDashboard";
-import RequestForm from "../src/user/components/userRequests/RequestForm";
+import RequestForm from "./user/components/userRequests/RequestForm";
 import NewJobList from "../src/service_provider/components/NewJobList";
 import AssignedJobList from "../src/service_provider/components/AssignedJobsList";
 import JobDetails from "../src/service_provider/components/JobDetails";
-import NoMatch from "../src/common_components/NoMatch";
+import NoMatch from "./common_components/NoMatch";
 
 function App() {
   //const [user, setUser] = createContext();
@@ -30,14 +30,11 @@ function App() {
 
   return (
     <div className="App">
-
       <Router>
-
         <NavBar
           currentUser={currentUser}
-          setCurrentUser={setCurrentUser}>
-        </NavBar>
-
+          setCurrentUser={setCurrentUser}
+        ></NavBar>
 
         <main>
           <Switch>
@@ -64,11 +61,12 @@ function App() {
               exact
               currentUser={currentUser}
             >
-              <RequestList />
+              <RequestList currentUser={currentUser}/>
             </Route>
 
-            <Route exact path="/requests/new">
-              <RequestForm currentUser={currentUser}/>
+            {/* Route for creating new requests by logged in user */}
+            <Route path={`/client/:userId/requests/new`} exact>
+              <RequestForm currentUser={currentUser} />
             </Route>
 
             <Route path="/provider_dashboard">
@@ -90,7 +88,6 @@ function App() {
             <Route path="*">
               <NoMatch />
             </Route>
-
           </Switch>
         </main>
       </Router>

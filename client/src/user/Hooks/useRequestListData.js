@@ -8,7 +8,7 @@ export default function useRequstListData() {
   const { userId } = useParams();
   // Id of user who made the requests
   //const clientId = 1;
-  console.log("User id from params in requests list data", userId);
+  //console.log("User id from params in requests list data", userId);
   // State for requests List
   const [requestListState, setRequstListState] = useState(
     {
