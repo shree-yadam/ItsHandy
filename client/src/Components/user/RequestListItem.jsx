@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import  "./RequestListItem.scss";
+import axios from 'axios';
 
 
 
@@ -31,6 +32,14 @@ export default function RequestListItem(props) {
   const deleteRequest = (event) => {
     event.preventDefault();
     console.log("DELETED REQUEST");
+    axios.delete(
+      `/api/client/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}`
+    )
+  .then((res) => {
+    console.log("REQUEST DELETED", res);
+    //TBD : UPdate list to reflect the deletion
+   })
+  .catch((error) => console.log(error));
 
     // TBD
   };
@@ -62,7 +71,7 @@ export default function RequestListItem(props) {
             <strong>Street Address:</strong> {props.OffersRequests.requestItem.street_address}
           </p>
             {/* <p>Street Address: {props.OffersRequests.requestItem.street_address}</p> */}
-            
+
             <p>
             <strong>Category: {props.OffersRequests.requestItem.category_name}</strong>
           </p>
@@ -73,8 +82,8 @@ export default function RequestListItem(props) {
             <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
             <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
           </div>
-         
-   
+
+
         </div>
         </div>
         <div className="listitem-footer">

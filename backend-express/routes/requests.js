@@ -13,8 +13,8 @@ module.exports = (db) => {
     requestsdbHelper
       .getUserRequestsById(db, req.params.id)
       .then((result) => res.json(result))
-      .catch((err) => console.log(err.message));  
-  
+      .catch((err) => console.log(err.message));
+
     });
 // creates a new request in the database
     router.post("/:id/requests", (req, res) => {
@@ -30,5 +30,18 @@ module.exports = (db) => {
       .then((result) => res.json(result))
       .catch((err) => console.log(err));
   });
+
+  // DELETE a request
+  router.delete("/:id/requests/:request_id", (req, res) => {
+    console.log("IN DELETE REQUEST POST")
+    if(req.session && req.session.userId === parseInt(req.params.id)){
+      requestsdbHelper
+        .deleteRequest(db, req.params.id)
+        .then((result) => {console.log("THIS IS RESULT IN DELETE REQ", result);
+        res.send()})
+        .catch((err) => console.log(err));
+    }
+  });
+
   return router;
 };

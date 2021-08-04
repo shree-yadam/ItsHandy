@@ -4,7 +4,7 @@
  * @return {Promise<{}>} A promise to display the requests result.
  */
 const getUserRequestsById = (db, id) => {
-  const queryString = 
+  const queryString =
   `SELECT requests.id, requests.title, requests.city, requests.street_address, requests.preferred_date, requests.img_url, requests.description, requests.price, categories.name as category_name
   FROM requests join categories on(requests.category_id = categories.id)
   WHERE requests.client_id = $1 AND requests.date_completed IS NULL`;
@@ -46,7 +46,27 @@ const addNewRequest = function(db, requestDetails) {
   .then((result) => {
     console.log("addnewrequest", result.rows);
     return result.rows[0];
-    
+
   })
 }
-module.exports = {getUserRequestsById, addNewRequest};
+
+/* Delete a request to the requests table
+ * @param {Object} request_id id of request to be deleted
+ * @return {Promise<{}>} A promise to the customer.
+ */
+const deleteRequest = function(db, request_id) {
+
+  const queryString = `
+  DELETE FROM requests
+  WHERE requests.id = $1
+  RETURNING *;`;
+
+  const queryParams = [request_id];
+  return db.query(queryString, queryParams)
+  .then((result) => {
+    console.log("deleteNewRequest", result.rows);
+    return result.rows[0];
+
+  })
+}
+module.exports = {getUserRequestsById, addNewRequest, deleteRequest};
