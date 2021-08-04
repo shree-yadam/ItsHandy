@@ -61,9 +61,7 @@ const RequestList = (props) => {
 
   const history = useHistory();
 
-  // const { userId } = useParams();
-  // console.log('userId :>> ', userId);
-  //  console.log(userId);
+  console.log('requestListState.requestItem :>> ', requestListState.requestList[0]);
 
   return (<div className="request-list">
     {/* This check is to not map if this was not loaded the first time */}
@@ -72,7 +70,7 @@ const RequestList = (props) => {
     </Button>
     {requestListState.requestList && requestListState.requestList.map(requestItem => {
       let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
-      //console.log(requestOffers)
+
       return (
         <RequestListItem OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }} />
       )

@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(cors()); // CORS middleware useage
-app.use(logger("dev"));
+app.use(logger("dev")); // moragn middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

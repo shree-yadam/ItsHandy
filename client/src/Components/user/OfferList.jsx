@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import OfferListItem from './OfferListItem';
-
+/**
+ * Displays OfferListItem components for offer details
+ * @param {*} props 
+ * @returns 
+ */
 const OfferList = (props) => {
     const history = useHistory();
 
@@ -11,7 +15,7 @@ const OfferList = (props) => {
     return (
         <div>
             <h1>Offers list</h1>
-            {state.requestOffer.map(offer => <OfferListItem {...offer} />)}
+            {state.requestOffer && state.requestOffer.map(offer => <OfferListItem {...offer} />)}
         </div>
     )
 }
