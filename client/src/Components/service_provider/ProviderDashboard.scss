@@ -12,9 +12,43 @@
 .provider-grid{
 border-color:black;
 border-style: solid;
-padding:100px;
+padding:50px;
+display:grid
 }
 // .user-dashboard-items {
 
 //   margin-top: 5em;
 // }
+
+.provider-grid-1 {
+border-color:black;
+border-style: solid;
+padding:60px;
+margin:5px;
+background-color:rgba(184, 195, 222, 0.68);
+}
+
+.provider-grid-2 {
+border-color:black;
+border-style: solid;
+padding:60px;
+background-color:rgba(218, 112, 112, 0.92);
+margin: 8px;
+}
+.provider-grid-2:hover {
+border-color:rgb(0, 0, 0);
+border-style: solid;
+padding:60px;
+background-color:rgba(131, 83, 83, 0.92);
+color:white;
+margin: 8px;
+}
+
+.provider-grid-1:hover {
+border-color:rgb(0, 0, 0);
+border-style: solid;
+padding:60px;
+background-color:rgba(131, 83, 83, 0.92);
+color:white;
+margin: 8px;
+}
