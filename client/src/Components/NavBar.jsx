@@ -44,7 +44,6 @@ return (
             }
              {currentUser.is_provider &&
             <div className="navbar-items-container">
-            <Button onClick={()=> history.push(`/client/${currentUser.id}/requests/new`)}> Request Form </Button>
             <Button variant="success" className="navbar-items" onClick={()=> history.push(`/provider/${currentUser.id}`)}>My Dashboard</Button>
             </div>
             }
