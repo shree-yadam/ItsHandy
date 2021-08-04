@@ -37,7 +37,7 @@ return (
 
             <Button variant="success" className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
             {!currentUser.is_provider &&
-            <Button onClick={()=> history.push('/requests/new')}> Request Form </Button>
+            <Button onClick={()=> history.push(`/client/${currentUser.id}/requests/new`)}> Request Form </Button>
             }
           </span>
           <div className="user-action-nav">
