@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // App components
-import Home from "./common_components/Home";
-import Login from "./common_components/Login"
-import Register from "./common_components/Register"
-import NavBar from "./common_components/NavBar";
-import RequestList from "./user/components/userRequests/RequestList";
-import ProviderDashboard from "../src/service_provider/components/ProviderDashboard";
-import RequestForm from "./user/components/userRequests/RequestForm";
-import NewJobList from "../src/service_provider/components/NewJobList";
-import AssignedJobList from "../src/service_provider/components/AssignedJobsList";
-import JobDetails from "../src/service_provider/components/JobDetails";
-import NoMatch from "./common_components/NoMatch";
+import Home from "./Components/Home";
+import Login from "./Components/Login"
+import Register from "./Components/Register";
+import NavBar from "./Components/NavBar";
+import RequestList from "./Components/user/RequestList";
+import ProviderDashboard from "./Components/service_provider/ProviderDashboard";
+import RequestForm from "./Components/user/RequestForm";
+import NewJobList from "./Components/service_provider/NewJobList";
+import AssignedJobList from "./Components/service_provider/AssignedJobsList";
+import JobDetails from "./Components/service_provider/JobDetails";
+import NoMatch from "./Components/NoMatch";
 
 function App() {
   //const [user, setUser] = createContext();

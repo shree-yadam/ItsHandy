@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import makeOffer from '../helpers/makeOffer'
+import makeOffer from '../../helpers/makeOffer'
 import  './NewJobListItem.scss';
 
 export default function NewJobListItem({

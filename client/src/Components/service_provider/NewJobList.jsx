@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NewJobListItem from "./NewJobListItem";
-import useVisualMode from "../Hooks/useVisualMode";
+import useVisualMode from "../../hooks/useVisualMode";
 import JobDetails from "./JobDetails";
 import  "./NewJobList.scss";
 

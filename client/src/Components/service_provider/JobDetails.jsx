@@ -1,7 +1,7 @@
 import JobDetailsDescription from "./JobDetailsDescription";
 import Button from 'react-bootstrap/Button';
 import "./JobDetails.scss";
-import makeOffer from "../helpers/makeOffer";
+import makeOffer from "../../helpers/makeOffer";
 
 export default function JobDetails({
   job,
@@ -49,7 +49,7 @@ export default function JobDetails({
     <div className="job-details-main">
       <h2>Job Details</h2>
     <div className="job-details-container">
-      
+
       <div className="details-and-map-container">
         <JobDetailsDescription
         title={job.title}
