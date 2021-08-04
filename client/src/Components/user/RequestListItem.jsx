@@ -36,10 +36,10 @@ export default function RequestListItem(props) {
     event.preventDefault();
     console.log("DELETED REQUEST");
     // const URL = baseURL+requestId(from props)
-  // Make axios request axios.delete(URL).then(
-  // if sucessfull change state of request list filter all requests.filter(request => request.id !== id);
-   //) 
-  // 
+    // Make axios request axios.delete(URL).then(
+    // if sucessfull change state of request list filter all requests.filter(request => request.id !== id);
+    //) 
+    // 
 
 
     // TBD
@@ -79,20 +79,24 @@ export default function RequestListItem(props) {
             {/* <p>Category: {props.OffersRequests.requestItem.category_name}</p> */}
             <div className="side-info-header">
               <p>City: {props.OffersRequests.requestItem.city}</p>
+
               {/* <p>Date needed: {preferred_date}</p> */}
               <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
               <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
+
+              {/* Displays service provider name if this request was assigned */}
+              {props.OffersRequests.requestItem.service_provider_first_name && "Service Provider assigned: " + props.OffersRequests.requestItem.service_provider_first_name + " " + props.OffersRequests.requestItem.service_provider_last_name}
+              <br />
+              <br />
             </div>
-
-
           </div>
         </div>
+
         <div className="listitem-footer">
           <Button className="btn-danger" variant="warning" type="submit" onClick={deleteRequest}>
             Delete
           </Button>
-
-          {props.OffersRequests.requestItem.date_assigned !== null ? <Button variant="info">Review And Complete</Button> : ""}
+          {props.OffersRequests.requestItem.provider_id !== null ? <Button variant="info">Review And Complete</Button> : ""}
           <Button variant="success" type="submit"
             onClick={sendMessage}>
             Message
