@@ -3,7 +3,6 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import UserDashboard from '../user/UserDashboard';
 import { Link } from 'react-router-dom';
 import './ProviderDashboard.scss'
 import ReviewStars from '../ReviewStars';
@@ -27,13 +26,13 @@ useEffect(() => {
   return (
     <>
     {providerInfo &&
-      
+
       <div className = "provider-container">
-        
+
         <div className="provder-profile">
         <h1>My Profile</h1>
         <p><img src ={providerInfo.img_url} alt="provider-pic"></img></p>
-        <p><strong>My Rating:<ReviewStars rating={providerInfo.avg_rating}/></strong></p>
+        <strong>My Rating:</strong><ReviewStars rating={providerInfo.avg_rating}/>
         <p><strong> Name: </strong>{providerInfo.first_name} {providerInfo.last_name}</p>
         <p><strong>Email: </strong>{providerInfo.email}</p>
         <p><strong>Contact:</strong> {providerInfo.phone_number}</p>
@@ -46,9 +45,9 @@ useEffect(() => {
         <Link to="/new_listings"> <Button variant="primary"> New Listings </Button>  </Link>
         </div>
         </div>
-        
+
       </div>
-      
+
     }
     {currentUser && !currentUser.is_provider &&
     //TBD:: Display Client Dashboard

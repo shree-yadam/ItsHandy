@@ -10,7 +10,7 @@ const JOB_LIST = "JOB_LIST";
 
 
 export default function NewJobList({currentUser}) {
-  const { mode, transition } = useVisualMode(JOB_LIST);
+  const { mode, transition, back } = useVisualMode(JOB_LIST);
   const [detailJobId, setDetailJobId] = useState(null);
 
   const [newJobs, setNewJobs] = useState(null);
@@ -46,6 +46,7 @@ export default function NewJobList({currentUser}) {
           currentUser={currentUser}
           setDetailJobId={setDetailJobId}
           setMode={transition}
+          back={back}
           index={index}
           setNewJobs={setNewJobs}
           />)
@@ -55,7 +56,7 @@ export default function NewJobList({currentUser}) {
       {mode === DETAIL &&
         <JobDetails currentUser={currentUser}
         job={newJobs[detailJobId]}
-        setMode={transition}
+        back={back}
         setNewJobs={setNewJobs}
         index={detailJobId} />
       }
