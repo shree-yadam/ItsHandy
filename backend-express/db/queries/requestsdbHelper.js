@@ -4,7 +4,7 @@
  * @return {Promise<{}>} A promise to display the requests result.
  */
 const getUserRequestsById = (db, id) => {
-  const queryString = `SELECT requests.id, requests.title, requests.city, requests.street_address, requests.preferred_date, requests.img_url, requests.description, requests.price, requests.provider_id, requests,date_assigned, categories.name as category_name, users.first_name as service_provider_first_name, users.first_name as service_provider_last_name
+  const queryString = `SELECT requests.id, requests.title, requests.city, requests.street_address, requests.preferred_date, requests.img_url, requests.description, requests.price, requests.provider_id, requests,date_assigned, categories.name as category_name, users.first_name as service_provider_first_name, users.last_name as service_provider_last_name
   FROM requests
   join categories on(requests.category_id = categories.id)
   left join users on (requests.provider_id = users.id)

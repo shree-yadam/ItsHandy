@@ -8,10 +8,11 @@ import Button from 'react-bootstrap/Button';
  */
 
 
-const OfferItem = ( {service_provider_first_name,service_provider_last_name,avg_rating,offer_comment,quote}) => {
+const OfferItem = ( {service_provider_first_name,service_provider_last_name,service_provider_img_url,avg_rating,offer_comment,quote}) => {
     //console.log(props)
     return (
         <div>
+            <img src={service_provider_img_url} alt="provider-pic"/>
             Service provider Name:{service_provider_first_name} {service_provider_last_name}
             <br/>
             Avg rating: {avg_rating}

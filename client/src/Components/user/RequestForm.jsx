@@ -88,6 +88,18 @@ export default function RequestForm({ currentUser }) {
         />
       </Form.Group>
 
+      <Form.Group className="mb-3" controlId="preferred-date">
+        <Form.Label>Preferred Date</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter YYYY-MM-DD"
+          value={newRequest.preferred_date}
+          onChange={(event) =>
+            setNewRequest((prev) => ({ ...prev, preferred_date: event.target.value }))
+          }
+        />
+      </Form.Group>
+
       <Form.Group className="mb-3" controlId="category">
       <label> Choose A Category </label>
       <br></br>

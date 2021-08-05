@@ -8,8 +8,8 @@
  */
 const getAllOffers = function (db, id) {
   // old query "select * from offers join requests on offers.request_id = requests.id where requests.client_id=$1"
-  const query = `select offers.*, users.first_name as service_provider_first_name, 
-  users.first_name as service_provider_last_name, users.avg_rating
+  const query = `select offers.*, users.first_name as service_provider_first_name,users.img_url as service_provider_img_url, 
+  users.last_name as service_provider_last_name, users.avg_rating
     from offers
     join requests on offers.request_id = requests.id
     join users on offers.provider_id = users.id
