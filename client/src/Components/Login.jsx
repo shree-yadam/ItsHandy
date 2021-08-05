@@ -31,7 +31,7 @@ export default function Login({setCurrentUser}) {
       if(res.data.is_provider){
         history.push(`/provider/${res.data.id}`);
       } else {
-        history.push(`/client/${res.data.id}/requests`);
+        history.push(`/client/${res.data.id}`);
       }
     })
     .catch((err) => {
