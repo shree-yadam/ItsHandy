@@ -1,12 +1,12 @@
 .listitem-container{
 
   display: flex;
-  padding-top: 2em;
-  margin-top: 2em;
+  padding-top: 1vh;
+  margin-top: 2vh;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-radius: 3px;
+  border-radius: 2vh;
   border-color: black;
   border-style: solid;
   flex-direction: column;
@@ -15,12 +15,12 @@
 .listitem-container:hover{
 
   display: flex;
-  padding-top: 2em;
-  margin-top: 2em;
+  padding-top: 1vh;
+  margin-top: 2vh;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-radius: 3px;
+  border-radius: 2vh;
   border-color: black;
   border-style: solid;
   flex-direction: column;
@@ -28,7 +28,7 @@
 }
 
 .request-list {
-  margin-top: 10%;
+  margin-top: 15vh;
   padding: 10px;
 }
 

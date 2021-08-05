@@ -2,7 +2,7 @@ nav.navbar-menu {
   width: 100%;
   background-color: #4056A1;
   color: white;
-  padding: 0.5em;
+  padding: 0.5vh;
   position: fixed;
   top: 0;
   z-index: 9;
@@ -11,8 +11,13 @@ nav.navbar-menu {
 .navbar-items-container {
   display: flex;
   justify-content: space-between;
-  margin: 10px;
+  margin: 1vh;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  align-items: center;
 }
+
 
 .user-action-nav {
 

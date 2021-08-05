@@ -3,6 +3,7 @@ import React, { useState  } from "react";
 import { useHistory,useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
+import './RequestForm.scss'
 
 export default function RequestForm({ currentUser }) {
   // Get user id from ur param
@@ -17,7 +18,7 @@ export default function RequestForm({ currentUser }) {
     category_id: "",
     preferred_date: "",
     preferred_time: "",
-    job_image: "",
+    img_url: "",
     description: "",
     client_id: userId
   });
@@ -87,7 +88,9 @@ export default function RequestForm({ currentUser }) {
         />
       </Form.Group>
 
+      <Form.Group className="mb-3" controlId="category">
       <label> Choose A Category </label>
+      <br></br>
       <select id="dropdown" onChange={handleDropdownChange}>
         <option value="N/A">N/A</option>
         <option value="Plumbing">Plumbing</option>
@@ -95,6 +98,7 @@ export default function RequestForm({ currentUser }) {
         <option value="Painting">Painting</option>
         <option value="Babysitter">Babysitting</option>
       </select>
+      </Form.Group>
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Job Description</Form.Label>
@@ -107,6 +111,18 @@ export default function RequestForm({ currentUser }) {
               ...prev,
               description: event.target.value,
             }))
+          }
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="job_image">
+        <Form.Label>Add An Image</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Put A Link Image of the job"
+          value={newRequest.img_url}
+          onChange={(event) =>
+            setNewRequest((prev) => ({ ...prev, img_url: event.target.value }))
           }
         />
       </Form.Group>

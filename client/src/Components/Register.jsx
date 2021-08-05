@@ -138,9 +138,11 @@ return (
           event.currentTarget.checked? setIsServiceProvider(true):setIsServiceProvider(false)}} >
           Check if You are a subscriber
         </ToggleButton>
+        <div className="btn-register">
         <Button variant="primary" size="lg" type="submit" onClick={handleRegister}>
             {isServiceProvider? "Next" : "Submit"}
         </Button>
+        </div>
       </Form>
       }
 

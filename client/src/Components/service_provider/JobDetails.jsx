@@ -93,7 +93,8 @@ export default function JobDetails({
       </div>
 
       { !job.offer_made &&
-      <div className="offer-button">
+      <div className="offer-footer">
+      <div className="offer-actions">
 
         <label>Add comments with quote (optional)
           <input className="quote-input" value={job.offer_comment} onChange={(event)=> setComment(event.target.value)}/></label>
@@ -103,13 +104,12 @@ export default function JobDetails({
 
         <Button className="offer-button"
         onClick={handleOffer}>Make an offer</Button>
-
-        <Button className="offer-button"
-        onClick={() => {
-          setMode("JOB_LIST");
-          }}>Back</Button>
-
       </div>
+      <Button
+      onClick={() => {
+        setMode("JOB_LIST");
+        }}>Back</Button>
+        </div>
       }
 
       { job.offer_made &&
