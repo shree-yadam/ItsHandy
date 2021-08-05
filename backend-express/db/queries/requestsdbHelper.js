@@ -47,13 +47,36 @@ const deleteRequest = function (db, request_id) {
   });
 };
 
+
 /**
  *
- * @param {db,provider_id,price} AssignOfferToServiceProvider Db connection, providerid,price
- * @param {*} provider_id
- * @param {*} price
+ * @param {db} dbConnection
+ * @param {provider_id} provider_id takes the provider id to be assigned to this request(whose offer was accepted)
+ * @param {request_id} request_id takes the request to update
+ * @param {price} price gets price from the quote on the request to update in price column
  */
-const acceptOffer = function (db, provider_id, price) {};
+const acceptOffer = function (db, provider_id, price, client_id,request_id) {
+  const queryString = `UPDATE requests
+  SET date_assigned = CURRENT_DATE, provider_id= $1, price= $2, client_id=$3
+  WHERE id = $4;`;
+
+  const queryParams = [
+    provider_id,
+    price,
+    client_id,
+    request_id
+  ];
+
+  return db.query(queryString, queryParams)
+  .then((res) => {
+    console.log("updated successfully")
+  }
+  )
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 /**
  * Add a new request to the requests table
  * @param {Object} requestDetails The details of the request including

@@ -3,6 +3,7 @@ const router = express.Router();
 const requestsdbHelper = require("../db/queries/requestsdbHelper");
 const offersdbHelpers = require("../db/queries/offersdbHelper");
 const usersdbHelper = require("../db/queries/usersdbHelper");
+const { request } = require("express");
 /**
  * Get requests from the database given their id.
  * @param {String} id The id of the customer.
@@ -16,7 +17,7 @@ module.exports = (db) => {
       .then((result) => res.json(result))
       .catch((err) => console.log(err.message));
   });
-  
+
   // creates a new request in the database
   router.post("/:id/requests", (req, res) => {
     console.log("In request form post", req.body);
@@ -45,6 +46,27 @@ module.exports = (db) => {
         })
         .catch((err) => console.log(err));
     }
+  });
+
+  // Assign a request to a service provider
+  router.post("/:id/requests/:request_id/offers/assign", (req, res) => {
+    // if (
+    //   req.session &&
+    //   req.session.userId === parseInt(req.params.id) &&
+    //   req.session.request_id === parseInt(req.params.request_id)
+    // ) {
+    //   requestsdbHelper
+    //     .acceptOffer(db, req.body.provider_id, req.body.price, req.params.client_id,req.params.request_id)
+    //     .then((res) => console.log(res))
+    //     .catch((err) => console.log("Accepting offer didn't go well",err.message));
+    // }
+  //console.log("Line63",req.body.price)
+    requestsdbHelper
+    .acceptOffer(db, req.body.provider_id, req.body.price, req.params.id,req.params.request_id)
+    .then((response) => {
+    console.log("route was successful ")
+    return res.send(200)})
+    .catch((err) => console.log(res.status(500).send(),err.message));
   });
 
   // Return user info
