@@ -2,15 +2,44 @@ const express = require("express");
 const router = express.Router();
 const providersDbHelper = require("../db/queries/providersDbHelper");
 const offersDbHelper = require("../db/queries/offersdbHelper");
+const usersDbHelper = require("../db/queries/usersdbHelper")
 const e = require("express");
 
 module.exports = (db) => {
+/*for provider */
+    /* GET provider users */
+    router.get("/:id", function (req, res) {
+      if(req.session && req.session.userId === parseInt(req.params.id)) {
+        usersDbHelper.getProviderByTruthiness(db, req.params.id)
+          .then((result) => {
+            res.json(result)})
+          .catch((err) => {
+            console.log(err);
+            res.status(500).send();
+          });
+      } else {
+        res.status(401).send();
+      }
+    });
 
   /* GET open listings based on category of provider */
   router.get("/:id/newListings", function (req, res) {
     if(req.session && req.session.userId === parseInt(req.params.id)) {
-      providersDbHelper.getNewListingByCategory(db, req.params.id)
-        .then((result) => {
+      Promise.all([providersDbHelper.getNewListingByCategory(db, req.params.id), offersDbHelper.getOffersForProvider(db, req.params.id)])
+        .then(([requests, offers]) => {
+          const result = requests.map((request) => {
+            const offer = offers.find(offer => offer.request_id === request.id)
+            if(offer) {
+              request.quote = offer.quote;
+              request.offer_comment = offer.offer_comment;
+              request.offer_made = true;
+            } else {
+              request.quote = "";
+              request.offer_comment = "";
+              request.offer_made = false;
+            }
+            return request;
+          })
           res.json(result)})
         .catch((err) => {
           console.log(err);

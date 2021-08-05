@@ -27,6 +27,45 @@ const getUsers = function (db) {
       return result.rows[0];
     });
 }
+/**
+ * Get a single customer from the database given their id.
+ * @param {Integer} id The id of the customer.
+ * @return {Promise<{}>} A promise to the customer.
+ */
+ const getUserWithId = function(db, id) {
+  const queryString = `
+    SELECT first_name, last_name, email, phone_number, img_url, avg_rating
+    FROM users
+    WHERE id = $1;
+    `;
+  const queryParams = [id];
+  return db.query(queryString, queryParams)
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows[0];
+    });
+}
+
+
+//for provider
+/**
+ * Get a single customer from the database given their id.
+ * @param {Integer} id The id of the provider.
+ * @return {Promise<{}>} A promise to the customer.
+ */
+ const getProviderByTruthiness = function(db, id) {
+  const queryString = `
+    SELECT first_name, last_name, email, phone_number, img_url, avg_rating, is_provider
+    FROM users
+    WHERE users.id = $1 AND is_provider = true;
+    `;
+  const queryParams = [id];
+  return db.query(queryString, queryParams)
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows[0];
+    });
+}
 
 /**
  * Add a new client to the users table
@@ -62,4 +101,6 @@ module.exports = {
   getUsers,
   getUserWithEmail,
   addNewClient,
+  getUserWithId,
+  getProviderByTruthiness
 };

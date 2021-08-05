@@ -3,30 +3,22 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // App components
+
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import NavBar from "./components/NavBar";
 import RequestList from "./components/user/RequestList";
 import ProviderDashboard from "./components/service_provider/ProviderDashboard";
+import UserDashboard from "./components/user/UserDashboard";
 import RequestForm from "./components/user/RequestForm";
+import JobDetails from "./components/service_provider/JobDetails";
 import NewJobList from "./components/service_provider/NewJobList";
 import AssignedJobList from "./components/service_provider/AssignedJobsList";
-import JobDetails from "./components/service_provider/JobDetails";
 import NoMatch from "./components/NoMatch";
 import OfferList from "./components/user/OfferList";
 
 function App() {
-  //const [user, setUser] = createContext();
-  // const [currentUserDetails, setCurrentUSerDetails] = set
-  // const currentUser =useContext(null);
-
-  // const currentUser = {
-  //   id: 1,
-  //   first_name: "Joe",
-  //   last_name: "Smith",
-  //   email: "joe@smith.com",
-  // };
   const [currentUser, setCurrentUser] = useState(null);
 
   return (
@@ -69,25 +61,26 @@ function App() {
             <Route path={`/client/:userId/requests/new`} exact>
               <RequestForm currentUser={currentUser} />
             </Route>
-
             <Route path={`/client/:userId/requests/:requestId/offers`} exact>
               <OfferList currentUser={currentUser} />
             </Route>
 
-            <Route path="/provider_dashboard">
+            {/* <Route path="/provider_dashboard"></Route> */}
+
+            {/* for provider */}
+            <Route path="/provider/:userId">
               <ProviderDashboard currentUser={currentUser} />
             </Route>
-
+            {/* temp */}
+            <Route path="/client/:userId">
+              <UserDashboard currentUser={currentUser} />
+            </Route>
+            {/* temp */}
             <Route path="/new_listings">
               <NewJobList currentUser={currentUser} />
             </Route>
-
             <Route path="/assigned_jobs">
               <AssignedJobList currentUser={currentUser} />
-            </Route>
-
-            <Route path="/new_listing_detail">
-              <JobDetails currentUser={currentUser} />
             </Route>
 
             <Route path="*">

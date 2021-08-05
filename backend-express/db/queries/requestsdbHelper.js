@@ -30,6 +30,23 @@ const getUserRequestsById = (db, id) => {
 //   });
 // }
 
+/* Delete a request to the requests table
+ * @param {Object} request_id id of request to be deleted
+ * @return {Promise<{}>} A promise to the customer.
+ */
+const deleteRequest = function (db, request_id) {
+  const queryString = `
+  DELETE FROM requests
+  WHERE requests.id = $1
+  RETURNING *;`;
+
+  const queryParams = [request_id];
+  return db.query(queryString, queryParams).then((result) => {
+    console.log("deleteNewRequest", result.rows);
+    return result.rows[0];
+  });
+};
+
 /**
  * Add a new request to the requests table
  * @param {Object} requestDetails The details of the request including
@@ -54,4 +71,5 @@ const addNewRequest = function (db, requestDetails) {
     return result.rows[0];
   });
 };
-module.exports = { getUserRequestsById, addNewRequest };
+
+module.exports = { getUserRequestsById, addNewRequest, deleteRequest };

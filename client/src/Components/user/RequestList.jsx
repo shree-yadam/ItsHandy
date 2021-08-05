@@ -71,7 +71,8 @@ const RequestList = (props) => {
       let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
 
       return (
-        <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }} />
+        <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }}
+        currentUser={props.currentUser}/>
       )
     })}
   </div>

@@ -16,5 +16,5 @@ CREATE TABLE requests (
   date_completed DATE DEFAULT NULL,
   longitude DOUBLE PRECISION,
   latitude DOUBLE PRECISION,
-  date_assigned DATE DEFAULT NULL,
+  date_assigned DATE DEFAULT NULL
 );

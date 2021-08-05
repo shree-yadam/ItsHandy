@@ -2,6 +2,7 @@ import { useHistory, useParams } from 'react-router';
 
 import Button from 'react-bootstrap/Button';
 import "./RequestListItem.scss";
+import axios from 'axios';
 
 
 
@@ -35,12 +36,14 @@ export default function RequestListItem(props) {
   const deleteRequest = (event) => {
     event.preventDefault();
     console.log("DELETED REQUEST");
-    // const URL = baseURL+requestId(from props)
-    // Make axios request axios.delete(URL).then(
-    // if sucessfull change state of request list filter all requests.filter(request => request.id !== id);
-    //) 
-    // 
-
+    axios.delete(
+      `/api/client/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}`
+    )
+      .then((res) => {
+        console.log("REQUEST DELETED", res);
+        //TBD : UPdate list to reflect the deletion
+      })
+      .catch((error) => console.log(error));
 
     // TBD
   };
@@ -111,7 +114,7 @@ export default function RequestListItem(props) {
               Show offers
             </Button>}
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
