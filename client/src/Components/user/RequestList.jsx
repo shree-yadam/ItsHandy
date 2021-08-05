@@ -61,7 +61,6 @@ const RequestList = (props) => {
 
   const history = useHistory();
 
-  console.log('requestListState.requestItem :>> ', requestListState.requestList[0]);
 
   return (<div className="request-list">
     {/* This check is to not map if this was not loaded the first time */}
@@ -72,7 +71,7 @@ const RequestList = (props) => {
       let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
 
       return (
-        <RequestListItem OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }} />
+        <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }} />
       )
     })}
   </div>
