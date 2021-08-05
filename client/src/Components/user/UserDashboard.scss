@@ -1,10 +1,25 @@
 
 .user-dashboard-container{
-  margin-top:8em;
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .user-dashboard-items {
 
-  margin-top: 5em;
+  margin-top: 10vh;
+}
+
+.user-dashboard-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: flex-end;
+  margin: 2vh;
 }
