@@ -42,11 +42,17 @@ export default function RequestListItem(props) {
     )
       .then((res) => {
         console.log("REQUEST DELETED", res);
-        //TBD : UPdate list to reflect the deletion
+        props.setRequestListState(prev => {
+          console.log(prev);
+          const oldState = {...prev};
+          let requestList = [...oldState.requestList];
+          requestList = requestList.filter(request => request.id !== props.OffersRequests.requestItem.id);
+          oldState.requestList = requestList;
+          return oldState;
+        })
       })
       .catch((error) => console.log(error));
 
-    // TBD
   };
 //submitting rating for stars --> make axios post request
   const submitRating = (event) => {
@@ -65,7 +71,7 @@ export default function RequestListItem(props) {
     // TBD
   };
 
-  
+
 
   const sendMessage = (event) => {
     event.preventDefault();

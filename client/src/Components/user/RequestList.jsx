@@ -72,7 +72,7 @@ const RequestList = (props) => {
 
       return (
         <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }}
-        currentUser={props.currentUser}/>
+        currentUser={props.currentUser} setRequestListState={setRequestListState} />
       )
     })}
   </div>

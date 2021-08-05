@@ -14,7 +14,5 @@ CREATE TABLE requests (
   client_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   provider_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   date_completed DATE DEFAULT NULL,
-  longitude DOUBLE PRECISION,
-  latitude DOUBLE PRECISION,
   date_assigned DATE DEFAULT NULL
 );
