@@ -83,7 +83,6 @@ export default function RequestListItem(props) {
             <div className="side-info-header">
               <p>City: {props.OffersRequests.requestItem.city}</p>
 
-              {/* <p>Date needed: {preferred_date}</p> */}
               <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
               <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
 
@@ -99,13 +98,17 @@ export default function RequestListItem(props) {
           <Button className="btn-danger" variant="warning" type="submit" onClick={deleteRequest}>
             Delete
           </Button>
+          {/* Renders Review and Complete button to finish a job and mark it completed if job was already assigned */}
           {props.OffersRequests.requestItem.provider_id !== null ? <Button variant="info">Review And Complete</Button> : ""}
+
+          {/* Check messages regarding an open request */}
           <Button variant="success" type="submit"
             onClick={sendMessage}>
             Message
           </Button>
+          
           {/* Renders show offers button if offers are received and job is not assigned*/}
-          {(props.OffersRequests.requestOffers && !props.OffersRequests.requestItem.date_assigned) && props.OffersRequests.requestOffers.length > 0 &&
+          {(props.OffersRequests.requestOffers && !props.OffersRequests.requestItem.date_assigned && !props.OffersRequests.requestItem.provider_id) && props.OffersRequests.requestOffers.length > 0 &&
             <Button variant="primary" type="button"
               onClick={() => history.push({
                 pathname: `requests/${props.OffersRequests.requestItem.id}/offers`,

@@ -16,6 +16,7 @@ module.exports = (db) => {
       .then((result) => res.json(result))
       .catch((err) => console.log(err.message));
   });
+  
   // creates a new request in the database
   router.post("/:id/requests", (req, res) => {
     console.log("In request form post", req.body);
@@ -45,6 +46,8 @@ module.exports = (db) => {
         .catch((err) => console.log(err));
     }
   });
+
+  // Return user info
   router.get("/:id", (req, res) => {
     console.log(req.params.id);
     usersdbHelper

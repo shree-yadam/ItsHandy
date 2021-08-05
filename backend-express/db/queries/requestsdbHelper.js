@@ -48,6 +48,13 @@ const deleteRequest = function (db, request_id) {
 };
 
 /**
+ *
+ * @param {db,provider_id,price} AssignOfferToServiceProvider Db connection, providerid,price
+ * @param {*} provider_id
+ * @param {*} price
+ */
+const acceptOffer = function (db, provider_id, price) {};
+/**
  * Add a new request to the requests table
  * @param {Object} requestDetails The details of the request including
  * title, street_address, city, category_id, preferred_date, description, client_id
@@ -67,9 +74,14 @@ const addNewRequest = function (db, requestDetails) {
     requestDetails.client_id,
   ];
   return db.query(queryString, queryParams).then((result) => {
-    console.log("addnewrequest", result.rows);
+    console.log("add new request", result.rows);
     return result.rows[0];
   });
 };
 
-module.exports = { getUserRequestsById, addNewRequest, deleteRequest };
+module.exports = {
+  getUserRequestsById,
+  addNewRequest,
+  deleteRequest,
+  acceptOffer,
+};
