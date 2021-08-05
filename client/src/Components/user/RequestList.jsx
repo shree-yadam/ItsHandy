@@ -1,12 +1,10 @@
 //import React, { useState, useEffect } from "react";
-
-
 //import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../hooks/useRequestListData";
 import './RequestList.scss';
-import { useHistory } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import './RequestListItem.scss'
 
@@ -63,9 +61,6 @@ const RequestList = (props) => {
 
   const history = useHistory();
 
-  // const { userId } = useParams();
-  // console.log('userId :>> ', userId);
-  //  console.log(userId);
 
   return (<div className="request-list">
     {/* This check is to not map if this was not loaded the first time */}
@@ -74,9 +69,9 @@ const RequestList = (props) => {
     </Button>
     {requestListState.requestList && requestListState.requestList.map(requestItem => {
       let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
-      //console.log(requestOffers)
+
       return (
-        <RequestListItem OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }}
+        <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }}
         currentUser={props.currentUser}/>
       )
     })}

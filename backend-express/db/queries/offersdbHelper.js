@@ -4,15 +4,20 @@
  * Get all offers from the database given client id.
  * @param {Object} db Dataabse object.
  * @param {Integer} requestId The id of the client.
- * @return {Promise<{}>} A promise to the customer.
+ * @return {Promise<{}>} A promise containt offers data and provider who made the offer.
  */
-const getAllOffers = function (db,id) {
-  const query = "select * from offers join requests on offers.request_id = requests.id where requests.client_id=$1";
-  return db.query(query,[id])
-    .then((result) => {
-      console.log(result.rows);
-      return result.rows;
-    });
+const getAllOffers = function (db, id) {
+  // old query "select * from offers join requests on offers.request_id = requests.id where requests.client_id=$1"
+  const query = `select offers.*, users.first_name as service_provider_first_name, 
+  users.first_name as service_provider_last_name, users.avg_rating
+    from offers
+    join requests on offers.request_id = requests.id
+    join users on offers.provider_id = users.id
+    where  users.is_provider = true AND requests.client_id=$1`;
+  return db.query(query, [id]).then((result) => {
+    console.log(result.rows);
+    return result.rows;
+  });
 };
 
 // /**
@@ -40,20 +45,23 @@ const getAllOffers = function (db,id) {
  * @param {String} providerId The id of the service provider.
  * @return {Promise<{}>} A promise to the customer.
  */
- const getFirstOfferByRequestIdAndProviderId = function(db, requestId, providerId) {
-   console.log(requestId, providerId);
+const getFirstOfferByRequestIdAndProviderId = function (
+  db,
+  requestId,
+  providerId
+) {
+  console.log(requestId, providerId);
   const queryString = `
     SELECT *
     FROM offers
     WHERE request_id = $1 AND provider_id = $2;
     `;
   const queryParams = [requestId, providerId];
-  return db.query(queryString, queryParams)
-    .then((result) => {
-      console.log(result.rows);
-      return result.rows[0];
-    });
-}
+  return db.query(queryString, queryParams).then((result) => {
+    console.log(result.rows);
+    return result.rows[0];
+  });
+};
 
 /**
  * Update offer in the database given their requestId.
@@ -63,19 +71,24 @@ const getAllOffers = function (db,id) {
  * @param {String} comment comment from the service provider
  * @return {Promise<{}>} A promise to the customer.
  */
- const addOfferForRequestByProvider = function(db, requestId, providerId, quote, comment) {
+const addOfferForRequestByProvider = function (
+  db,
+  requestId,
+  providerId,
+  quote,
+  comment
+) {
   const queryString = `
   INSERT INTO offers(request_id, provider_id, quote, offer_comment)
   VALUES ($1, $2, $3, $4)
   RETURNING *;
     `;
   const queryParams = [requestId, providerId, quote, comment];
-  return db.query(queryString, queryParams)
-    .then((result) => {
-      console.log(result.rows);
-      return result.rows[0];
-    });
-}
+  return db.query(queryString, queryParams).then((result) => {
+    console.log(result.rows);
+    return result.rows[0];
+  });
+};
 
 /**
  * Get offers by provider
