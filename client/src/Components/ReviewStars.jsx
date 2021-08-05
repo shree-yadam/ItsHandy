@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import StarRatings from "react-star-ratings";
 
 export default function ReviewStars({rating, setRating}) {
@@ -7,10 +6,6 @@ export default function ReviewStars({rating, setRating}) {
   function changeRatings(newRating, name) {
     setRating(newRating);
   }
-  useEffect(() => {
-    console.log(rating);
-  }, [rating]);
-  console.log(rating);
   return (
     <StarRatings
       rating={rating}

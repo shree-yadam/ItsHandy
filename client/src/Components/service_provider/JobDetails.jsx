@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 export default function JobDetails({
   job,
   currentUser,
-  setMode,
+  back,
   setNewJobs,
   index
 }) {
@@ -107,7 +107,7 @@ export default function JobDetails({
       </div>
       <Button
       onClick={() => {
-        setMode("JOB_LIST");
+        back();
         }}>Back</Button>
         </div>
       }
@@ -118,7 +118,7 @@ export default function JobDetails({
         <p>Quote: {job.quote}</p>
         <Button className="offer-button"
         onClick={() => {
-          setMode("JOB_LIST");
+          back();
           }}>Back</Button>
 
       </div>
