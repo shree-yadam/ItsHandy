@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router';
 import Button from 'react-bootstrap/Button';
 import "./RequestListItem.scss";
 import axios from 'axios';
+import ReviewStars from '../ReviewStars';
 
 
 
@@ -47,6 +48,24 @@ export default function RequestListItem(props) {
 
     // TBD
   };
+//submitting rating for stars --> make axios post request
+  const submitRating = (event) => {
+    event.preventDefault();
+    console.log(props)
+    console.log("Submit Rating");
+    axios.post(
+      `/api/client/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}/reviews`
+    )
+      .then((res) => {
+        console.log("REVIEW SUBMITTED", res);
+        //TBD : Update rating to show rating submitted
+      })
+      .catch((error) => console.log(error));
+
+    // TBD
+  };
+
+  
 
   const sendMessage = (event) => {
     event.preventDefault();
@@ -99,7 +118,7 @@ export default function RequestListItem(props) {
           <Button className="btn-danger" variant="warning" type="submit" onClick={deleteRequest}>
             Delete
           </Button>
-          {props.OffersRequests.requestItem.provider_id !== null ? <Button variant="info">Review And Complete</Button> : ""}
+          {props.OffersRequests.requestItem.provider_id !== null ? <div><ReviewStars></ReviewStars> <Button variant="info">Review And Complete</Button></div> : ""}
           <Button variant="success" type="submit"
             onClick={sendMessage}>
             Message
