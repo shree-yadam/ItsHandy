@@ -37,27 +37,7 @@ const getUnfinishedAssignedJobs = function (db, provider_id) {
   });
 };
 
-/**
- * Update request as completed with date_completed
- * @param {Integer} job_id id of request
- * @param {date_completed} date of completion of job
- * @return {Promise<{}>} A promise to the customer.
- */
-const updateAssignedJob = function (db, job_id, date) {
-  console.log("updateAssignedJobs ", job_id);
-  const queryString = `
-   UPDATE requests SET date_completed = (to_timestamp($1 / 1000.0))
-   WHERE requests.id = $2
-   RETURNING *;`;
-  const queryParams = [date, job_id];
-  return db.query(queryString, queryParams).then((result) => {
-    console.log(result);
-    return result.rows;
-  });
-};
-
 module.exports = {
   getNewListingByCategory,
-  getUnfinishedAssignedJobs,
-  updateAssignedJob,
+  getUnfinishedAssignedJobs
 };

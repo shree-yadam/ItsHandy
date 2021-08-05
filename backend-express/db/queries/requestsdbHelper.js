@@ -5,7 +5,7 @@
  */
 const getUserRequestsById = (db, id) => {
   const queryString = `SELECT requests.id, requests.title, requests.city, requests.street_address, requests.preferred_date, requests.img_url, requests.description, requests.price, requests.provider_id, requests,date_assigned, categories.name as category_name, users.first_name as service_provider_first_name, users.first_name as service_provider_last_name
-  FROM requests 
+  FROM requests
   join categories on(requests.category_id = categories.id)
   left join users on (requests.provider_id = users.id)
   WHERE requests.client_id = $1 AND requests.date_completed IS NULL`;
@@ -73,4 +73,23 @@ const addNewRequest = function (db, requestDetails) {
   });
 };
 
-module.exports = { getUserRequestsById, addNewRequest, deleteRequest };
+/**
+ * Update request as completed with date_completed
+ * @param {Integer} job_id id of request
+ * @param {date_completed} date of completion of job
+ * @return {Promise<{}>} A promise to the customer.
+ */
+ const updateAssignedJob = function (db, job_id, date) {
+  console.log("updateAssignedJobs ", job_id);
+  const queryString = `
+   UPDATE requests SET date_completed = (to_timestamp($1 / 1000.0))
+   WHERE requests.id = $2
+   RETURNING *;`;
+  const queryParams = [date, job_id];
+  return db.query(queryString, queryParams).then((result) => {
+    console.log(result);
+    return result.rows;
+  });
+};
+
+module.exports = { getUserRequestsById, addNewRequest, deleteRequest, updateAssignedJob };

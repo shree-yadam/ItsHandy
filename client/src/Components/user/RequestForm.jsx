@@ -29,7 +29,7 @@ export default function RequestForm({ currentUser }) {
     // console.log("REQUEST FORM SUBMITTED");
     // console.log(event);
     // console.log(newRequest)
-    axios.post(`/api/client/${userId}/requests`, { ...newRequest })
+    axios.post(`/api/clients/${userId}/requests`, { ...newRequest })
       .then((result) => {
         console.log("This is handler form", result);
          history.push(`/client/${userId}/requests`);
@@ -37,7 +37,7 @@ export default function RequestForm({ currentUser }) {
       .catch((error) => { console.log(error) });
   };
 
-  
+
   const handleDropdownChange = (event) => {
     event.preventDefault();
     //console.log(event.target[event.target.selectedIndex].index);

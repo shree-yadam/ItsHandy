@@ -11,7 +11,7 @@ export default function UserDashboard({currentUser}) {
 const [userInfo, setUserInfo] = useState();
 console.log(currentUser)
 useEffect(() => {
-  axios.get(`http://localhost:3001/api/client/${currentUser.id}`)
+  axios.get(`http://localhost:3001/api/clients/${currentUser.id}`)
   .then((res) => {
       setUserInfo(res.data); console.log(res.data)})
     .catch((err)=>err.message)
@@ -19,7 +19,7 @@ useEffect(() => {
   return (
 
     <div className="user-dashboard-container">
-      
+
         <div className="user-name-img">
       { userInfo &&
       <div className="user-dashboard-items">
@@ -39,7 +39,7 @@ Contact: {userInfo.phone_number} <br></br>
       </div>
 
 
-    
+
   )
 
 

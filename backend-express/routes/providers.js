@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const providersDbHelper = require("../db/queries/providersDbHelper");
 const offersDbHelper = require("../db/queries/offersdbHelper");
-const usersDbHelper = require("../db/queries/usersdbHelper")
+const usersDbHelper = require("../db/queries/usersdbHelper");
+const requestDbHelper = require("../db/queries/requestsdbHelper")
 const e = require("express");
 
 module.exports = (db) => {
@@ -103,7 +104,7 @@ module.exports = (db) => {
   router.put("/:id/assignedJobs/:jobId/update", function (req, res) {
     console.log("Marking job as completed");
     if(req.session && req.session.userId === parseInt(req.params.id)) {
-      providersDbHelper.updateAssignedJob(db, req.params.jobId, req.body.date)
+      requestDbHelper.updateAssignedJob(db, req.params.jobId, req.body.date)
         .then((result) => {
           console.log("TEST!!: ", result);
           res.status(204).json({});

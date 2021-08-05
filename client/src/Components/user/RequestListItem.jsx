@@ -4,10 +4,12 @@ import Button from 'react-bootstrap/Button';
 import "./RequestListItem.scss";
 import axios from 'axios';
 import ReviewStars from '../ReviewStars';
+import { useEffect, useState } from 'react';
 
 
 
 export default function RequestListItem(props) {
+  const [rating, setRating] = useState(0);
   // const title = props.requestItem.title;
   // const description = props.requestItem.description;
   // const street_address
@@ -33,12 +35,22 @@ export default function RequestListItem(props) {
    */
   const history = useHistory();
 
+  // useEffect(() => {
+  //   axios.get(`/api/client/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}/reviews`)
+  //   .then((res) => {
+  //     console.log(res);
+
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }, []);
 
   const deleteRequest = (event) => {
     event.preventDefault();
     console.log("DELETED REQUEST");
     axios.delete(
-      `/api/client/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}`
+      `/api/clients/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}`
     )
       .then((res) => {
         console.log("REQUEST DELETED", res);
@@ -54,21 +66,40 @@ export default function RequestListItem(props) {
       .catch((error) => console.log(error));
 
   };
+
+  function handleMarkCompleted(){
+    console.log("Marking Completed");
+    const date = Date.now();
+     axios.put(`/api/clients/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}/update_date_completed`, {date})
+     .then((res) => {
+       console.log("Request Marked Completed");
+       props.setRequestListState(prev => {
+        console.log(prev);
+        const oldState = {...prev};
+        let requestList = [...oldState.requestList];
+        requestList = requestList.filter(request => request.id !== props.OffersRequests.requestItem.id);
+        oldState.requestList = requestList;
+        return oldState;
+      })
+     })
+     .catch((err) => console.log("Error: ", err));
+
+   }
+
 //submitting rating for stars --> make axios post request
   const submitRating = (event) => {
     event.preventDefault();
-    console.log(props)
     console.log("Submit Rating");
+    console.log(rating);
     axios.post(
-      `/api/client/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}/reviews`
+      `/api/clients/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}/reviews`, {provider_id: props.OffersRequests.requestItem.provider_id, rating: rating}
     )
       .then((res) => {
         console.log("REVIEW SUBMITTED", res);
-        //TBD : Update rating to show rating submitted
+        handleMarkCompleted();
       })
       .catch((error) => console.log(error));
 
-    // TBD
   };
 
 
@@ -124,7 +155,7 @@ export default function RequestListItem(props) {
           <Button className="btn-danger" variant="warning" type="submit" onClick={deleteRequest}>
             Delete
           </Button>
-          {props.OffersRequests.requestItem.provider_id !== null ? <div><ReviewStars></ReviewStars> <Button variant="info">Review And Complete</Button></div> : ""}
+          {props.OffersRequests.requestItem.provider_id !== null &&<div><ReviewStars rating={rating} setRating={setRating} ></ReviewStars> <Button variant="info" onClick={submitRating} >Review And Complete</Button></div>}
           <Button variant="success" type="submit"
             onClick={sendMessage}>
             Message

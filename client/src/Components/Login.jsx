@@ -14,7 +14,7 @@ export default function Login({setCurrentUser}) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    axios.post('api/users/login', {
+    axios.post('/api/users/login', {
       email,
       password
     })

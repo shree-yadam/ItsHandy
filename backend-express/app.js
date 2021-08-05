@@ -42,7 +42,7 @@ app.use("/api/users", usersRouter(db));
 
 // User requests routes and offers for all requests made by user
 const requestsRouter = require("./routes/requests");
-app.use("/api/client", requestsRouter(db));
+app.use("/api/clients", requestsRouter(db));
 
 // need to be refactored to match the new sturcture for creating these
 //app.use("/api/requests/new", requestsRouter(db));

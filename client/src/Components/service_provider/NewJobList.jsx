@@ -16,7 +16,7 @@ export default function NewJobList({currentUser}) {
   const [newJobs, setNewJobs] = useState(null);
   useEffect(() => {
       if(currentUser) {
-        axios.get(`api/providers/${currentUser.id}/newListings`)
+        axios.get(`/api/providers/${currentUser.id}/newListings`)
         .then((res) => {
           const jobs = res.data;
           // jobs.map(job => {

@@ -41,7 +41,7 @@ export default function Register({currentUser, setCurrentUser}) {
     console.log(newUser);
     if(newUser.password === newUser.password_confirmation){
       if(!isServiceProvider) {
-        axios.post('api/users/register', {...newUser, is_provider: isServiceProvider})
+        axios.post('/api/users/register', {...newUser, is_provider: isServiceProvider})
         .then((res) => {
           console.log("THIS IS RES-HANDLE REGISTER:", res);
           setError(null);

@@ -9,7 +9,7 @@ export default function AssignedJobList({currentUser}){
   useEffect(() => {
     console.log(currentUser);
       if(currentUser) {
-        axios.get(`api/providers/${currentUser.id}/assignedJobs`)
+        axios.get(`/api/providers/${currentUser.id}/assignedJobs`)
         .then((res) => {
           setAssignedJobs(res.data);
         })
