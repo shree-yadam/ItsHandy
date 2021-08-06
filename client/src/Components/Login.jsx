@@ -43,7 +43,7 @@ export default function Login({setCurrentUser}) {
   return (
     <div className="form-container">
       {error &&
-      <p>{error}</p>
+      <p className="login-error" >{error}</p>
       }
       <Form className="login-form">
         <h2>Login</h2>

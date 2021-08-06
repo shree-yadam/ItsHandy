@@ -37,7 +37,26 @@ const getUnfinishedAssignedJobs = function (db, provider_id) {
   });
 };
 
+/**
+ * Add Category for provider
+ * @param {Integer} provider_id id of provider
+ * @return {Promise<{}>} A promise to the customer.
+ */
+ const addCategoryForProvider = function (db, provider_id, category_id) {
+  console.log("addCategoryForProvider ", provider_id, category_id);
+  const queryString = `
+   INSERT INTO provider_categories (provider_id, category_id)
+   VALUES ($1, $2)
+   RETURNING *;
+     `;
+  const queryParams = [provider_id, category_id];
+  return db.query(queryString, queryParams).then((result) => {
+    return result.rows[0];
+  });
+};
+
 module.exports = {
   getNewListingByCategory,
-  getUnfinishedAssignedJobs
+  getUnfinishedAssignedJobs,
+  addCategoryForProvider
 };
