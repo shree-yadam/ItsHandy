@@ -7,8 +7,6 @@ import "./RequestForm.scss";
 
 
 export default function RequestEditForm({ currentUser, request, setRequestListState, index, back }) {
-  // Get user id from ur param
-  //const { userId } = useParams();
   const history = useHistory();
 
   const [newRequest, setNewRequest] = useState(request);
@@ -18,9 +16,6 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
 
   const handleRequestSubmit = (event) => {
     event.preventDefault();
-    // console.log("REQUEST FORM SUBMITTED");
-    // console.log(event);
-    // console.log(newRequest)
     axios
       .put(`/api/clients/${currentUser.id}/requests/${request.id}`, { ...newRequest })
       .then((result) => {
@@ -34,7 +29,6 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
           return oldState;
         });
         back();
-        // history.push(`/client/${currentUser.id}/requests`);
       })
       .catch((error) => {
         console.log(error);
@@ -43,7 +37,6 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
 
   const handleDropdownChange = (event) => {
     event.preventDefault();
-    //console.log(event.target[event.target.selectedIndex].index);
 
     setNewRequest((prev) => ({
       ...prev,
@@ -157,6 +150,15 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
         onClick={handleRequestSubmit}
       >
         Submit
+      </Button>
+
+      <Button
+        variant="danger "
+        size="lg"
+        type="submit"
+        onClick={() => back()}
+      >
+      Cancel
       </Button>
     </div>
   );
