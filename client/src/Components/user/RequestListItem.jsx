@@ -235,9 +235,12 @@ export default function RequestListItem(props) {
               </Button>
             </div>
           )}
+{(props.OffersRequests.requestItem.provider_id !== null ||props.OffersRequests.requestOffers.length > 0) &&
           <Button variant="success" type="submit" onClick={sendMessage}>
             Message
           </Button>
+
+}
           {/* Renders show offers button if offers are received and job is not assigned*/}
           {props.OffersRequests.requestOffers &&
             !props.OffersRequests.requestItem.date_assigned &&
