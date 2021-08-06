@@ -1,5 +1,7 @@
 
 import Button from 'react-bootstrap/Button';
+import './OfferListItem.scss';
+import ReviewStars from '../ReviewStars'
 
 /**
  * Display offer details for specific request
@@ -11,18 +13,27 @@ import Button from 'react-bootstrap/Button';
 const OfferItem = ( {service_provider_first_name,service_provider_last_name,service_provider_img_url,avg_rating,offer_comment,quote}) => {
     //console.log(props)
     return (
-        <div>
+        <div className="offerlistitem-container">
+            <div className="offerlistitem-details">
             <img src={service_provider_img_url} alt="provider-pic"/>
-            Service provider Name:{service_provider_first_name} {service_provider_last_name}
             <br/>
-            Avg rating: {avg_rating}
+            Provider Rating: <ReviewStars rating={avg_rating}/>
             <br/>
-            Comments on request:{offer_comment}
+            Provider Name: {service_provider_first_name} {service_provider_last_name} 
             <br />
-            Quote for this offer:<p>{quote}</p>
+            <br/>
+            Comments on request:  "{offer_comment}"
+            <br />
+           
+            </div>
+            <div className="offerlist-actions">
+                <div className="offerlist-quote">
+            Quote for this request: <b> {quote}</b>
+            </div>
+            <div className="offerlist-buttons">
             <Button className="request-service-btn"
             //  onClick={() => history.push(`requests/new`)}
-             >
+             > 
       Accept Offer
     </Button>
     <Button className="request-service-btn"
@@ -30,6 +41,8 @@ const OfferItem = ( {service_provider_first_name,service_provider_last_name,serv
              >
       Message service provider
     </Button>
+    </div>
+    </div>
         </div>
     )
 }

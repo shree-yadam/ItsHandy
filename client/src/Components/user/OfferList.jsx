@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import  './OfferList.scss'
 import OfferListItem from './OfferListItem';
 /**
  * Displays OfferListItem components for offer details
@@ -13,7 +13,7 @@ const OfferList = (props) => {
     const [state, setstate] = useState(history && history.location.state);
 
     return (
-        <div>
+        <div className = "offerlist-main">
             <h1>Offers list</h1>
             {(!state.requestOffer || state.requestOffer.length === 0 ) && <h3>No Entries!</h3>}
             {state.requestOffer && state.requestOffer.map(offer => <OfferListItem {...offer} />)}
