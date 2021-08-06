@@ -51,12 +51,11 @@ export default function useRequstListData() {
             offers: all[1].data,
           };
         });
-        // console.log("all[1].data", all[1].data);
       })
       .catch((err) => err.message);
   }, [userId]);
 
-  const assignOffer = (providerId,price) => {
+  const assignOffer = (providerId, price) => {
     axios
       .post(
         `http://localhost:3001/api/client/${userId}/requests/${requestId}/offers/assign`

@@ -54,10 +54,10 @@ export default function RequestListItem(props) {
 
     // TBD
   };
-  console.log('typeof assignOffer :>> RequestListItem ', typeof props.OffersRequests.assignOffer);
 
 
-
+//console.log(props.OffersRequests.requestOffers.requestItem && !props.OffersRequests.requestOffers.requestItem.provider_id)
+console.log("Line 60",props.OffersRequests.requestOffers , !props.OffersRequests.requestItem.provider_id,  props.OffersRequests.requestOffers.length   )
   return (
     <div>
 
@@ -86,10 +86,17 @@ export default function RequestListItem(props) {
               <p>City: {props.OffersRequests.requestItem.city}</p>
 
               <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
-              <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
 
               {/* Displays service provider name if this request was assigned */}
               {props.OffersRequests.requestItem.service_provider_first_name && "Service Provider assigned: " + props.OffersRequests.requestItem.service_provider_first_name + " " + props.OffersRequests.requestItem.service_provider_last_name}
+              
+              {/* where provider id is null and count is 0 */}
+              <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length === 0 && "No offers received yet"}</p>
+
+              {/* if offers.length>1 and provider_id is null*/}
+              <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 && props.OffersRequests.requestItem && !props.OffersRequests.requestItem.provider_id ? "Number of offers received:" + props.OffersRequests.requestOffers.length :""}</p>
+
+
               <br />
               <br />
             </div>
@@ -109,13 +116,10 @@ export default function RequestListItem(props) {
             Message
           </Button>
 
-          {/* Renders show offers button if offers are received and job is not assigned*/}
-          {(props.OffersRequests.requestOffers && !props.OffersRequests.requestItem.date_assigned && !props.OffersRequests.requestItem.provider_id) && props.OffersRequests.requestOffers.length > 0 &&
+          {/* Renders show offers button if offers are received and job is not assigned(no service provider id)*/}
+          {(props.OffersRequests.requestOffers && !props.OffersRequests.requestItem.provider_id && props.OffersRequests.requestOffers.length > 0 ) &&
             <Button variant="primary" type="button"
-            onClick={() => history.push({
-                pathname: `requests/${props.OffersRequests.requestItem.id}/offers`,
-                state: { requestOffer: props.OffersRequests.requestOffers, assignOffer:props.OffersRequests.assignOffer}
-              })}>
+              onClick={() => history.push(`requests/${props.OffersRequests.requestItem.id}/offers`, { requestOffer: props.OffersRequests.requestOffers })}>
               Show offers
             </Button>}
         </div>

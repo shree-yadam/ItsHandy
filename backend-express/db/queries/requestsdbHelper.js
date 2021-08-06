@@ -56,10 +56,12 @@ const deleteRequest = function (db, request_id) {
  * @param {price} price gets price from the quote on the request to update in price column
  */
 const acceptOffer = function (db, provider_id, price, client_id,request_id) {
+  console.log(db, provider_id, price, client_id,request_id)
+
   const queryString = `UPDATE requests
   SET date_assigned = CURRENT_DATE, provider_id= $1, price= $2, client_id=$3
   WHERE id = $4;`;
-
+  
   const queryParams = [
     provider_id,
     price,
