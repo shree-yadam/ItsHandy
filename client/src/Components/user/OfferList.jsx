@@ -4,8 +4,8 @@ import  './OfferList.scss'
 import OfferListItem from './OfferListItem';
 /**
  * Displays OfferListItem components for offer details
- * @param {*} props 
- * @returns 
+ * @param {*} props
+ * @returns
  */
 const OfferList = (props) => {
     const history = useHistory();
@@ -14,7 +14,8 @@ const OfferList = (props) => {
 
     return (
         <div className = "offerlist-main">
-            <h1>Offers List</h1>
+            <h1>Offers list</h1>
+            {(!state.requestOffer || state.requestOffer.length === 0 ) && <h3>No Entries!</h3>}
             {state.requestOffer && state.requestOffer.map(offer => <OfferListItem {...offer} />)}
         </div>
     )

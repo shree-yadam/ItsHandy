@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './ProviderDashboard.scss'
-import ReviewStars from '../ReviewStars';
+import StarRatings from 'react-star-ratings'
+
 
 
 
@@ -13,14 +14,18 @@ import ReviewStars from '../ReviewStars';
 export default function ProviderDashboard(
   { currentUser}){
     const [providerInfo, setProviderInfo] = useState();
-console.log("THIS IS CURRENT PROVIDER", currentUser)
-useEffect(() => {
-  axios.get(`/api/providers/${currentUser.id}`)
-  .then((res) => {
-    if(res.data){
-      setProviderInfo(res.data); console.log("this is resdata", res.data)}})
-    .catch((err)=>err.message)
-},[]);
+    console.log("THIS IS CURRENT PROVIDER", currentUser)
+
+    useEffect(() => {
+      axios.get(`/api/providers/${currentUser.id}`)
+      .then((res) => {
+        if(res.data){
+          setProviderInfo(res.data);
+          console.log("this is resdata", res.data);
+        }
+      })
+      .catch((err)=>err.message);
+    },[]);
 
 
   return (
@@ -31,8 +36,11 @@ useEffect(() => {
 
         <div className="provider-profile">
         <h1>My Profile</h1>
-        <p><img src ={providerInfo.img_url} alt="provider-pic"></img></p>
-        <strong>My Rating:</strong><br></br><ReviewStars rating={providerInfo.avg_rating}/>
+        {providerInfo.img_url !== "" &&
+        <img src ={providerInfo.img_url} alt="provider-pic"></img>
+        }
+        <strong>My Rating:</strong><br></br><StarRatings rating={providerInfo.avg_rating ? providerInfo.avg_rating : 0 } starRatedColor="orange"
+      numberOfStars={5}/>
         <p><strong> Name: </strong>{providerInfo.first_name} {providerInfo.last_name}</p>
         <p><strong>Email: </strong>{providerInfo.email}</p>
         <p><strong>Contact:</strong> {providerInfo.phone_number}</p>

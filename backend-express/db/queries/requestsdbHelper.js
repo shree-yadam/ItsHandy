@@ -8,7 +8,8 @@ const getUserRequestsById = (db, id) => {
   FROM requests
   join categories on(requests.category_id = categories.id)
   left join users on (requests.provider_id = users.id)
-  WHERE requests.client_id = $1 AND requests.date_completed IS NULL`;
+  WHERE requests.client_id = $1 AND requests.date_completed IS NULL
+  ORDER BY requests.id DESC`;
 
   return db.query(queryString, [id]).then((result) => {
     //console.log(result.rows);

@@ -67,6 +67,7 @@ const RequestList = (props) => {
     <Button className="request-service-btn" onClick={() => history.push(`requests/new`)}>
       Request Service
     </Button>
+    {(!requestListState.requestList || requestListState.requestList.length === 0 ) && <h3>No Entries!</h3>}
     {requestListState.requestList && requestListState.requestList.map(requestItem => {
       let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
 

@@ -87,7 +87,7 @@ const getUsers = function (db) {
     userDetails.email,
     userDetails.password,
     userDetails.phone_number,
-    userDetails.img_url? userDetails.img_url: "https://www.google.com/search?q=profile+image+empty&tbm=isch&source=iu&ictx=1&fir=H6pHpB03ZEAgeM%252Cwg0CyFWNfK7o5M%252C_&vet=1&usg=AI4_-kRpCAYNbAgxFIvzJD2sGOBoyJaNNg&sa=X&ved=2ahUKEwjwwNmI9pDyAhUYOs0KHXcdAuoQ9QF6BAgVEAE#imgrc=H6pHpB03ZEAgeM",
+    userDetails.img_url,
     userDetails.is_provider
   ];
   return db.query(queryString, queryParams)

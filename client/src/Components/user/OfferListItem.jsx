@@ -2,6 +2,7 @@
 import Button from 'react-bootstrap/Button';
 import './OfferListItem.scss';
 import ReviewStars from '../ReviewStars'
+import StarRatings from 'react-star-ratings';
 
 /**
  * Display offer details for specific request
@@ -17,7 +18,8 @@ const OfferItem = ( {service_provider_first_name,service_provider_last_name,serv
             <div className="offerlistitem-details">
             <img src={service_provider_img_url} alt="provider-pic"/>
             <br/>
-            Provider Rating: <ReviewStars rating={avg_rating}/>
+            Provider Rating:  <StarRatings rating={avg_rating} starRatedColor="orange"
+      numberOfStars={5}/>
             <br/>
             Provider Name: {service_provider_first_name} {service_provider_last_name} 
             <br />

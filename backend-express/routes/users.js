@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const usersDbHelper = require("../db/queries/usersdbHelper");
+const providersDbHelper = require("../db/queries/providersDbHelper");
 
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
@@ -59,7 +60,21 @@ module.exports = (db) => {
         const password = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
         usersDbHelper.addNewClient(db, {...req.body, password})
         .then((data) => {
-          console.log(data);
+          console.log("REsponse addnewdata", data);
+          if(data.is_provider){
+            const includedCategories = req.body.categories.filter(category => category.checked);
+            console.log(includedCategories);
+            const queryArr = includedCategories.map(category => {
+              console.log("provider id", data.id);
+              console.log("category id: ", category.id);
+              return providersDbHelper.addCategoryForProvider(db, data.id, category.id);
+            });
+            Promise.all(queryArr)
+            .then((data) => {
+              res.send(data);
+            })
+            .catch((err) => res.status(500).send())
+          }
           req.session.userId = data.id;
           res.send(data);
         })

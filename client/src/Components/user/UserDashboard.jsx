@@ -23,7 +23,8 @@ export default function UserDashboard({ currentUser }) {
       <div className="user-name-img">
         {userInfo && (
           <div className="user-dashboard-items">
-            <img src={userInfo.img_url} alt="user-pic" />
+            {userInfo.img_url !== "" && <img src={userInfo.img_url} alt="user-pic" />}
+
 
             <span>
             <div className="user-dashboard-text">
