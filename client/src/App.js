@@ -58,8 +58,14 @@ function App() {
 
             {/* Route for creating new requests by logged in user */}
             <Route path={`/client/:userId/requests/new`} exact>
-              <RequestForm currentUser={currentUser} />
+              <RequestForm edit={false} currentUser={currentUser} />
             </Route>
+
+            {/* Route for creating new requests by logged in user */}
+            <Route path={"/client/request_edit"} exact>
+              <RequestForm edit={true} currentUser={currentUser} />
+            </Route>
+
             <Route path={`/client/:userId/requests/:requestId/offers`} exact>
               <OfferList currentUser={currentUser} />
             </Route>

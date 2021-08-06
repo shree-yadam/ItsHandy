@@ -1,19 +1,25 @@
 //import React, { useState, useEffect } from "react";
 //import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+import { useState } from "react";
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../hooks/useRequestListData";
 import './RequestList.scss';
 import Button from 'react-bootstrap/Button';
 import './RequestListItem.scss'
+import useVisualMode from "../../hooks/useVisualMode";
+import RequestEditForm from "./RequestEditForm";
 
 /**
  * This component renders Requests List including offers to pass it down to offers component submitted by a specific customer through mapping and using RequstListItem component
  * No props are passed to this function yet (Should take array of requests)
  * @returns single request
  */
+const LIST_MODE = "LIST_MODE"
+const EDIT_MODE = "EDIT_MODE"
 const RequestList = (props) => {
+const {mode, transition, back} = useVisualMode("LIST_MODE");
+const [editItemId, setEditItemId] = useState(null);
 
   /**
    * Data Sample: List of objects like this
@@ -63,19 +69,26 @@ const RequestList = (props) => {
 
 
   return (<div className="request-list">
+    {mode === LIST_MODE &&
+    <div>
     {/* This check is to not map if this was not loaded the first time */}
     <Button className="request-service-btn" onClick={() => history.push(`requests/new`)}>
       Request Service
     </Button>
     {(!requestListState.requestList || requestListState.requestList.length === 0 ) && <h3>No Entries!</h3>}
-    {requestListState.requestList && requestListState.requestList.map(requestItem => {
+    {requestListState.requestList && requestListState.requestList.map((requestItem,index) => {
       let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
 
       return (
         <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }}
-        currentUser={props.currentUser} setRequestListState={setRequestListState} />
+        currentUser={props.currentUser} setRequestListState={setRequestListState} transition={transition} setEditItemId={setEditItemId} index={index}/>
       )
-    })}
+    })
+    }</div>
+  }
+  {mode === EDIT_MODE &&
+    <RequestEditForm currentUser={props.currentUser} request={requestListState.requestList[editItemId]} setRequestListState={setRequestListState} index={editItemId} back={back}/>
+  }
   </div>
   )
 };

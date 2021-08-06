@@ -1,13 +1,19 @@
 import { useHistory, useParams } from "react-router";
-
+// import useVisualMode from "../../hooks/useVisualMode";
 import Button from "react-bootstrap/Button";
 import "./RequestListItem.scss";
 import axios from "axios";
 import ReviewStars from "../ReviewStars";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+
+// const REQUEST_LIST = "REQUEST_LIST";
+// const EDIT_REQUEST = "EDIT_REQUEST";
 
 export default function RequestListItem(props) {
   const [rating, setRating] = useState(0);
+  // const {mode, transition, back} = useVisualMode("REQUEST_LIST");
   // const title = props.requestItem.title;
   // const description = props.requestItem.description;
   // const street_address
@@ -43,6 +49,15 @@ export default function RequestListItem(props) {
   //     console.log(err);
   //   });
   // }, []);
+  // const editRequest = ()=> {
+  //   history.push(`/client/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}/edit`)
+
+  // }
+
+  function handleEdit(){
+    props.setEditItemId(props.index);
+    props.transition("EDIT_MODE");
+  }
 
   const deleteRequest = (event) => {
     event.preventDefault();
@@ -119,6 +134,9 @@ export default function RequestListItem(props) {
   };
 
   return (
+
+
+
     <div>
       <div className="listitem-container">
         <div className="info-items">
@@ -190,6 +208,25 @@ export default function RequestListItem(props) {
           >
             Delete
           </Button>
+          {props.OffersRequests.requestItem.provider_id === null &&
+        <div>
+          <Button
+            className="btn-warning"
+            variant="warning"
+            type="submit"
+           onClick={handleEdit}
+          >
+            Edit
+          </Button>
+          {/* <Link
+          to={{
+            pathname: "/client/request_edit",
+            state: { edit: true, requestItem: props.OffersRequests.requestItem, setRequestListState: props.setRequestListState }
+
+          }}> EDIT</Link> */}
+
+         </div>
+          }
           {props.OffersRequests.requestItem.provider_id !== null && (
             <div>
               <ReviewStars rating={rating} setRating={setRating}></ReviewStars>{" "}

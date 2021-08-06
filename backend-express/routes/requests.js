@@ -50,7 +50,7 @@ module.exports = (db) => {
 
   // creates a new review for a request in the database
   router.post("/:id/requests/:request_id/reviews", (req, res) => {
-    console.log("In request form post", req.body);
+    console.log("In request form post review", req.body);
    reviewsDbHelper.addReviewForRequest(db, req.params.id, req.body.provider_id, req.params.request_id, req.body.rating)
    .then((data) => {
      return usersdbHelper.updateAverageRatingForID(db, req.body.provider_id)
@@ -61,7 +61,7 @@ module.exports = (db) => {
 
   // creates a new request in the database
   router.post("/:id/requests", (req, res) => {
-    console.log("In request form post", req.body);
+    console.log("In request form post new", req.body);
     requestsdbHelper
       .addNewRequest(db, req.body)
       .then((result) => res.send(result));
@@ -82,11 +82,37 @@ module.exports = (db) => {
   });
   // updates request with completed date
   router.put("/:id/requests/:request_id/update_date_completed", (req, res) => {
-    console.log("In request form post", req.body);
+    console.log("In request form post update", req.body);
     requestsdbHelper.updateAssignedJob(db, req.params.request_id, req.body.date)
     .then((result) => res.send(result))
     .catch((err) => res.status(401).send());
   });
 
+// Edit request
+
+router.put("/:id/requests/:request_id", (req, res) => {
+  console.log("In request form edit", req.body);
+  requestsdbHelper
+    .deleteRequest(db, req.params.request_id)
+    .then((data) => requestsdbHelper.addNewRequest(db, req.body))
+    .then((result) => {
+      console.log("Updated: ", result);
+      res.send(result);
+    })
+    .catch((err) => {
+      res.status(401).send();
+      console.log(err);
+    });
+});
   return router;
 };
+
+
+// requestDetails.title,
+// requestDetails.street_address,
+// requestDetails.city,
+// requestDetails.category_id,
+// requestDetails.preferred_date === "" ? null : requestDetails.preferred_date,
+// requestDetails.description,
+// requestDetails.client_id,
+// requestDetails.img_url,
