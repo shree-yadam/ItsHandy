@@ -11,8 +11,8 @@ module.exports = (db) => {
     /* GET provider users */
     router.get("/:id", function (req, res) {
       if(req.session && req.session.userId === parseInt(req.params.id)) {
-        usersDbHelper.getProviderByTruthiness(db, req.params.id)
-          .then((result) => {
+        Promise.all([usersDbHelper.getProviderByTruthiness(db, req.params.id), providersDbHelper.getCategoriesForProvider(db, req.params.id)])
+          .then((result) => {console.log("THIS IS CAT FOR PROV", result);
             res.json(result)})
           .catch((err) => {
             console.log(err);

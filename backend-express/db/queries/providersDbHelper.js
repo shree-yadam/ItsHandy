@@ -38,6 +38,25 @@ const getUnfinishedAssignedJobs = function (db, provider_id) {
 };
 
 /**
+ * Get unfinished assigned jobs for provider
+ * @param {Integer} provider_id id of provider
+ * @return {Promise<{}>} A promise to the customer.
+ */
+ const getCategoriesForProvider = function (db, provider_id) {
+  console.log("categories for provider ", provider_id);
+  const queryString = `
+    SELECT provider_categories.category_id AS id, categories.name AS category_name
+    FROM provider_categories
+    JOIN categories ON provider_categories.category_id = categories.id
+    WHERE provider_id = $1;
+     `;
+  const queryParams = [provider_id];
+  return db.query(queryString, queryParams).then((result) => {
+    return result.rows;
+  });
+};
+
+/**
  * Add Category for provider
  * @param {Integer} provider_id id of provider
  * @return {Promise<{}>} A promise to the customer.
@@ -58,5 +77,6 @@ const getUnfinishedAssignedJobs = function (db, provider_id) {
 module.exports = {
   getNewListingByCategory,
   getUnfinishedAssignedJobs,
-  addCategoryForProvider
+  addCategoryForProvider,
+  getCategoriesForProvider
 };
