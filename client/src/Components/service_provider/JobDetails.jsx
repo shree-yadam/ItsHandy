@@ -65,6 +65,10 @@ export default function JobDetails({
 
   return (
     <div className="job-details-main">
+      <aside> <Button
+      onClick={() => {
+        back();
+        }}>Back</Button></aside>
       <h2>Job Details</h2>
     <div className="job-details-container">
 
@@ -96,19 +100,14 @@ export default function JobDetails({
       <div className="offer-footer">
       <div className="offer-actions">
 
-        <label>Add comments with quote (optional)
-          <input className="quote-input" value={job.offer_comment} onChange={(event)=> setComment(event.target.value)}/></label>
-
-        <label>Quote
+      <label>Quote
         <input className="quote-input" value={job.quote} onChange={(event)=> setQuote(event.target.value)}/></label>
-
+        <br/>
+        <label>Add comments (optional)
+          <textarea className="quote-input" value={job.offer_comment} onChange={(event)=> setComment(event.target.value)}/></label>
         <Button className="offer-button"
         onClick={handleOffer}>Make an offer</Button>
       </div>
-      <Button
-      onClick={() => {
-        back();
-        }}>Back</Button>
         </div>
       }
 
