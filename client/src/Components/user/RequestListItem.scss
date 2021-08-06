@@ -1,8 +1,10 @@
-.listitem-container{
-
+.listitem-container {
   display: flex;
   padding-top: 1vh;
-  margin-top: 2vh;
+  margin: top 4vh;
+  margin-bottom: 8vh;
+  margin-right:8vh;
+  margin-left:8vh;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -12,11 +14,13 @@
   flex-direction: column;
 }
 
-.listitem-container:hover{
-
+.listitem-container:hover {
   display: flex;
   padding-top: 1vh;
-  margin-top: 2vh;
+  margin: top 4vh;
+  margin-bottom: 8vh;
+  margin-right:8vh;
+  margin-left:8vh;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -28,7 +32,7 @@
 }
 
 .request-list {
-  margin-top: 15vh;
+  margin-top: 10vh;
   padding: 10px;
 }
 
@@ -44,30 +48,33 @@
 .info-text {
   color: black;
   display: flex;
-  flex-direction: column;
-  align-content: space-around;
-  align-items: flex-start;
-  
+  flex-direction: row;
+  align-content: stretch;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
 }
 
 .text-info-header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-start;
   width: 100%;
   justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3vh;
 }
 
 .side-info-header {
-display:flex;
-flex-direction: column;
-margin-left: 20px;
-margin-right:10px
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 10px;
 }
 
-.info-items{
-  display:flex;
+.info-items {
+  display: flex;
 }
 
 .request-service-btn {
@@ -75,4 +82,14 @@ margin-right:10px
   position: sticky;
   color: black;
   margin: 2vh;
+}
+
+.requestlist-date-offer {
+  display: flex;
+  flex-direction: column;
+  border-color: black;
+  border-style: solid;
+  border-radius: 3vh;
+  padding: 2vh;
+  font-size: x-large;
 }

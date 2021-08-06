@@ -122,27 +122,36 @@ export default function RequestListItem(props) {
           <div className="info-text">
             <div className="text-info-header">
               <h2>Title: <strong>{props.OffersRequests.requestItem.title}</strong></h2>
-            </div>
+            
             <p>
+              {/* <p>Description: {props.OffersRequests.requestItem.description}</p> */}
               <strong>Description:</strong>{props.OffersRequests.requestItem.description}
             </p>
-            {/* <p>Description: {props.OffersRequests.requestItem.description}</p> */}
+        
             <p>
+                 {/* <p>Street Address: {props.OffersRequests.requestItem.street_address}</p> */}
               <strong>Street Address:</strong> {props.OffersRequests.requestItem.street_address}
             </p>
-            {/* <p>Street Address: {props.OffersRequests.requestItem.street_address}</p> */}
+            <p><strong>City:</strong>  {props.OffersRequests.requestItem.city}</p>
+         
 
             <p>
-              <strong>Category: {props.OffersRequests.requestItem.category_name}</strong>
+               {/* <p>Category: {props.OffersRequests.requestItem.category_name}</p> */}
+              <strong>Category:</strong> {props.OffersRequests.requestItem.category_name}
             </p>
-            {/* <p>Category: {props.OffersRequests.requestItem.category_name}</p> */}
-            <div className="side-info-header">
-              <p>City: {props.OffersRequests.requestItem.city}</p>
-
+            
+           
               {/* <p>Date needed: {preferred_date}</p> */}
-              <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
-              <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
-
+              <p>
+              <strong>Date Needed: </strong>{props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}
+              </p>
+              </div>
+            <div className="side-info-header">
+            <div className="requestlist-date-offer">
+              <p>
+              {props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "offers received: " + props.OffersRequests.requestOffers.length : "No offers received 😞 "}
+              </p>
+              </div>
               {/* Displays service provider name if this request was assigned */}
               {props.OffersRequests.requestItem.service_provider_first_name && "Service Provider assigned: " + props.OffersRequests.requestItem.service_provider_first_name + " " + props.OffersRequests.requestItem.service_provider_last_name}
               <br />

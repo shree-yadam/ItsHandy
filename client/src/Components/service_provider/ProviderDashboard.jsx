@@ -29,21 +29,21 @@ useEffect(() => {
 
       <div className = "provider-container">
 
-        <div className="provder-profile">
+        <div className="provider-profile">
         <h1>My Profile</h1>
         <p><img src ={providerInfo.img_url} alt="provider-pic"></img></p>
-        <strong>My Rating:</strong><ReviewStars rating={providerInfo.avg_rating}/>
+        <strong>My Rating:</strong><br></br><ReviewStars rating={providerInfo.avg_rating}/>
         <p><strong> Name: </strong>{providerInfo.first_name} {providerInfo.last_name}</p>
         <p><strong>Email: </strong>{providerInfo.email}</p>
         <p><strong>Contact:</strong> {providerInfo.phone_number}</p>
         </div>
         <div className = "provider-grid">
-          <div className="provider-grid-1">
-        <Link to="/assigned_jobs"> <Button variant="primary"> Your Assigned Jobs </Button></Link>
-        </div>
-        <div className="provider-grid-2">
-        <Link to="/new_listings"> <Button variant="primary"> New Listings </Button>  </Link>
-        </div>
+          
+        {/* <Link to="/assigned_jobs"> <Button variant="primary"> Your Assigned Jobs </Button></Link> */}
+        <Link to="/assigned_jobs"> <div className="provider-grid-1">Assigned Jobs </div> </Link>
+        
+        
+        <Link to="/new_listings"> <div className="provider-grid-2">New Listings  </div> </Link>
         </div>
 
       </div>
