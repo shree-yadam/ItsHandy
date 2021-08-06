@@ -140,8 +140,11 @@ export default function RequestListItem(props) {
               <p>City: {props.OffersRequests.requestItem.city}</p>
 
               {/* <p>Date needed: {preferred_date}</p> */}
+
               <p>Date needed: {props.OffersRequests.requestItem.preferred_date && props.OffersRequests.requestItem.preferred_date.slice(0, 10)}</p>
+              {!props.OffersRequests.requestItem.provider_id &&
               <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0 ? "Number of offers received:" + props.OffersRequests.requestOffers.length : "No offers received"}</p>
+              }
 
               {/* Displays service provider name if this request was assigned */}
               {props.OffersRequests.requestItem.service_provider_first_name && "Service Provider assigned: " + props.OffersRequests.requestItem.service_provider_first_name + " " + props.OffersRequests.requestItem.service_provider_last_name}
