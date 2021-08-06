@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
  * Handles requests data
  */
 export default function useRequstListData() {
-  const { userId } = useParams();
+  const { userId, requestId } = useParams();
   // Id of user who made the requests
   //const clientId = 1;
   //console.log("User id from params in requests list data", userId);
@@ -38,7 +38,6 @@ export default function useRequstListData() {
     },
     []
   );
-
   // Gets offers and requests from db
   useEffect(() => {
     Promise.all([
@@ -56,5 +55,17 @@ export default function useRequstListData() {
       })
       .catch((err) => err.message);
   }, [userId]);
-  return { requestListState, setRequstListState };
+
+  const assignOffer = (providerId,price) => {
+    axios
+      .post(
+        `http://localhost:3001/api/client/${userId}/requests/${requestId}/offers/assign`
+      )
+      .then(() =>
+        console.log("axios request for assigning offer was successful")
+      )
+      .catch((err) => console.log(err.message));
+  };
+
+  return { requestListState, setRequstListState, assignOffer };
 }

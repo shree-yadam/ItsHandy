@@ -12,10 +12,11 @@ const OfferList = (props) => {
 
     const [state, setstate] = useState(history && history.location.state);
 
+    state.OffersRequests && console.log("offerList assign offer", typeof state.OffersRequests.assignOffer)
     return (
         <div>
             <h1>Offers list</h1>
-            {state.requestOffer && state.requestOffer.map(offer => <OfferListItem {...offer} />)}
+            {state.requestOffer && state.requestOffer.map(offer => <OfferListItem {...offer} assignOffer={state.assignOffer}/>)}
         </div>
     )
 }

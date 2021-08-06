@@ -54,10 +54,12 @@ export default function RequestListItem(props) {
 
     // TBD
   };
+  console.log('typeof assignOffer :>> RequestListItem ', typeof props.OffersRequests.assignOffer);
+
+
 
   return (
     <div>
-
 
       <div className="listitem-container">
 
@@ -106,13 +108,13 @@ export default function RequestListItem(props) {
             onClick={sendMessage}>
             Message
           </Button>
-          
+
           {/* Renders show offers button if offers are received and job is not assigned*/}
           {(props.OffersRequests.requestOffers && !props.OffersRequests.requestItem.date_assigned && !props.OffersRequests.requestItem.provider_id) && props.OffersRequests.requestOffers.length > 0 &&
             <Button variant="primary" type="button"
-              onClick={() => history.push({
+            onClick={() => history.push({
                 pathname: `requests/${props.OffersRequests.requestItem.id}/offers`,
-                state: { requestOffer: props.OffersRequests.requestOffers }
+                state: { requestOffer: props.OffersRequests.requestOffers, assignOffer:props.OffersRequests.assignOffer}
               })}>
               Show offers
             </Button>}

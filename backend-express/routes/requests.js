@@ -50,23 +50,19 @@ module.exports = (db) => {
 
   // Assign a request to a service provider
   router.post("/:id/requests/:request_id/offers/assign", (req, res) => {
-    // if (
-    //   req.session &&
-    //   req.session.userId === parseInt(req.params.id) &&
-    //   req.session.request_id === parseInt(req.params.request_id)
-    // ) {
-    //   requestsdbHelper
-    //     .acceptOffer(db, req.body.provider_id, req.body.price, req.params.client_id,req.params.request_id)
-    //     .then((res) => console.log(res))
-    //     .catch((err) => console.log("Accepting offer didn't go well",err.message));
-    // }
-  //console.log("Line63",req.body.price)
-    requestsdbHelper
+    if (
+      req.session &&
+      req.session.userId === parseInt(req.params.id) &&
+      req.session.request_id === parseInt(req.params.request_id)
+    ) {requestsdbHelper
     .acceptOffer(db, req.body.provider_id, req.body.price, req.params.id,req.params.request_id)
     .then((response) => {
     console.log("route was successful ")
     return res.send(200)})
     .catch((err) => console.log(res.status(500).send(),err.message));
+    }
+  console.log("Line63",req.body.price)
+    
   });
 
   // Return user info

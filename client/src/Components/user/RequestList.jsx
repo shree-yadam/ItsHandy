@@ -57,10 +57,11 @@ const RequestList = (props) => {
   }
   ]
    */
-  const { requestListState, setRequestListState } = useRequestListData();
+  const { requestListState, setRequestListState, assignOffer } = useRequestListData();
 
   const history = useHistory();
 
+  //console.log('typeof assignOffer :>> RequestList ', typeof assignOffer);
 
   return (<div className="request-list">
     {/* This check is to not map if this was not loaded the first time */}
@@ -71,8 +72,8 @@ const RequestList = (props) => {
       let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
 
       return (
-        <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }}
-        currentUser={props.currentUser}/>
+        <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers , assignOffer:assignOffer }}
+          currentUser={props.currentUser} />
       )
     })}
   </div>
