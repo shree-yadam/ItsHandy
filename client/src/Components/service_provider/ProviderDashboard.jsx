@@ -47,9 +47,9 @@ export default function ProviderDashboard(
       numberOfStars={5}/>
       <div className="category-name">
         <br></br>
-      Your Categories: {providerCategories && 
-      
-      providerCategories.map((category) => <span>   | {category.category_name} |  </span> )
+      Your Categories: {providerCategories &&
+
+      providerCategories.map((category) => <span key={category.id}>   | {category.category_name} |  </span> )
       }
       </div>
       <br></br>
@@ -58,11 +58,11 @@ export default function ProviderDashboard(
         <p><strong>Contact:</strong> {providerInfo.phone_number}</p>
         </div>
         <div className = "provider-grid">
-          
+
         {/* <Link to="/assigned_jobs"> <Button variant="primary"> Your Assigned Jobs </Button></Link> */}
         <Link to="/assigned_jobs"> <div className="provider-grid-1">Assigned Jobs </div> </Link>
-        
-        
+
+
         <Link to="/new_listings"> <div className="provider-grid-2">New Listings  </div> </Link>
         </div>
 

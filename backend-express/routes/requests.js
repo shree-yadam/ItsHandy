@@ -11,7 +11,6 @@ const reviewsDbHelper = require("../db/queries/reviewsDbHelper");
  * @return {Promise<{}>} A promise that includes the requests data.
  */
 module.exports = (db) => {
-
   // Gets all offers for user effects
   router.get("/:id/requests/offers", (req, res) => {
     offersdbHelpers
@@ -22,20 +21,23 @@ module.exports = (db) => {
 
   router.get(`/:client_id/reviews`, (req, res) => {
     console.log("GET REVIEWS");
-    reviewsDbHelper.getReviewByClientId(db, req.params.request_id)
-    .then((data) => {
-      console.log(data);
-      res.send(data);
-    })
-    .catch((err) => console.log(err));
-
+    reviewsDbHelper
+      .getReviewByClientId(db, req.params.request_id)
+      .then((data) => {
+        console.log(data);
+        res.send(data);
+      })
+      .catch((err) => console.log(err));
   });
 
   router.get("/:id/requests", (req, res) => {
     console.log(req.params.id);
     requestsdbHelper
       .getUserRequestsById(db, req.params.id)
-      .then((result) => res.json(result))
+      .then((result) => {
+        res.json(result);
+        console.log("this is in get requests by uid route", result);
+      })
       .catch((err) => console.log(err.message));
   });
 
@@ -51,12 +53,36 @@ module.exports = (db) => {
   // creates a new review for a request in the database
   router.post("/:id/requests/:request_id/reviews", (req, res) => {
     console.log("In request form post review", req.body);
-   reviewsDbHelper.addReviewForRequest(db, req.params.id, req.body.provider_id, req.params.request_id, req.body.rating)
-   .then((data) => {
-     return usersdbHelper.updateAverageRatingForID(db, req.body.provider_id)
-   })
-    .then((result) => res.send(result))
-    .catch((err) => res.status(401).send());
+    reviewsDbHelper
+      .addReviewForRequest(
+        db,
+        req.params.id,
+        req.body.provider_id,
+        req.params.request_id,
+        req.body.rating
+      )
+      .then((data) => {
+        return usersdbHelper.updateAverageRatingForID(db, req.body.provider_id);
+      })
+      .then((result) => res.send(result))
+      .catch((err) => res.status(401).send());
+  });
+
+  // Edit request
+
+  router.post("/:id/requests/:request_id/update", (req, res) => {
+    console.log("In request form edit", req.body);
+    requestsdbHelper
+      .deleteRequest(db, req.params.request_id)
+      .then((data) => requestsdbHelper.addNewRequest(db, req.body))
+      .then((result) => {
+        console.log("Updated: ", result);
+        res.send(result);
+      })
+      .catch((err) => {
+        res.status(401).send();
+        console.log(err);
+      });
   });
 
   // creates a new request in the database
@@ -83,30 +109,14 @@ module.exports = (db) => {
   // updates request with completed date
   router.put("/:id/requests/:request_id/update_date_completed", (req, res) => {
     console.log("In request form post update", req.body);
-    requestsdbHelper.updateAssignedJob(db, req.params.request_id, req.body.date)
-    .then((result) => res.send(result))
-    .catch((err) => res.status(401).send());
+    requestsdbHelper
+      .updateAssignedJob(db, req.params.request_id, req.body.date)
+      .then((result) => res.send(result))
+      .catch((err) => res.status(401).send());
   });
 
-// Edit request
-
-router.put("/:id/requests/:request_id", (req, res) => {
-  console.log("In request form edit", req.body);
-  requestsdbHelper
-    .deleteRequest(db, req.params.request_id)
-    .then((data) => requestsdbHelper.addNewRequest(db, req.body))
-    .then((result) => {
-      console.log("Updated: ", result);
-      res.send(result);
-    })
-    .catch((err) => {
-      res.status(401).send();
-      console.log(err);
-    });
-});
   return router;
 };
-
 
 // requestDetails.title,
 // requestDetails.street_address,

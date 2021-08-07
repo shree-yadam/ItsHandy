@@ -29,7 +29,7 @@ export default function RequestForm({ currentUser }) {
 
     const handleRequestSubmit = (event) => {
       console.log("REQUEST FORM SUBMITTED");
-      console.log(event);
+      // console.log(event);
       event.preventDefault();
 
       const formData = new FormData();
@@ -39,16 +39,16 @@ export default function RequestForm({ currentUser }) {
       if(imageFile) {
         axios.post(`https://api.cloudinary.com/v1_1/dh2x3pba3/image/upload`, formData)
         .then((response)=>{
-          console.log("this is cloud:", response.data.secure_url);
+          // console.log("this is cloud:", response.data.secure_url);
           setNewRequest((prev) => ({...prev, img_url: response.data.secure_url}));
 
-          console.log("this is new request", newRequest);
+          // console.log("this is new request", newRequest);
           const requestToSend = {...newRequest};
           requestToSend.img_url = response.data.secure_url;
            return axios.post(`/api/clients/${userId}/requests`, requestToSend)
         })
         .then((result) => {
-          console.log("This is handler form", result);
+          // console.log("This is handler form", result);
           history.push(`/client/${userId}/requests`);
         })
         .catch((error)=> {
@@ -57,7 +57,7 @@ export default function RequestForm({ currentUser }) {
       } else {
         axios.post(`/api/clients/${userId}/requests`, newRequest)
         .then((result) => {
-          console.log("This is handler form", result);
+          // console.log("This is handler form", result);
           history.push(`/client/${userId}/requests`);
         })
         .catch((error)=> {
