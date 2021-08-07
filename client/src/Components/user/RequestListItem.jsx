@@ -210,7 +210,7 @@ export default function RequestListItem(props) {
 
           {/* Renders Review and Complete button to finish a job and mark it completed if job was already assigned */}
           {props.OffersRequests.requestItem.provider_id !== null && (
-            <div>
+            <div className="reviewstars-complete">
               <ReviewStars rating={rating} setRating={setRating}></ReviewStars>{" "}
               <Button variant="info" onClick={submitRating}>
                 Review And Complete

@@ -40,9 +40,11 @@
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
-  align-content: center;
   width: 100%;
   padding-bottom: 16px;
+  flex-wrap: wrap;
+  align-content: stretch;
+  align-items: center;
 }
 
 .info-text {
@@ -92,4 +94,11 @@
   border-radius: 3vh;
   padding: 2vh;
   font-size: x-large;
+}
+
+.reviewstars-complete {
+  display: flex;
+  flex-direction: column;
+  border-color: black;
+  align-items: center;
 }
