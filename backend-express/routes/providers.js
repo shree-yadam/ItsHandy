@@ -52,6 +52,23 @@ module.exports = (db) => {
   });
 
   /* GET unfinished assigned jobs for provider */
+  router.get("/:id/jobsCompleted", function (req, res) {
+    console.log("route:get assigned jobs");
+    if(req.session && req.session.userId === parseInt(req.params.id)) {
+      providersDbHelper.getCompletedJobs(db, req.params.id)
+        .then((result) => {
+          console.log(result);
+          res.json(result)})
+        .catch((err) => {
+          console.log(err);
+          res.status(500).send();
+        });
+    } else {
+      res.status(401).send();
+    }
+  });
+
+  /* GET unfinished assigned jobs for provider */
   router.get("/:id/assignedJobs", function (req, res) {
     console.log("route:get assigned jobs");
     if(req.session && req.session.userId === parseInt(req.params.id)) {

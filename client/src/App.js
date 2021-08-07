@@ -16,6 +16,7 @@ import NewJobList from "./Components/service_provider/NewJobList";
 import AssignedJobList from "./Components/service_provider/AssignedJobsList";
 import NoMatch from "./Components/NoMatch";
 import OfferList from "./Components/user/OfferList";
+import History from "./Components/service_provider/History";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -79,6 +80,9 @@ function App() {
             {/* temp */}
             <Route path="/new_listings">
               <NewJobList currentUser={currentUser} />
+            </Route>
+            <Route path="/jobs_completed">
+              <History currentUser={currentUser} />
             </Route>
             <Route path="/assigned_jobs">
               <AssignedJobList currentUser={currentUser} />
