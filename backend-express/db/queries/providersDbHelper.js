@@ -38,26 +38,45 @@ const getUnfinishedAssignedJobs = function (db, provider_id) {
 };
 
 /**
- * Update request as completed with date_completed
- * @param {Integer} job_id id of request
- * @param {date_completed} date of completion of job
+ * Get unfinished assigned jobs for provider
+ * @param {Integer} provider_id id of provider
  * @return {Promise<{}>} A promise to the customer.
  */
-const updateAssignedJob = function (db, job_id, date) {
-  console.log("updateAssignedJobs ", job_id);
+ const getCategoriesForProvider = function (db, provider_id) {
+  console.log("categories for provider ", provider_id);
   const queryString = `
-   UPDATE requests SET date_completed = (to_timestamp($1 / 1000.0))
-   WHERE requests.id = $2
-   RETURNING *;`;
-  const queryParams = [date, job_id];
+    SELECT provider_categories.category_id AS id, categories.name AS category_name
+    FROM provider_categories
+    JOIN categories ON provider_categories.category_id = categories.id
+    WHERE provider_id = $1;
+     `;
+  const queryParams = [provider_id];
   return db.query(queryString, queryParams).then((result) => {
-    console.log(result);
     return result.rows;
+  });
+};
+
+/**
+ * Add Category for provider
+ * @param {Integer} provider_id id of provider
+ * @return {Promise<{}>} A promise to the customer.
+ */
+ const addCategoryForProvider = function (db, provider_id, category_id) {
+  console.log("addCategoryForProvider ", provider_id, category_id);
+  const queryString = `
+   INSERT INTO provider_categories (provider_id, category_id)
+   VALUES ($1, $2)
+   RETURNING *;
+     `;
+  const queryParams = [provider_id, category_id];
+  return db.query(queryString, queryParams).then((result) => {
+    return result.rows[0];
   });
 };
 
 module.exports = {
   getNewListingByCategory,
   getUnfinishedAssignedJobs,
-  updateAssignedJob,
+  addCategoryForProvider,
+  getCategoriesForProvider
 };

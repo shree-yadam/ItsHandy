@@ -68,9 +68,9 @@ export default function NewJobListItem({
           <Button  variant="primary" type="submit"  onClick={goToDetails}>
             Details
           </Button>
-          <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
+          {/* <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
             Messages
-          </Button>
+          </Button> */}
         </div>
       }
       { job.offer_made &&
@@ -80,9 +80,9 @@ export default function NewJobListItem({
             Details
           </Button>
 
-          <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
+          {/* <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
             Messages
-          </Button>
+          </Button> */}
         </div>
       }
 

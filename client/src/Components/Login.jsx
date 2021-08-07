@@ -14,7 +14,7 @@ export default function Login({setCurrentUser}) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    axios.post('api/users/login', {
+    axios.post('/api/users/login', {
       email,
       password
     })
@@ -31,7 +31,7 @@ export default function Login({setCurrentUser}) {
       if(res.data.is_provider){
         history.push(`/provider/${res.data.id}`);
       } else {
-        history.push(`/client/${res.data.id}/requests`);
+        history.push(`/client/${res.data.id}`);
       }
     })
     .catch((err) => {
@@ -43,7 +43,7 @@ export default function Login({setCurrentUser}) {
   return (
     <div className="form-container">
       {error &&
-      <p>{error}</p>
+      <p className="login-error" >{error}</p>
       }
       <Form className="login-form">
         <h2>Login</h2>

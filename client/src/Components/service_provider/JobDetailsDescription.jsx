@@ -13,9 +13,9 @@ export default function JobDetailsDescription({title,
 
           <p>Category: {category}</p>
           <p>Preferred Date:  {date && date.split('T')[0]}</p>
-
+{ img_url &&
           <img className="job-detail-img" src={img_url} alt="job details" />
-
+}
 
       </div>
   );

@@ -4,19 +4,18 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // App components
 
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import NavBar from "./components/NavBar";
-import RequestList from "./components/user/RequestList";
-import ProviderDashboard from "./components/service_provider/ProviderDashboard";
-import UserDashboard from "./components/user/UserDashboard";
-import RequestForm from "./components/user/RequestForm";
-import JobDetails from "./components/service_provider/JobDetails";
-import NewJobList from "./components/service_provider/NewJobList";
-import AssignedJobList from "./components/service_provider/AssignedJobsList";
-import NoMatch from "./components/NoMatch";
-import OfferList from "./components/user/OfferList";
+import Home from "./Components/Home";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import NavBar from "./Components/NavBar";
+import RequestList from "./Components/user/RequestList";
+import ProviderDashboard from "./Components/service_provider/ProviderDashboard";
+import UserDashboard from "./Components/user/UserDashboard";
+import RequestForm from "./Components/user/RequestForm";
+import NewJobList from "./Components/service_provider/NewJobList";
+import AssignedJobList from "./Components/service_provider/AssignedJobsList";
+import NoMatch from "./Components/NoMatch";
+import OfferList from "./Components/user/OfferList";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -61,6 +60,8 @@ function App() {
             <Route path={`/client/:userId/requests/new`} exact>
               <RequestForm currentUser={currentUser} />
             </Route>
+
+
             <Route path={`/client/:userId/requests/:requestId/offers`} exact>
               <OfferList currentUser={currentUser} />
             </Route>

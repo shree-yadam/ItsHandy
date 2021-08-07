@@ -2,16 +2,19 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+import useRequestListData from "./useRequestListData"
 /**
  * Handles requests data
  */
 export default function useOfferListData() {
+  const { requestListState, setRequestListState } = useRequestListData();
+
   const { userId, requestId } = useParams();
   // Id of user who made the requests
   //const clientId = 1;
   //console.log("User id from params in requests list data", userId);
   // State for requests List
-  const [requestListState, setOfferListState] = useState(
+  const [requestOfferListState, setrequestOfferListState] = useState(
     {
       requestList: [
       ],
@@ -19,19 +22,22 @@ export default function useOfferListData() {
     },
     []
   );
-  // Gets offers and requests from db
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/client/${userId}/requests/offers`)
-      .then(
-        (res) =>
-          setOfferListState((prev) => {
-            return res.data;
-          })
-        // console.log("all[1].data", all[1].data);
-      )
-      .catch((err) => err.message);
-  }, [userId]);
+
+  // useEffect(() => {
+  //   Promise.all([
+  //     axios.get(`http://localhost:3001/api/clients/${userId}/requests`),
+  //     axios.get(`http://localhost:3001/api/clients/${userId}/requests/offers`)
+  //   ])
+  //     .then((all) => {
+  //       setRequestListState((prev) => {
+  //         return {
+  //           requestList: all[0].data,
+  //           offers: all[1].data
+  //         };
+  //       });
+  //     })
+  //     .catch((err) => err.message);
+  // }, [userId]);
 
 
   // Assigns offer to a service provider
@@ -41,9 +47,10 @@ export default function useOfferListData() {
   //  console.log(`price`, price)
   //console.log(providerId)
   //console.log(price);
+  console.log("assign offer was called")
     axios
       .post(
-        `http://localhost:3001/api/client/${userId}/requests/${requestId}/offers/assign`,
+        `http://localhost:3001/api/clients/${userId}/requests/${requestId}/offers/assign`,
         { provider_id: providerId, price: price }
       )
       .then(() =>
@@ -52,5 +59,5 @@ export default function useOfferListData() {
       .catch((err) => console.log(err.message));
   };
 
-  return { requestListState, setOfferListState, assignOffer };
+  return { requestOfferListState, setrequestOfferListState, assignOffer };
 }

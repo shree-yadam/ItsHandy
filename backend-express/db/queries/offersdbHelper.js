@@ -8,14 +8,14 @@
  */
 const getAllOffers = function (db, id) {
   // old query "select * from offers join requests on offers.request_id = requests.id where requests.client_id=$1"
-  const query = `select offers.*, users.first_name as service_provider_first_name, 
-  users.first_name as service_provider_last_name, users.avg_rating
+  const query = `select offers.*, users.first_name as service_provider_first_name,users.img_url as service_provider_img_url, 
+  users.last_name as service_provider_last_name, users.avg_rating
     from offers
     join requests on offers.request_id = requests.id
     join users on offers.provider_id = users.id
     where  users.is_provider = true AND requests.client_id=$1`;
   return db.query(query, [id]).then((result) => {
-    console.log(result.rows);
+    //console.log(result.rows);
     return result.rows;
   });
 };
@@ -85,7 +85,7 @@ const addOfferForRequestByProvider = function (
     `;
   const queryParams = [requestId, providerId, quote, comment];
   return db.query(queryString, queryParams).then((result) => {
-    console.log(result.rows);
+    //console.log(result.rows);
     return result.rows[0];
   });
 };
@@ -105,7 +105,7 @@ const addOfferForRequestByProvider = function (
   const queryParams = [providerId];
   return db.query(queryString, queryParams)
     .then((result) => {
-      console.log(result.rows);
+      //console.log(result.rows);
       return result.rows;
     });
 }

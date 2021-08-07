@@ -1,5 +1,5 @@
 .job-details-container {
-  margin: 3em;
+  margin: 2vh;
   position: relative;
   display:column;
   border-color:black;
@@ -12,15 +12,26 @@
   justify-content: space-evenly;
 }
 
-.offer-button {
+.offer-actions {
+
   display: flex;
   height: 2em;
-  margin-top: 2em;
+  margin-top: 8vh;
+  margin-bottom: 2vh;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+.offer-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .map-container {
@@ -40,6 +51,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 200vh;
 }
 
 img{
@@ -51,4 +63,15 @@ img{
 .map-container {
   height: 40vh;
   width: 100%;
+}
+
+.offer-button {
+  display: flex;
+  height: 2em;
+  margin-top: 1em;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: flex-end;
+  justify-content: space-between;
 }

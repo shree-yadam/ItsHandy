@@ -11,7 +11,7 @@ export default function useRequstListData() {
   //const clientId = 1;
   //console.log("User id from params in requests list data", userId);
   // State for requests List
-  const [requestListState, setRequstListState] = useState(
+  const [requestListState, setRequestListState] = useState(
     {
       requestList: [
         //   {
@@ -41,30 +41,32 @@ export default function useRequstListData() {
   // Gets offers and requests from db
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:3001/api/client/${userId}/requests`),
-      axios.get(`http://localhost:3001/api/client/${userId}/requests/offers`),
+      axios.get(`http://localhost:3001/api/clients/${userId}/requests`),
+      axios.get(`http://localhost:3001/api/clients/${userId}/requests/offers`)
     ])
       .then((all) => {
-        setRequstListState((prev) => {
+        setRequestListState((prev) => {
           return {
             requestList: all[0].data,
-            offers: all[1].data,
+            offers: all[1].data
           };
         });
+
       })
       .catch((err) => err.message);
   }, [userId]);
 
-  const assignOffer = (providerId, price) => {
-    axios
-      .post(
-        `http://localhost:3001/api/client/${userId}/requests/${requestId}/offers/assign`
-      )
-      .then(() =>
-        console.log("axios request for assigning offer was successful")
-      )
-      .catch((err) => console.log(err.message));
-  };
+  // const assignOffer = (providerId, price) => {
+  //   axios
+  //     .post(
+  //       `http://localhost:3001/api/clients/${userId}/requests/${requestId}/offers/assign`
+  //     )
+  //     .then(() =>
+  //       console.log("axios request for assigning offer was successful")
+  //     )
+  //     .catch((err) => console.log(err.message));
+  // };
 
-  return { requestListState, setRequstListState, assignOffer };
+  return { requestListState, setRequestListState };
+
 }

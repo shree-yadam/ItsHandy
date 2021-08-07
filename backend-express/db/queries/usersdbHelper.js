@@ -87,7 +87,7 @@ const getUsers = function (db) {
     userDetails.email,
     userDetails.password,
     userDetails.phone_number,
-    userDetails.img_url? userDetails.img_url: "https://www.google.com/search?q=profile+image+empty&tbm=isch&source=iu&ictx=1&fir=H6pHpB03ZEAgeM%252Cwg0CyFWNfK7o5M%252C_&vet=1&usg=AI4_-kRpCAYNbAgxFIvzJD2sGOBoyJaNNg&sa=X&ved=2ahUKEwjwwNmI9pDyAhUYOs0KHXcdAuoQ9QF6BAgVEAE#imgrc=H6pHpB03ZEAgeM",
+    userDetails.img_url,
     userDetails.is_provider
   ];
   return db.query(queryString, queryParams)
@@ -97,10 +97,32 @@ const getUsers = function (db) {
     });
 }
 
+/**
+ * update user avg_rating
+ * @param {Object} id user ID
+ * @return {Promise<{}>} A promise to the customer.
+ */
+ const updateAverageRatingForID = function(db, id) {
+   console.log("Updating provider review: ", id);
+ const queryString = `
+  WITH subq AS ( SELECT round(AVG(review), 4) as average FROM reviews WHERE reviews.provider_id = $1)
+  UPDATE users
+  SET avg_rating = subq.average FROM subq WHERE users.id = $1
+  RETURNING *;
+   `;
+ const queryParams = [id];
+ return db.query(queryString, queryParams)
+   .then((result) => {
+     //console.log(result.rows);
+     return result.rows[0];
+   });
+}
+
 module.exports = {
   getUsers,
   getUserWithEmail,
   addNewClient,
   getUserWithId,
-  getProviderByTruthiness
+  getProviderByTruthiness,
+  updateAverageRatingForID
 };

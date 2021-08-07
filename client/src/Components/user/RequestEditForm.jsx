@@ -1,53 +1,52 @@
 import axios from "axios";
-import React, { useState  } from "react";
-import { useHistory,useParams } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
-import './RequestForm.scss'
+import "./RequestForm.scss";
 
-export default function RequestForm({ currentUser }) {
-  // Get user id from ur param
-  const {userId} = useParams();
+
+export default function RequestEditForm({ currentUser, request, setRequestListState, index, back }) {
   const history = useHistory();
 
+  const [newRequest, setNewRequest] = useState(request);
 
-  const [newRequest, setNewRequest] = useState({
-    title: "",
-    street_address: "",
-    city: "",
-    category_id: "",
-    preferred_date: "",
-    preferred_time: "",
-    img_url: "",
-    description: "",
-    client_id: userId
-  });
-
+  console.log("current user: ", currentUser);
+  console.log("Request: ", request);
 
   const handleRequestSubmit = (event) => {
     event.preventDefault();
-    // console.log("REQUEST FORM SUBMITTED");
-    // console.log(event);
-    // console.log(newRequest)
-    axios.post(`/api/clients/${userId}/requests`, { ...newRequest })
+    axios
+      .put(`/api/clients/${currentUser.id}/requests/${request.id}`, { ...newRequest })
       .then((result) => {
         console.log("This is handler form", result);
-         history.push(`/client/${userId}/requests`);
+        setRequestListState((prev) => {
+          console.log(prev);
+          const oldState = { ...prev };
+          let requestList = [...oldState.requestList];
+          requestList[index] = {...newRequest};
+          oldState.requestList = requestList;
+          return oldState;
+        });
+        back();
       })
-      .catch((error) => { console.log(error) });
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
 
   const handleDropdownChange = (event) => {
     event.preventDefault();
-    //console.log(event.target[event.target.selectedIndex].index);
 
-    setNewRequest((prev) => ({ ...prev, category_id: event.target[event.target.selectedIndex].index }))
+    setNewRequest((prev) => ({
+      ...prev,
+      category_id: event.target[event.target.selectedIndex].index,
+    }));
   };
 
   return (
     <div className="form-container">
-      <h2> Submit A Request </h2>
+      <h2> Edit Your Request </h2>
 
       <Form.Group className="mb-3" controlId="title">
         <Form.Label>Title</Form.Label>
@@ -95,27 +94,32 @@ export default function RequestForm({ currentUser }) {
           placeholder="Enter YYYY-MM-DD"
           value={newRequest.preferred_date}
           onChange={(event) =>
-            setNewRequest((prev) => ({ ...prev, preferred_date: event.target.value }))
+            setNewRequest((prev) => ({
+              ...prev,
+              preferred_date: event.target.value,
+            }))
           }
         />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="category">
-      <label> Choose A Category </label>
-      <br></br>
-      <select id="dropdown" onChange={handleDropdownChange}>
-        <option value="N/A">N/A</option>
-        <option value="Plumbing">Plumbing</option>
-        <option value="Electrician">Electrician</option>
-        <option value="Painting">Painting</option>
-        <option value="Babysitter">Babysitting</option>
-      </select>
+        <label> Choose A Category </label>
+        <br></br>
+        <select id="dropdown" onChange={handleDropdownChange}>
+          <option value="N/A">N/A</option>
+          <option value="Plumbing">Plumbing</option>
+          <option value="Electrician">Electrician</option>
+          <option value="Painting">Painting</option>
+          <option value="Babysitter">Babysitting</option>
+        </select>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Job Description</Form.Label>
         <Form.Control
-          as="textarea" rows={3} columns={11}
+          as="textarea"
+          rows={3}
+          columns={11}
           placeholder="Enter Work Details"
           value={newRequest.description}
           onChange={(event) =>
@@ -146,6 +150,15 @@ export default function RequestForm({ currentUser }) {
         onClick={handleRequestSubmit}
       >
         Submit
+      </Button>
+
+      <Button
+        variant="danger "
+        size="lg"
+        type="submit"
+        onClick={() => back()}
+      >
+      Cancel
       </Button>
     </div>
   );

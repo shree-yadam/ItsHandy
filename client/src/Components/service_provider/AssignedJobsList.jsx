@@ -9,7 +9,7 @@ export default function AssignedJobList({currentUser}){
   useEffect(() => {
     console.log(currentUser);
       if(currentUser) {
-        axios.get(`api/providers/${currentUser.id}/assignedJobs`)
+        axios.get(`/api/providers/${currentUser.id}/assignedJobs`)
         .then((res) => {
           setAssignedJobs(res.data);
         })
@@ -28,6 +28,7 @@ export default function AssignedJobList({currentUser}){
       {currentUser &&
       <h2>Assigned Jobs</h2>
       }
+      {(!assignedJobs || assignedJobs.length === 0 ) && <h3>No Entries!</h3>}
       {assignedJobs && assignedJobs.map((assignedJob) => <AssignedJobListItem
       key={assignedJob.id}
       currentUser={currentUser}

@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 export default function JobDetails({
   job,
   currentUser,
-  setMode,
+  back,
   setNewJobs,
   index
 }) {
@@ -65,6 +65,10 @@ export default function JobDetails({
 
   return (
     <div className="job-details-main">
+      <aside> <Button
+      onClick={() => {
+        back();
+        }}>Back</Button></aside>
       <h2>Job Details</h2>
     <div className="job-details-container">
 
@@ -93,33 +97,28 @@ export default function JobDetails({
       </div>
 
       { !job.offer_made &&
-      <div className="offer-button">
+      <div className="offer-footer">
+      <div className="offer-actions">
 
-        <label>Add comments with quote (optional)
-          <input className="quote-input" value={job.offer_comment} onChange={(event)=> setComment(event.target.value)}/></label>
-
-        <label>Quote
+      <label>Quote
         <input className="quote-input" value={job.quote} onChange={(event)=> setQuote(event.target.value)}/></label>
-
+        <br/>
+        <label>Add comments (optional)
+          <textarea className="quote-input" value={job.offer_comment} onChange={(event)=> setComment(event.target.value)}/></label>
         <Button className="offer-button"
         onClick={handleOffer}>Make an offer</Button>
-
-        <Button className="offer-button"
-        onClick={() => {
-          setMode("JOB_LIST");
-          }}>Back</Button>
-
       </div>
+        </div>
       }
 
       { job.offer_made &&
       <div className="offer-button">
 
         <p>Quote: {job.quote}</p>
-        <Button className="offer-button"
+        {/* <Button className="offer-button"
         onClick={() => {
-          setMode("JOB_LIST");
-          }}>Back</Button>
+          back();
+          }}>Back</Button> */}
 
       </div>
       }

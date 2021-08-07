@@ -1,12 +1,12 @@
 
 .provider-container{
-  margin-top: 6em;
+  margin-top: 10vh;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-content: stretch;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-end;
 }
 
 .provider-grid{
@@ -21,34 +21,50 @@ display:grid
 // }
 
 .provider-grid-1 {
-border-color:black;
-border-style: solid;
-padding:60px;
-margin:5px;
-background-color:rgba(184, 195, 222, 0.68);
+  border-color: black;
+  border-style: solid;
+  padding: 8vh;
+  margin: 2vh;
+  background-color: rgba(222, 202, 184, 0.68);
+  font-family: none;
+  font-weight: 400;
+  font-size: large;
 }
 
 .provider-grid-2 {
-border-color:black;
-border-style: solid;
-padding:60px;
-background-color:rgba(218, 112, 112, 0.92);
-margin: 8px;
+  border-color: black;
+  border-style: solid;
+  padding: 8vh;
+  margin: 2vh;
+  background-color: rgba(184, 195, 222, 0.68);
+  font-family: none;
+  font-weight: 400;
+  font-size: large;
 }
 .provider-grid-2:hover {
-border-color:rgb(0, 0, 0);
-border-style: solid;
-padding:60px;
-background-color:rgba(131, 83, 83, 0.92);
-color:white;
-margin: 8px;
+  border-color: black;
+  border-style: solid;
+  padding: 8vh;
+  margin: 2vh;
+  background-color: rgba(58, 97, 196, 0.68);
+  font-family: none;
+  font-weight: 400;
+  font-size: large;
+  color:white
 }
 
 .provider-grid-1:hover {
-border-color:rgb(0, 0, 0);
-border-style: solid;
-padding:60px;
-background-color:rgba(131, 83, 83, 0.92);
-color:white;
-margin: 8px;
+  border-color: black;
+  border-style: solid;
+  padding: 8vh;
+  margin: 2vh;
+  background-color: rgba(58, 97, 196, 0.68);
+  color:white;
+  font-family: none;
+  font-weight: 400;
+  font-size: large;
+}
+
+.provider-profile {
+  margin-top:0.2vh;
 }

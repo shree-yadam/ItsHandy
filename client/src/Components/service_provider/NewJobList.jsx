@@ -10,21 +10,16 @@ const JOB_LIST = "JOB_LIST";
 
 
 export default function NewJobList({currentUser}) {
-  const { mode, transition } = useVisualMode(JOB_LIST);
+  const { mode, transition, back } = useVisualMode(JOB_LIST);
   const [detailJobId, setDetailJobId] = useState(null);
-
   const [newJobs, setNewJobs] = useState(null);
+
+  // Get new job listings matching provider category
   useEffect(() => {
       if(currentUser) {
-        axios.get(`api/providers/${currentUser.id}/newListings`)
+        axios.get(`/api/providers/${currentUser.id}/newListings`)
         .then((res) => {
           const jobs = res.data;
-          // jobs.map(job => {
-          //   console.log(job.quote);
-          //   job.quote ? job.offer_made = true : job.offer_made = false;
-          //   console.log(job.offer_made);
-          //   return job;
-          // });
           setNewJobs(jobs);
 
         })
@@ -38,6 +33,7 @@ export default function NewJobList({currentUser}) {
       {mode === JOB_LIST &&
       <>
       <h2>New Job Listing</h2>
+        {(!newJobs || newJobs.length === 0 ) && <h3>No Entries!</h3>}
         {newJobs &&
           newJobs.map((newJob, index) =>
           <NewJobListItem
@@ -46,6 +42,7 @@ export default function NewJobList({currentUser}) {
           currentUser={currentUser}
           setDetailJobId={setDetailJobId}
           setMode={transition}
+          back={back}
           index={index}
           setNewJobs={setNewJobs}
           />)
@@ -55,7 +52,7 @@ export default function NewJobList({currentUser}) {
       {mode === DETAIL &&
         <JobDetails currentUser={currentUser}
         job={newJobs[detailJobId]}
-        setMode={transition}
+        back={back}
         setNewJobs={setNewJobs}
         index={detailJobId} />
       }
