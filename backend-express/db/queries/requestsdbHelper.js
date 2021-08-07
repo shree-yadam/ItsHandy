@@ -124,6 +124,21 @@ const addNewRequest = function (db, requestDetails) {
   });
 };
 
+const getClientForRequest = function(db, request_id) {
+  const queryString = `
+  SELECT users.phone_number, users.first_name, users.last_name, requests.title
+  FROM users
+  JOIN requests ON users.id = requests.client_id
+  WHERE requests.id = $1;`;
+  // console.log("addNewRequest" , requestDetails)
+
+  const queryParams = [ request_id ];
+  return db.query(queryString, queryParams).then((result) => {
+    //console.log("add new request", result.rows);
+    return result.rows[0];
+  });
+}
+
 /**
  * Update request as completed with date_completed
  * @param {Integer} job_id id of request
@@ -143,11 +158,13 @@ const updateAssignedJob = function (db, job_id, date) {
   });
 };
 
+
 module.exports = {
   getUserRequestsById,
   addNewRequest,
   deleteRequest,
   updateAssignedJob,
   acceptOffer,
-  getUserRequestsCompletedById
+  getUserRequestsCompletedById,
+  getClientForRequest
 };

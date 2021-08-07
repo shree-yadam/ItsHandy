@@ -4,6 +4,7 @@ const requestsdbHelper = require("../db/queries/requestsdbHelper");
 const offersdbHelpers = require("../db/queries/offersdbHelper");
 const usersdbHelper = require("../db/queries/usersdbHelper");
 const reviewsDbHelper = require("../db/queries/reviewsDbHelper");
+const sms = require("../helpers/sendSMS");
 
 /**
  * Get requests from the database given their id.
@@ -117,8 +118,20 @@ module.exports = (db) => {
         req.params.request_id
       )
       .then((response) => {
-        //console.log("route was successful ");
-        return res.send(200);
+        console.log("route was successful ");
+        res.send(response);
+        return Promise.all([usersdbHelper.getUserWithId(db, req.body.provider_id), requestsdbHelper.getClientForRequest(db, req.params.request_id)])
+
+      })
+      .then((response) => {
+        const provider_details = response[0];
+        console.log("this is provider details in accept offer", response)
+        const requestDetails = response[1];
+        console.log("this is req details in accept offer", requestDetails)
+        const message = `${provider_details.first_name} ${provider_details.last_name},
+        Your offer for the request title: ${requestDetails.title} has been accepted.
+        Please check It's Handy App for more details.`
+        sms.sendSMS(provider_details.phone_number, message);
       })
       .catch((err) => console.log(res.status(500).send(), err.message));
   });
