@@ -27,7 +27,7 @@ const getUserRequestsById = (db, id) => {
   FROM requests
   join categories on(requests.category_id = categories.id)
   left join users on (requests.provider_id = users.id)
-  left join reviews on (requests.provider_id = reviews.provider_id AND requests.client_id = reviews.client_id)
+  join reviews on (requests.provider_id = reviews.provider_id AND requests.client_id = reviews.client_id)
   WHERE requests.client_id = $1 AND requests.date_completed IS NOT NULL
   ORDER BY requests.id DESC`;
 
