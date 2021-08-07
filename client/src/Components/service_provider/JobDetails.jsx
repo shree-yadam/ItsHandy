@@ -115,10 +115,10 @@ export default function JobDetails({
       <div className="offer-button">
 
         <p>Quote: {job.quote}</p>
-        <Button className="offer-button"
+        {/* <Button className="offer-button"
         onClick={() => {
           back();
-          }}>Back</Button>
+          }}>Back</Button> */}
 
       </div>
       }

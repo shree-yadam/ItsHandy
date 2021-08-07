@@ -7,6 +7,6 @@ export default function makeOffer(provider_id, request_id, quote, comment) {
     comment
   })
   .then((res) => {
-    console.log("Offer posted", res);
+    // console.log("Offer posted", res);
   });
 }

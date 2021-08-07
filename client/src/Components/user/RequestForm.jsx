@@ -13,7 +13,7 @@ export default function RequestForm({ currentUser }) {
     title: "",
     street_address: "",
     city: "",
-    category_id: "",
+    category_id: 1,
     preferred_date: "",
     preferred_time: "",
     img_url: "",
@@ -22,7 +22,7 @@ export default function RequestForm({ currentUser }) {
   });
 
   const uploadImage = (files) => {
-    console.log(files);
+    // console.log(files);
     setImageFile(files[0]);
   }
 
@@ -71,7 +71,8 @@ export default function RequestForm({ currentUser }) {
 
     const handleDropdownChange = (event) => {
       event.preventDefault();
-      setNewRequest((prev) => ({ ...prev, category_id: event.target[event.target.selectedIndex].index }));
+      setNewRequest((prev) => ({ ...prev, category_id: event.target[event.target.selectedIndex].index + 1}));
+      // console.log(event.target[event.target.selectedIndex].index);
 
     };
 
@@ -138,7 +139,6 @@ export default function RequestForm({ currentUser }) {
       <label> Choose A Category </label>
       <br></br>
       <select id="dropdown" onChange={handleDropdownChange}>
-        <option value="N/A">N/A</option>
         <option value="Plumbing">Plumbing</option>
         <option value="Electrician">Electrician</option>
         <option value="Painting">Painting</option>

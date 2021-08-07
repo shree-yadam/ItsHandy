@@ -54,7 +54,7 @@ export default function RequestListItem(props) {
 
   // }
 
-  function handleEdit(){
+  function handleEdit() {
     props.setEditItemId(props.index);
     props.transition("EDIT_MODE");
   }
@@ -67,9 +67,9 @@ export default function RequestListItem(props) {
         `/api/clients/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}`
       )
       .then((res) => {
-        console.log("REQUEST DELETED", res);
+        // console.log("REQUEST DELETED", res);
         props.setRequestListState((prev) => {
-          console.log(prev);
+          // console.log(prev);
           const oldState = { ...prev };
           let requestList = [...oldState.requestList];
           requestList = requestList.filter(
@@ -93,7 +93,7 @@ export default function RequestListItem(props) {
       .then((res) => {
         console.log("Request Marked Completed");
         props.setRequestListState((prev) => {
-          console.log(prev);
+          //console.log(prev);
           const oldState = { ...prev };
           let requestList = [...oldState.requestList];
           requestList = requestList.filter(
@@ -110,7 +110,7 @@ export default function RequestListItem(props) {
   const submitRating = (event) => {
     event.preventDefault();
     console.log("Submit Rating");
-    console.log(rating);
+    // console.log(rating);
     axios
       .post(
         `/api/clients/${props.currentUser.id}/requests/${props.OffersRequests.requestItem.id}/reviews`,
@@ -120,7 +120,7 @@ export default function RequestListItem(props) {
         }
       )
       .then((res) => {
-        console.log("REVIEW SUBMITTED", res);
+        // console.log("REVIEW SUBMITTED", res);
         handleMarkCompleted();
       })
       .catch((error) => console.log(error));
@@ -133,8 +133,10 @@ export default function RequestListItem(props) {
     // TBD
   };
 
-  return (
 
+  //console.log(props.OffersRequests.requestOffers.requestItem && !props.OffersRequests.requestOffers.requestItem.provider_id)
+  //console.log("Line 60", props.OffersRequests.requestOffers, !props.OffersRequests.requestItem.provider_id, props.OffersRequests.requestOffers.length)
+  return (
 
 
     <div>
@@ -167,32 +169,29 @@ export default function RequestListItem(props) {
                 {props.OffersRequests.requestItem.category_name}
               </p>
 
-              {/* <p>Date needed: {preferred_date}</p> */}
               <p>
                 <strong>Date Needed: </strong>
                 {props.OffersRequests.requestItem.preferred_date &&
                   props.OffersRequests.requestItem.preferred_date.slice(0, 10)}
               </p>
+
             </div>
+
             <div className="side-info-header">
-              {!props.OffersRequests.requestItem.provider_id && (
-                <div className="requestlist-date-offer">
-                  <p>
-                    {props.OffersRequests.requestOffers &&
-                    props.OffersRequests.requestOffers.length > 0
-                      ? "offers received: " +
-                        props.OffersRequests.requestOffers.length
-                      : "No offers received 😞 "}
-                  </p>
-                </div>
-              )}
+              {/* where provider id is null and count is 0 */}
+              <p>{props.OffersRequests.requestOffers &&
+                props.OffersRequests.requestOffers.length === 0 && "No offers received yet"}</p>
+
+              {/* if offers.length>1 and provider_id is null*/}
+              <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0
+                && props.OffersRequests.requestItem && !props.OffersRequests.requestItem.provider_id ? "Number of offers received:" + props.OffersRequests.requestOffers.length : ""}</p>
 
               {/* Displays service provider name if this request was assigned */}
               {props.OffersRequests.requestItem.service_provider_first_name &&
                 "Service Provider assigned: " +
-                  props.OffersRequests.requestItem.service_provider_first_name +
-                  " " +
-                  props.OffersRequests.requestItem.service_provider_last_name}
+                props.OffersRequests.requestItem.service_provider_first_name +
+                " " +
+                props.OffersRequests.requestItem.service_provider_last_name}
               <br />
               <br />
             </div>
@@ -208,25 +207,8 @@ export default function RequestListItem(props) {
           >
             Delete
           </Button>
-          {props.OffersRequests.requestItem.provider_id === null &&
-        <div>
-          <Button
-            className="btn-warning"
-            variant="warning"
-            type="submit"
-           onClick={handleEdit}
-          >
-            Edit
-          </Button>
-          {/* <Link
-          to={{
-            pathname: "/client/request_edit",
-            state: { edit: true, requestItem: props.OffersRequests.requestItem, setRequestListState: props.setRequestListState }
 
-          }}> EDIT</Link> */}
-
-         </div>
-          }
+          {/* Renders Review and Complete button to finish a job and mark it completed if job was already assigned */}
           {props.OffersRequests.requestItem.provider_id !== null && (
             <div>
               <ReviewStars rating={rating} setRating={setRating}></ReviewStars>{" "}
@@ -235,29 +217,33 @@ export default function RequestListItem(props) {
               </Button>
             </div>
           )}
-{(props.OffersRequests.requestItem.provider_id !== null ||props.OffersRequests.requestOffers.length > 0) &&
-          <Button variant="success" type="submit" onClick={sendMessage}>
-            Message
-          </Button>
 
-}
-          {/* Renders show offers button if offers are received and job is not assigned*/}
-          {props.OffersRequests.requestOffers &&
-            !props.OffersRequests.requestItem.date_assigned &&
-            props.OffersRequests.requestOffers.length > 0 && (
+          {props.OffersRequests.requestItem.provider_id === null &&
+            <div>
               <Button
-                variant="primary"
-                type="button"
-                onClick={() =>
-                  history.push({
-                    pathname: `requests/${props.OffersRequests.requestItem.id}/offers`,
-                    state: { requestOffer: props.OffersRequests.requestOffers },
-                  })
-                }
+                className="btn-warning"
+                variant="warning"
+                type="submit"
+                onClick={handleEdit}
               >
-                Show offers
+                Edit
               </Button>
-            )}
+            </div>
+          }
+
+          {/*(props.OffersRequests.requestItem.provider_id !== null ||props.OffersRequests.requestOffers.length > 0) &&
+            <Button variant="success" type="submit" onClick={sendMessage}>
+              Message
+            </Button>
+          */}
+
+          {/* Renders show offers button if offers are received and job is not assigned(no service provider id)*/}
+          {(props.OffersRequests.requestOffers && !props.OffersRequests.requestItem.provider_id && props.OffersRequests.requestOffers.length > 0) &&
+            <Button variant="primary" type="button"
+              onClick={() => history.push(`requests/${props.OffersRequests.requestItem.id}/offers`, { requestOffer: props.OffersRequests.requestOffers })}>
+              Show offers
+            </Button>}
+
         </div>
       </div>
     </div>

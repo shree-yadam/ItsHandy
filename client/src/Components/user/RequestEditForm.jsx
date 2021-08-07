@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
@@ -14,12 +14,29 @@ export default function RequestEditForm({
 }) {
   const history = useHistory();
 
-  const [newRequest, setNewRequest] = useState(request);
+  const [newRequest, setNewRequest] = useState({...request, client_id: currentUser.id, category_id: 1});
   const [editImage, setEditImage] = useState(false);
   const [imageFile, setImageFile] = useState(null);
+  const [categories, setCategories] = useState(1);
 
-  console.log("current user: ", currentUser);
-  console.log("Request: ", request);
+  // console.log("current user: ", currentUser);
+  // console.log("Request: ", request);
+
+  useEffect(() => {
+    axios.get('/api/categories')
+    .then((res) => {
+      // console.log(res.data);
+      setCategories(res.data);
+      setCategories(prev => {
+        const oldState = [...prev];
+        return oldState.map(elem => {
+          return {...elem, checked: false}
+        })
+      })
+
+    })
+    .catch((err) => console.log(err));
+  }, []);
 
   const handleRequestSubmit = (event) => {
     console.log("handleRequestSunmit!!!!");
@@ -59,7 +76,7 @@ export default function RequestEditForm({
           }));
           const requestToSend = { ...newRequest };
           setRequestListState((prev) => {
-            console.log(prev);
+            // console.log(prev);
             const oldState = { ...prev };
             let requestList = [...oldState.requestList];
             requestList[index] = {...requestToSend};
@@ -67,23 +84,33 @@ export default function RequestEditForm({
             return oldState;
           });
 
-          console.log("this is new request", newRequest);
+          // console.log("this is new request", newRequest);
           requestToSend.img_url = response.data.secure_url;
-          return axios.post(`/api/clients/${currentUser.id}/requests/${newRequest.id}/update`, requestToSend);
+          return axios.put(`/api/clients/${currentUser.id}/requests/${newRequest.id}`, requestToSend);
         })
         .then((result) => {
-          console.log("This is handler form", result);
-          history.push(`/client/${currentUser.id}/requests`);
+          // console.log("This is handler form", result);
+          back();
+          // history.push(`/client/${currentUser.id}/requests`);
         })
         .catch((error) => {
           console.log(error);
         });
     } else {
       axios
-        .post(`/api/clients/${currentUser.id}/requests/${newRequest.id}/update`, newRequest)
+        .put(`/api/clients/${currentUser.id}/requests/${newRequest.id}`, newRequest)
         .then((result) => {
-          console.log("This is handler form in case of no change", result);
-          history.push(`/client/${currentUser.id}/requests`);
+          // console.log("This is handler form in case of no change", result);
+          setRequestListState((prev) => {
+            // console.log(prev);
+            const oldState = { ...prev };
+            let requestList = [...oldState.requestList];
+            requestList[index] = {...newRequest};
+            oldState.requestList = requestList;
+            return oldState;
+          });
+          back();
+          // history.push(`/client/${currentUser.id}/requests`);
         })
         .catch((error) => {
           console.log(error);
@@ -92,7 +119,7 @@ export default function RequestEditForm({
   };
 
   const uploadImage = (files) => {
-    console.log("uploadImage: ", files);
+    // console.log("uploadImage: ", files);
     setImageFile(files[0]);
   };
 
@@ -103,6 +130,7 @@ export default function RequestEditForm({
       ...prev,
       category_id: event.target[event.target.selectedIndex].index,
     }));
+
   };
 
   return (
@@ -153,7 +181,7 @@ export default function RequestEditForm({
         <Form.Control
           type="text"
           placeholder="Enter YYYY-MM-DD"
-          value={newRequest.preferred_date}
+          value={newRequest.preferred_date && newRequest.preferred_date.split('T')[0]}
           onChange={(event) =>
             setNewRequest((prev) => ({
               ...prev,
@@ -167,7 +195,6 @@ export default function RequestEditForm({
         <label> Choose A Category </label>
         <br></br>
         <select id="dropdown" onChange={handleDropdownChange}>
-          <option value="N/A">N/A</option>
           <option value="Plumbing">Plumbing</option>
           <option value="Electrician">Electrician</option>
           <option value="Painting">Painting</option>

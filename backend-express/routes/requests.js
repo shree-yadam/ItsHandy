@@ -24,20 +24,25 @@ module.exports = (db) => {
     reviewsDbHelper
       .getReviewByClientId(db, req.params.request_id)
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         res.send(data);
       })
       .catch((err) => console.log(err));
+  });
+
+  router.get("/:id/requests_completed", (req, res) => {
+    console.log(req.params.id);
+    requestsdbHelper
+      .getUserRequestsCompletedById(db, req.params.id)
+      .then((result) => res.json(result))
+      .catch((err) => console.log(err.message));
   });
 
   router.get("/:id/requests", (req, res) => {
     console.log(req.params.id);
     requestsdbHelper
       .getUserRequestsById(db, req.params.id)
-      .then((result) => {
-        res.json(result);
-        console.log("this is in get requests by uid route", result);
-      })
+      .then((result) => res.json(result))
       .catch((err) => console.log(err.message));
   });
 
@@ -68,29 +73,13 @@ module.exports = (db) => {
       .catch((err) => res.status(401).send());
   });
 
-  // Edit request
-
-  router.post("/:id/requests/:request_id/update", (req, res) => {
-    console.log("In request form edit", req.body);
-    requestsdbHelper
-      .deleteRequest(db, req.params.request_id)
-      .then((data) => requestsdbHelper.addNewRequest(db, req.body))
-      .then((result) => {
-        console.log("Updated: ", result);
-        res.send(result);
-      })
-      .catch((err) => {
-        res.status(401).send();
-        console.log(err);
-      });
-  });
-
   // creates a new request in the database
   router.post("/:id/requests", (req, res) => {
     console.log("In request form post new", req.body);
     requestsdbHelper
       .addNewRequest(db, req.body)
-      .then((result) => res.send(result));
+      .then((result) => res.send(result))
+      .catch((err) => console.log(err));
   });
 
   // DELETE a request
@@ -100,21 +89,73 @@ module.exports = (db) => {
       requestsdbHelper
         .deleteRequest(db, req.params.id)
         .then((result) => {
-          console.log("THIS IS RESULT IN DELETE REQ", result);
+          //console.log("THIS IS RESULT IN DELETE REQ", result);
           res.send();
         })
         .catch((err) => console.log(err));
     }
   });
+
+  // Assign a request to a service provider
+  router.post("/:id/requests/:request_id/offers/assign", (req, res) => {
+    //console.log(`req.se`, req.params.request_id)
+    // console.log("Line63", req.body.price);
+    // console.log("Line63", req.body.price);
+    // if (
+    //   req.session &&
+    //   req.session.userId === parseInt(req.params.id) &&
+    //   req.params.request_id
+    // ) {
+
+    // }
+    requestsdbHelper
+      .acceptOffer(
+        db,
+        req.body.provider_id,
+        req.body.price,
+        req.params.id,
+        req.params.request_id
+      )
+      .then((response) => {
+        //console.log("route was successful ");
+        return res.send(200);
+      })
+      .catch((err) => console.log(res.status(500).send(), err.message));
+  });
+
+  // Return user info
+  router.get("/:id", (req, res) => {
+    //console.log(req.params.id);
+    usersdbHelper
+      .getUserWithId(db, req.params.id)
+      .then((result) => res.json(result))
+      .catch((err) => console.log(err.message));
+  });
+
   // updates request with completed date
   router.put("/:id/requests/:request_id/update_date_completed", (req, res) => {
-    console.log("In request form post update", req.body);
+    // console.log("In request form post update", req.body);
     requestsdbHelper
       .updateAssignedJob(db, req.params.request_id, req.body.date)
       .then((result) => res.send(result))
       .catch((err) => res.status(401).send());
   });
 
+  // Edit request
+  router.put("/:id/requests/:request_id", (req, res) => {
+    // console.log("In request form edit", req.body);
+    requestsdbHelper
+      .deleteRequest(db, req.params.request_id)
+      .then((data) => requestsdbHelper.addNewRequest(db, req.body))
+      .then((result) => {
+        // console.log("Updated: ", result);
+        res.send(result);
+      })
+      .catch((err) => {
+        res.status(401).send();
+        console.log(err);
+      });
+  });
   return router;
 };
 

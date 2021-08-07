@@ -6,7 +6,7 @@
   // old query "select * from offers join requests on offers.request_id = requests.id where requests.client_id=$1"
   const query = `SELECT * FROM categories;`;
   return db.query(query).then((result) => {
-    console.log(result.rows);
+    // console.log(result.rows);
     return result.rows;
   });
 };

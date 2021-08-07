@@ -8,13 +8,13 @@ import { useHistory } from "react-router-dom";
 export default function UserDashboard({ currentUser }) {
   const [userInfo, setUserInfo] = useState();
   const history = useHistory();
-  console.log(currentUser);
+  //console.log(currentUser);
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api/clients/${currentUser.id}`)
       .then((res) => {
         setUserInfo(res.data);
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((err) => err.message);
   }, []);
@@ -39,7 +39,13 @@ export default function UserDashboard({ currentUser }) {
                   variant="primary"
                   onClick={() => history.push(`/client/${currentUser.id}/requests`)}
                 >
-                  My Requests
+                  Current Requests
+                </Button>
+                <Button
+                  variant="primary"
+                  onClick={() => history.push(`/client/completed_requests`)}
+                >
+                  Completed Requests
                 </Button>
               </span>
           </div>

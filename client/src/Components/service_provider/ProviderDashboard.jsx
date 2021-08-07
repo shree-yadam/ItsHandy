@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -15,7 +14,7 @@ export default function ProviderDashboard(
   { currentUser}){
     const [providerInfo, setProviderInfo] = useState();
     const [providerCategories, setProviderCategories] = useState();
-    console.log("THIS IS CURRENT PROVIDER", currentUser)
+    // console.log("THIS IS CURRENT PROVIDER", currentUser)
 
     useEffect(() => {
       axios.get(`/api/providers/${currentUser.id}`)
@@ -23,7 +22,7 @@ export default function ProviderDashboard(
         if(res.data){
           setProviderInfo(res.data[0]);
           setProviderCategories(res.data[1]);
-          console.log("this is resdata", res.data);
+          // console.log("this is resdata", res.data);
         }
       })
       .catch((err)=>err.message);
@@ -64,6 +63,8 @@ export default function ProviderDashboard(
 
 
         <Link to="/new_listings"> <div className="provider-grid-2">New Listings  </div> </Link>
+
+        <Link to="/jobs_completed"> <div className="provider-grid-2">Jobs Completed </div> </Link>
         </div>
 
       </div>

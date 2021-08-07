@@ -18,8 +18,8 @@ import RequestEditForm from "./RequestEditForm";
 const LIST_MODE = "LIST_MODE"
 const EDIT_MODE = "EDIT_MODE"
 const RequestList = (props) => {
-const {mode, transition, back} = useVisualMode("LIST_MODE");
-const [editItemId, setEditItemId] = useState(null);
+  const { mode, transition, back } = useVisualMode("LIST_MODE");
+  const [editItemId, setEditItemId] = useState(null);
 
   /**
    * Data Sample: List of objects like this
@@ -63,32 +63,33 @@ const [editItemId, setEditItemId] = useState(null);
   }
   ]
    */
-  const { requestListState, setRequestListState } = useRequestListData();
+  const { requestListState, setRequestListState, assignOffer } = useRequestListData();
 
   const history = useHistory();
 
+  //console.log('typeof assignOffer :>> RequestList ', typeof assignOffer);
 
   return (<div className="request-list">
     {mode === LIST_MODE &&
-    <div>
-    {/* This check is to not map if this was not loaded the first time */}
-    <Button className="request-service-btn" onClick={() => history.push(`requests/new`)}>
-      Request Service
-    </Button>
-    {(!requestListState.requestList || requestListState.requestList.length === 0 ) && <h3>No Entries!</h3>}
-    {requestListState.requestList && requestListState.requestList.map((requestItem,index) => {
-      let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
+      <div>
+        {/* This check is to not map if this was not loaded the first time */}
+        <Button className="request-service-btn" onClick={() => history.push(`requests/new`)}>
+          Request Service
+        </Button>
+        {(!requestListState.requestList || requestListState.requestList.length === 0) && <h3>Loading...</h3>}
+        {requestListState.requestList && requestListState.requestList.map((requestItem, index) => {
+          let requestOffers = requestListState.offers && requestListState.offers.filter(offer => offer.request_id === requestItem.id)
 
-      return (
-        <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers }}
-        currentUser={props.currentUser} setRequestListState={setRequestListState} transition={transition} setEditItemId={setEditItemId} index={index}/>
-      )
-    })
-    }</div>
-  }
-  {mode === EDIT_MODE &&
-    <RequestEditForm currentUser={props.currentUser} request={requestListState.requestList[editItemId]} setRequestListState={setRequestListState} index={editItemId} back={back}/>
-  }
+          return (
+            <RequestListItem key={requestItem.id} OffersRequests={{ requestItem: requestItem, requestOffers: requestOffers, assignOffer: assignOffer }}
+              currentUser={props.currentUser} setRequestListState={setRequestListState} transition={transition} setEditItemId={setEditItemId} index={index} />
+          )
+        })
+        }</div>
+    }
+    {mode === EDIT_MODE &&
+      <RequestEditForm currentUser={props.currentUser} request={requestListState.requestList[editItemId]} setRequestListState={setRequestListState} index={editItemId} back={back} />
+    }
   </div>
   )
 };

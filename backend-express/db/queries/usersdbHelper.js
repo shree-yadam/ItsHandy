@@ -4,7 +4,7 @@ const getUsers = function (db) {
   const queryString = "SELECT * FROM users";
   return db.query(queryString)
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       return result.rows;
     });
 };
@@ -23,7 +23,7 @@ const getUsers = function (db) {
   const queryParams = [email];
   return db.query(queryString, queryParams)
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       return result.rows[0];
     });
 }
@@ -41,7 +41,7 @@ const getUsers = function (db) {
   const queryParams = [id];
   return db.query(queryString, queryParams)
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       return result.rows[0];
     });
 }
@@ -62,7 +62,7 @@ const getUsers = function (db) {
   const queryParams = [id];
   return db.query(queryString, queryParams)
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       return result.rows[0];
     });
 }
@@ -75,7 +75,7 @@ const getUsers = function (db) {
  * @return {Promise<{}>} A promise to the customer.
  */
  const addNewClient = function(db, userDetails) {
-   console.log("addNewClient: ", userDetails);
+  // console.log("addNewClient: ", userDetails);
   const queryString = `
   INSERT INTO users(first_name, last_name, email, password, phone_number, img_url, is_provider)
   VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -92,7 +92,7 @@ const getUsers = function (db) {
   ];
   return db.query(queryString, queryParams)
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       return result.rows[0];
     });
 }
@@ -103,7 +103,7 @@ const getUsers = function (db) {
  * @return {Promise<{}>} A promise to the customer.
  */
  const updateAverageRatingForID = function(db, id) {
-   console.log("Updating provider review: ", id);
+  // console.log("Updating provider review: ", id);
  const queryString = `
   WITH subq AS ( SELECT round(AVG(review), 4) as average FROM reviews WHERE reviews.provider_id = $1)
   UPDATE users
@@ -113,7 +113,7 @@ const getUsers = function (db) {
  const queryParams = [id];
  return db.query(queryString, queryParams)
    .then((result) => {
-     console.log(result.rows);
+     //console.log(result.rows);
      return result.rows[0];
    });
 }

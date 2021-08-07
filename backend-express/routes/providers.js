@@ -52,12 +52,29 @@ module.exports = (db) => {
   });
 
   /* GET unfinished assigned jobs for provider */
+  router.get("/:id/jobsCompleted", function (req, res) {
+    console.log("route:get assigned jobs");
+    if(req.session && req.session.userId === parseInt(req.params.id)) {
+      providersDbHelper.getCompletedJobs(db, req.params.id)
+        .then((result) => {
+          // console.log(result);
+          res.json(result)})
+        .catch((err) => {
+          console.log(err);
+          res.status(500).send();
+        });
+    } else {
+      res.status(401).send();
+    }
+  });
+
+  /* GET unfinished assigned jobs for provider */
   router.get("/:id/assignedJobs", function (req, res) {
     console.log("route:get assigned jobs");
     if(req.session && req.session.userId === parseInt(req.params.id)) {
       providersDbHelper.getUnfinishedAssignedJobs(db, req.params.id)
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           res.json(result)})
         .catch((err) => {
           console.log(err);
@@ -70,15 +87,15 @@ module.exports = (db) => {
 
   /* Add an offer */
   router.post("/:id/offer", function (req, res) {
-    console.log(req.params.id);
-    console.log("Offer received", req.body);
+    // console.log(req.params.id);
+    // console.log("Offer received", req.body);
     if(req.session && req.session.userId === parseInt(req.params.id)) {
       const provider_id = req.session.userId;
       const {request_id, quote, comment } = req.body;
       offersDbHelper.getFirstOfferByRequestIdAndProviderId(db, request_id, provider_id)
       .then((data) => {
         if (data) {
-          console.log("Already exists", data);
+          // console.log("Already exists", data);
           res.status(400).send();
           return;
         }
@@ -106,7 +123,7 @@ module.exports = (db) => {
     if(req.session && req.session.userId === parseInt(req.params.id)) {
       requestDbHelper.updateAssignedJob(db, req.params.jobId, req.body.date)
         .then((result) => {
-          console.log("TEST!!: ", result);
+          // console.log("TEST!!: ", result);
           res.status(204).json({});
         })
         .catch((err) => {

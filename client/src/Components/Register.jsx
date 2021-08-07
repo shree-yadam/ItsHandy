@@ -27,7 +27,7 @@ export default function Register({currentUser, setCurrentUser}) {
   useEffect(() => {
     axios.get('/api/categories')
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setCategories(res.data);
       setCategories(prev => {
         const oldState = [...prev];
@@ -38,10 +38,10 @@ export default function Register({currentUser, setCurrentUser}) {
 
     })
     .catch((err) => console.log(err));
-  }, [])
+  }, []);
 
   function handleButtonCheck(index, val) {
-    console.log(index, val);
+    // console.log(index, val);
     setCategories(prev => {
       const oldState = [...prev];
       const oldValAtIndex = {...oldState[index]};
@@ -49,7 +49,7 @@ export default function Register({currentUser, setCurrentUser}) {
       oldState[index] = oldValAtIndex;
       return oldState;
     });
-    console.log(categories);
+    // console.log(categories);
   }
   // If there is a current user then no register, go to home
   if(currentUser) {
@@ -66,12 +66,12 @@ export default function Register({currentUser, setCurrentUser}) {
   // Handle the submission of the form
   const handleRegister =(event) => {
     event.preventDefault();
-    console.log(newUser);
+    // console.log(newUser);
     if(newUser.password === newUser.password_confirmation){
       setError(null);
       axios.post('/api/users/register', {...newUser, is_provider: isServiceProvider, categories})
       .then((res) => {
-        console.log("THIS IS RES-HANDLE REGISTER:", res);
+        // console.log("THIS IS RES-HANDLE REGISTER:", res);
         setError(null);
 
         setCurrentUser({
@@ -84,9 +84,9 @@ export default function Register({currentUser, setCurrentUser}) {
         setIsRegistered(true);
       })
       .catch((err) => {
-        console.log("THIS IS ERROR", err);
+        // console.log("THIS IS ERROR", err);
         if(err.response){
-          console.log(err.response.status);
+          // console.log(err.response.status);
           setError("Email already in use. Please use a different email to register");
         }
       });

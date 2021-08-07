@@ -60,13 +60,13 @@ module.exports = (db) => {
         const password = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
         usersDbHelper.addNewClient(db, {...req.body, password})
         .then((data) => {
-          console.log("REsponse addnewdata", data);
+          // console.log("REsponse addnewdata", data);
           if(data.is_provider){
             const includedCategories = req.body.categories.filter(category => category.checked);
-            console.log(includedCategories);
+            // console.log(includedCategories);
             const queryArr = includedCategories.map(category => {
-              console.log("provider id", data.id);
-              console.log("category id: ", category.id);
+              // console.log("provider id", data.id);
+              // console.log("category id: ", category.id);
               return providersDbHelper.addCategoryForProvider(db, data.id, category.id);
             });
             Promise.all(queryArr)

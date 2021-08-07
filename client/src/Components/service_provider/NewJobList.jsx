@@ -25,7 +25,7 @@ export default function NewJobList({currentUser}) {
         })
         .catch((err) => console.log("Error: ", err));
       }
-      console.log(newJobs);
+      // console.log(newJobs);
   },[]);
 
   return(
@@ -33,7 +33,7 @@ export default function NewJobList({currentUser}) {
       {mode === JOB_LIST &&
       <>
       <h2>New Job Listing</h2>
-        {(!newJobs || newJobs.length === 0 ) && <h3>No Entries!</h3>}
+        {(!newJobs || newJobs.length === 0 ) && <h3>Loading ...</h3>}
         {newJobs &&
           newJobs.map((newJob, index) =>
           <NewJobListItem
