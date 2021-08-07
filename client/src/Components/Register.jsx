@@ -38,7 +38,7 @@ export default function Register({currentUser, setCurrentUser}) {
 
     })
     .catch((err) => console.log(err));
-  }, [])
+  }, []);
 
   function handleButtonCheck(index, val) {
     console.log(index, val);

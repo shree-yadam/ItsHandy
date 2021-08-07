@@ -104,7 +104,6 @@ export default function RequestForm({ currentUser }) {
       <label> Choose A Category </label>
       <br></br>
       <select id="dropdown" onChange={handleDropdownChange}>
-        <option value="N/A">N/A</option>
         <option value="Plumbing">Plumbing</option>
         <option value="Electrician">Electrician</option>
         <option value="Painting">Painting</option>

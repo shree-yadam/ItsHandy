@@ -24,8 +24,8 @@ const OfferList = (props) => {
     return (
         <div className="offerlist-main">
             <h1>Offers list</h1>
-            {(!state.requestOffer || state.requestOffer.length === 0) && <h3>No Entries!</h3>}
-            {state.requestOffer && state.requestOffer.map(offer => <OfferListItem {...offer} assignOffer={assignOffer} />)}
+            {(!state.requestOffer || state.requestOffer.length === 0) && <h3>Loading...</h3>}
+            {state.requestOffer && state.requestOffer.map(offer => <OfferListItem key={offer.id} {...offer} assignOffer={assignOffer} />)}
         </div>
     )
 }

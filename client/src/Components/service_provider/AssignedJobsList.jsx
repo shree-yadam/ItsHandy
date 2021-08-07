@@ -28,7 +28,7 @@ export default function AssignedJobList({currentUser}){
       {currentUser &&
       <h2>Assigned Jobs</h2>
       }
-      {(!assignedJobs || assignedJobs.length === 0 ) && <h3>No Entries!</h3>}
+      {(!assignedJobs || assignedJobs.length === 0 ) && <h3>Loading...</h3>}
       {assignedJobs && assignedJobs.map((assignedJob) => <AssignedJobListItem
       key={assignedJob.id}
       currentUser={currentUser}

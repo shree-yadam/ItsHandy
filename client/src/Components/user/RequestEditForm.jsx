@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
@@ -9,22 +9,54 @@ import "./RequestForm.scss";
 export default function RequestEditForm({ currentUser, request, setRequestListState, index, back }) {
   const history = useHistory();
 
-  const [newRequest, setNewRequest] = useState(request);
+  const [newRequest, setNewRequest] = useState({...request, client_id: currentUser.id});
+  const [categories, setCategories] = useState(null);
 
   console.log("current user: ", currentUser);
   console.log("Request: ", request);
 
+  useEffect(() => {
+    axios.get('/api/categories')
+    .then((res) => {
+      console.log(res.data);
+      setCategories(res.data);
+      setCategories(prev => {
+        const oldState = [...prev];
+        return oldState.map(elem => {
+          return {...elem, checked: false}
+        })
+      })
+
+    })
+    .catch((err) => console.log(err));
+  }, []);
+
   const handleRequestSubmit = (event) => {
     event.preventDefault();
+    const requestToSend = {...newRequest};
+    if(!newRequest.category_id){
+      console.log("Category ID NULL!");
+      requestToSend.category_id = categories.find((elem)=>  newRequest.category_name === elem.name ).id;
+      setRequestListState((prev) => {
+        console.log(prev);
+        const oldState = { ...prev };
+        let requestList = [...oldState.requestList];
+        requestList[index] = {...requestToSend};
+        oldState.requestList = requestList;
+        return oldState;
+      });
+      console.log("THIS IS REQ TO SEND", requestToSend.category_id)
+    }
+    console.log("Request To Send: ", requestToSend);
     axios
-      .put(`/api/clients/${currentUser.id}/requests/${request.id}`, { ...newRequest })
+      .put(`/api/clients/${currentUser.id}/requests/${request.id}`, { ...requestToSend })
       .then((result) => {
         console.log("This is handler form", result);
         setRequestListState((prev) => {
           console.log(prev);
           const oldState = { ...prev };
           let requestList = [...oldState.requestList];
-          requestList[index] = {...newRequest};
+          requestList[index] = {...requestToSend};
           oldState.requestList = requestList;
           return oldState;
         });
@@ -92,7 +124,7 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
         <Form.Control
           type="text"
           placeholder="Enter YYYY-MM-DD"
-          value={newRequest.preferred_date}
+          value={newRequest.preferred_date.split('T')[0]}
           onChange={(event) =>
             setNewRequest((prev) => ({
               ...prev,
@@ -106,7 +138,6 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
         <label> Choose A Category </label>
         <br></br>
         <select id="dropdown" onChange={handleDropdownChange}>
-          <option value="N/A">N/A</option>
           <option value="Plumbing">Plumbing</option>
           <option value="Electrician">Electrician</option>
           <option value="Painting">Painting</option>

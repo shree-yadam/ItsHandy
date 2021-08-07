@@ -48,7 +48,7 @@ export default function ProviderDashboard(
         <br></br>
       Your Categories: {providerCategories &&
 
-      providerCategories.map((category) => <span>   | {category.category_name} |  </span> )
+      providerCategories.map((category) => <span key={category.id}>   | {category.category_name} |  </span> )
       }
       </div>
       <br></br>
