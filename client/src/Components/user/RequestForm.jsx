@@ -1,16 +1,14 @@
 import axios from "axios";
-import React, { useState  } from "react";
+import React, { useEffect, useState  } from "react";
 import { useHistory,useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
 import './RequestForm.scss'
 
 export default function RequestForm({ currentUser }) {
-  // Get user id from ur param
   const {userId} = useParams();
   const history = useHistory();
-
-
+  const [imageFile, setImageFile] = useState();
   const [newRequest, setNewRequest] = useState({
     title: "",
     street_address: "",
@@ -23,30 +21,62 @@ export default function RequestForm({ currentUser }) {
     client_id: userId
   });
 
-
-  const handleRequestSubmit = (event) => {
-    event.preventDefault();
-    // console.log("REQUEST FORM SUBMITTED");
-    // console.log(event);
-    // console.log(newRequest)
-    axios.post(`/api/clients/${userId}/requests`, { ...newRequest })
-      .then((result) => {
-        console.log("This is handler form", result);
-         history.push(`/client/${userId}/requests`);
-      })
-      .catch((error) => { console.log(error) });
-  };
+  const uploadImage = (files) => {
+    console.log(files);
+    setImageFile(files[0]);
+  }
 
 
-  const handleDropdownChange = (event) => {
-    event.preventDefault();
-    //console.log(event.target[event.target.selectedIndex].index);
+    const handleRequestSubmit = (event) => {
+      console.log("REQUEST FORM SUBMITTED");
+      console.log(event);
+      event.preventDefault();
 
-    setNewRequest((prev) => ({ ...prev, category_id: event.target[event.target.selectedIndex].index }))
-  };
+      const formData = new FormData();
+      formData.append("file", imageFile);
 
-  return (
-    <div className="form-container">
+      formData.append("upload_preset", "itsHandy")
+      if(imageFile) {
+        axios.post(`https://api.cloudinary.com/v1_1/dh2x3pba3/image/upload`, formData)
+        .then((response)=>{
+          console.log("this is cloud:", response.data.secure_url);
+          setNewRequest((prev) => ({...prev, img_url: response.data.secure_url}));
+
+          console.log("this is new request", newRequest);
+          const requestToSend = {...newRequest};
+          requestToSend.img_url = response.data.secure_url;
+           return axios.post(`/api/clients/${userId}/requests`, requestToSend)
+        })
+        .then((result) => {
+          console.log("This is handler form", result);
+          history.push(`/client/${userId}/requests`);
+        })
+        .catch((error)=> {
+          console.log(error);
+        });
+      } else {
+        axios.post(`/api/clients/${userId}/requests`, newRequest)
+        .then((result) => {
+          console.log("This is handler form", result);
+          history.push(`/client/${userId}/requests`);
+        })
+        .catch((error)=> {
+          console.log(error);
+        });
+
+      }
+    };
+
+
+
+    const handleDropdownChange = (event) => {
+      event.preventDefault();
+      setNewRequest((prev) => ({ ...prev, category_id: event.target[event.target.selectedIndex].index }));
+
+    };
+
+    return (
+      <div className="form-container">
       <h2> Submit A Request </h2>
 
       <Form.Group className="mb-3" controlId="title">
@@ -55,9 +85,12 @@ export default function RequestForm({ currentUser }) {
           type="text"
           placeholder="Enter Work Title"
           value={newRequest.title}
-          onChange={(event) =>
-            setNewRequest((prev) => ({ ...prev, title: event.target.value }))
-          }
+          onChange={(event) =>{
+            setNewRequest((prev)=> ({...prev,
+              title: event.target.value })
+              )
+
+            }}
         />
       </Form.Group>
 
@@ -67,11 +100,12 @@ export default function RequestForm({ currentUser }) {
           type="text"
           placeholder="Enter Location where work required"
           value={newRequest.street_address}
-          onChange={(event) =>
+          onChange={(event) =>{
             setNewRequest((prev) => ({
               ...prev,
               street_address: event.target.value,
             }))
+          }
           }
         />
       </Form.Group>
@@ -127,17 +161,19 @@ export default function RequestForm({ currentUser }) {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="job_image">
-        <Form.Label>Add An Image</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Put A Link Image of the job"
-          value={newRequest.img_url}
-          onChange={(event) =>
-            setNewRequest((prev) => ({ ...prev, img_url: event.target.value }))
-          }
+      <Form.Group className="mb-3" controlId="formFile">
+        <Form.Label>Add An Image</Form.Label><br></br>
+        <Form.Control width="20px"
+          type="file"
+          onChange={(event) =>  uploadImage(event.target.files)}
+
         />
       </Form.Group>
+
+      {/* <div>
+        Upload file<input type="file" onChange={(event) => {
+          uploadImage(event.target.files)}}/>
+      </div> */}
 
       <Button
         variant="success"

@@ -10,6 +10,8 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
   const history = useHistory();
 
   const [newRequest, setNewRequest] = useState(request);
+  const [editImage, setEditImage] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
 
   console.log("current user: ", currentUser);
   console.log("Request: ", request);
@@ -34,6 +36,11 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
         console.log(error);
       });
   };
+
+  const uploadImage = (files) => {
+    console.log(files);
+    setImageFile(files[0]);
+  }
 
   const handleDropdownChange = (event) => {
     event.preventDefault();
@@ -131,7 +138,7 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="job_image">
+      {/* <Form.Group className="mb-3" controlId="job_image">
         <Form.Label>Add An Image</Form.Label>
         <Form.Control
           type="text"
@@ -141,7 +148,32 @@ export default function RequestEditForm({ currentUser, request, setRequestListSt
             setNewRequest((prev) => ({ ...prev, img_url: event.target.value }))
           }
         />
-      </Form.Group>
+      </Form.Group> */}
+
+      { !editImage &&
+      <>
+      <img src={newRequest.img_url} alt={"request"} />
+      <Button
+        variant="warning"
+        size="lg"
+        type="file"
+        onClick={() => setEditImage(true)}
+      >
+        Edit
+      </Button>
+      </>
+      }
+
+      {editImage &&
+      <Form.Group className="mb-3" controlId="formFile">
+      <Form.Label>Add An Image</Form.Label><br></br>
+      <Form.Control width="20px"
+        type="file"
+        onChange={(event) =>  uploadImage(event.target.files)}
+
+      />
+    </Form.Group>
+      }
 
       <Button
         variant="success"
