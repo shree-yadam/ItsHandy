@@ -7,7 +7,7 @@ import './OfferListItem.scss';
 /**
  * Display offer details for specific request
  * @param  props {service_provider_first_name,service_provider_last_name,avg_rating,offer_comment,quote}
- * @returns 
+ * @returns
  */
 const OfferListItem = ({ service_provider_first_name, service_provider_last_name, service_provider_img_url, avg_rating, offer_comment, quote, provider_id, assignOffer }) => {
     const history = useHistory();
@@ -40,7 +40,7 @@ const OfferListItem = ({ service_provider_first_name, service_provider_last_name
                             assignOffer(provider_id, quote);
                             history.replace({ pathname: "/" + history.location.pathname.split("/")[1] + "/" + history.location.pathname.split("/")[2] + "/" + history.location.pathname.split("/")[3] });
                             //window.location.reload();
-                            history.go(-1)
+                            history.go(-1);
                         }}
                     >
                         Accept Offer

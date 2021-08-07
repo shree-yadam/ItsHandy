@@ -8,10 +8,10 @@ export default function NavBar ({currentUser, setCurrentUser}){
   const history = useHistory();
   function handleLogout(event) {
     console.log("Logout");
+    history.push("/");
     axios.post('/api/users/logout')
     .then(() => {
       setCurrentUser(null);
-      history.push("/");
     })
     .catch((err) => console.log("Error: ", err));
   }

@@ -30,6 +30,14 @@ module.exports = (db) => {
       .catch((err) => console.log(err));
   });
 
+  router.get("/:id/requests_completed", (req, res) => {
+    console.log(req.params.id);
+    requestsdbHelper
+      .getUserRequestsCompletedById(db, req.params.id)
+      .then((result) => res.json(result))
+      .catch((err) => console.log(err.message));
+  });
+
   router.get("/:id/requests", (req, res) => {
     console.log(req.params.id);
     requestsdbHelper

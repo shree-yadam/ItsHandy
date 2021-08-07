@@ -39,7 +39,13 @@ export default function UserDashboard({ currentUser }) {
                   variant="primary"
                   onClick={() => history.push(`/client/${currentUser.id}/requests`)}
                 >
-                  My Requests
+                  Current Requests
+                </Button>
+                <Button
+                  variant="primary"
+                  onClick={() => history.push(`/client/completed_requests`)}
+                >
+                  Completed Requests
                 </Button>
               </span>
           </div>
