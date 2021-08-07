@@ -5,9 +5,10 @@
  */
 const getNewListingByCategory = function (db, provider_id) {
   const queryString = `
-  SELECT requests.*
+  SELECT requests.*, categories.name as category_name
   FROM requests
   JOIN provider_categories ON requests.category_id= provider_categories.category_id
+  JOIN categories ON requests.category_id = categories.id
   WHERE provider_categories.provider_id = $1 AND requests.provider_id IS NULL
   ORDER BY preferred_date ASC;
      `;

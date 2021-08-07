@@ -17,7 +17,7 @@ export default function JobDetails({
 }) {
   const [location, setLocation] = useState({ lat: 45.421480, lng: -75.694430 });
   const MapLabelComponent = () => <FontAwesomeIcon icon={faMapPin} size="4x" color="red" />;
-
+console.log("this is job", job)
   useEffect(() => {
     const locationQueryString = job.street_address.split(' ').join('+') + ',' + job.city.split(' ').join('+');
 
@@ -76,7 +76,7 @@ export default function JobDetails({
         <JobDetailsDescription
         title={job.title}
         description={job.description}
-        category={job.category}
+        category={job.category_name}
         date={job.preferred_date}
         img_url={job.img_url}
         street_address={job.street_address}

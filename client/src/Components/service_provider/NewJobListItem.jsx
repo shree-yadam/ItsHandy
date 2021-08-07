@@ -57,6 +57,9 @@ export default function NewJobListItem({
           Date needed: {job.preferred_date && job.preferred_date.split("T")[0]}
         </p>
       </div>
+          <p>
+          Category: {job.category_name}
+        </p>
       <p>City: {job.city}</p>
       {!job.offer_made && (
         <div>

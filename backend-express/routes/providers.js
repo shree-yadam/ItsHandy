@@ -28,6 +28,7 @@ module.exports = (db) => {
     if(req.session && req.session.userId === parseInt(req.params.id)) {
       Promise.all([providersDbHelper.getNewListingByCategory(db, req.params.id), offersDbHelper.getOffersForProvider(db, req.params.id)])
         .then(([requests, offers]) => {
+          console.log("getNewListingByCategory", requests);
           const result = requests.map((request) => {
             const offer = offers.find(offer => offer.request_id === request.id)
             if(offer) {
