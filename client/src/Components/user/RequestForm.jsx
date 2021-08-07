@@ -35,9 +35,9 @@ export default function RequestForm({ currentUser }) {
       const formData = new FormData();
       formData.append("file", imageFile);
 
-      formData.append("upload_preset", "itsHandy")
+      formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET)
       if(imageFile) {
-        axios.post(`https://api.cloudinary.com/v1_1/dh2x3pba3/image/upload`, formData)
+        axios.post(process.env.REACT_APP_CLOUDINARY_URI, formData)
         .then((response)=>{
           // console.log("this is cloud:", response.data.secure_url);
           setNewRequest((prev) => ({...prev, img_url: response.data.secure_url}));

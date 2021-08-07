@@ -61,11 +61,10 @@ export default function RequestEditForm({
     const formData = new FormData();
     formData.append("file", imageFile);
 
-    formData.append("upload_preset", "itsHandy");
+    formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
     if (imageFile) {
       axios
-        .post(
-          `https://api.cloudinary.com/v1_1/dh2x3pba3/image/upload`,
+        .post(process.env.REACT_APP_CLOUDINARY_URI,
           formData
         )
         .then((response) => {
