@@ -79,6 +79,8 @@ export default function JobDetails({
         category={job.category}
         date={job.preferred_date}
         img_url={job.img_url}
+        street_address={job.street_address}
+        city={job.city}
         />
         <div className="map-container">
         <GoogleMapReact

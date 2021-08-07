@@ -1,6 +1,6 @@
-import Button from 'react-bootstrap/Button';
-import makeOffer from '../../helpers/makeOffer'
-import  './NewJobListItem.scss';
+import Button from "react-bootstrap/Button";
+import makeOffer from "../../helpers/makeOffer";
+import "./NewJobListItem.scss";
 
 export default function NewJobListItem({
   job,
@@ -8,11 +8,10 @@ export default function NewJobListItem({
   setDetailJobId,
   setMode,
   index,
-  setNewJobs
-  }) {
-
+  setNewJobs,
+}) {
   function setQuote(quote) {
-    setNewJobs(prev => {
+    setNewJobs((prev) => {
       const jobs = [...prev];
       jobs[index].quote = quote;
       return jobs;
@@ -20,22 +19,22 @@ export default function NewJobListItem({
     job.quote = quote;
   }
 
-  function handleOffer(){
+  function handleOffer() {
     makeOffer(currentUser.id, job.id, job.quote, "")
-    .then (() => {
-      setNewJobs(prev => {
-        const jobs = [...prev];
-        jobs[index].offer_made = true;
-        return jobs;
+      .then(() => {
+        setNewJobs((prev) => {
+          const jobs = [...prev];
+          jobs[index].offer_made = true;
+          return jobs;
+        });
+        job.offer_made = true;
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      job.offer_made = true;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
   }
 
-  function checkMessages(){
+  function checkMessages() {
     /*TBD */
   }
 
@@ -45,38 +44,51 @@ export default function NewJobListItem({
 
     setDetailJobId(index);
     setMode("DETAIL");
-
   }
 
   return (
     <div className="newlisting-container">
-      <div className ="newlisting-info">
-      <h2>Title: <strong>{job.title}</strong></h2>
-      {job.offer_made && <p className="label-offer-made">Offer Made</p>}
-      <p>Date needed: {job.preferred_date && job.preferred_date.split('T')[0]}</p>
+      <div className="newlisting-info">
+        <h2>
+          Title: <strong>{job.title}</strong>
+        </h2>
+        {job.offer_made && <p className="label-offer-made">Offer Made</p>}
+        <p>
+          Date needed: {job.preferred_date && job.preferred_date.split("T")[0]}
+        </p>
       </div>
-
-      { !job.offer_made &&
+      <p>City: {job.city}</p>
+      {!job.offer_made && (
         <div>
           <div className="make-offer">
-          <label>Quote: </label>
-          <input placeholder="Enter your quote" name="quote" value={job.quote} onChange={(event) => setQuote(event.target.value)} />
-          <Button className="offer-btn" variant="success" type="submit"  onClick={handleOffer} >
-            Make a quick Offer
-          </Button>
+            <label>Quote: </label>
+            <input
+              placeholder="Enter your quote"
+              name="quote"
+              value={job.quote}
+              onChange={(event) => setQuote(event.target.value)}
+            />
+            <Button
+              className="offer-btn"
+              variant="success"
+              type="submit"
+              onClick={handleOffer}
+            >
+              Make a quick Offer
+            </Button>
           </div>
-          <Button  variant="primary" type="submit"  onClick={goToDetails}>
+          <Button variant="primary" type="submit" onClick={goToDetails}>
             Details
           </Button>
           {/* <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
             Messages
           </Button> */}
         </div>
-      }
-      { job.offer_made &&
+      )}
+      {job.offer_made && (
         <div>
           <p>Quote: {job.quote}</p>
-          <Button  variant="primary" type="submit"  onClick={goToDetails}>
+          <Button variant="primary" type="submit" onClick={goToDetails}>
             Details
           </Button>
 
@@ -84,8 +96,7 @@ export default function NewJobListItem({
             Messages
           </Button> */}
         </div>
-      }
-
+      )}
     </div>
   );
 }
