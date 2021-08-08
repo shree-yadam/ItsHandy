@@ -110,10 +110,31 @@ const addOfferForRequestByProvider = function (
     });
 }
 
+/**
+ * Delete All offers for a request id
+ * @param {integer} request_id The id of the provider.
+ *  @return {Promise<{}>} A promise to the provider.
+ */
+
+ const deleteOffersForRequest = function(db, request_id) {
+  const queryString = `
+  DELETE FROM offers
+  WHERE offers.request_id = $1
+  RETURNING *;
+    `;
+  const queryParams = [request_id];
+  return db.query(queryString, queryParams)
+    .then((result) => {
+      //console.log(result.rows);
+      return result.rows;
+    });
+}
+
 module.exports = {
   getAllOffers,
   // getOffersByRequestId,
   getFirstOfferByRequestIdAndProviderId,
   addOfferForRequestByProvider,
-  getOffersForProvider
+  getOffersForProvider,
+  deleteOffersForRequest
 };

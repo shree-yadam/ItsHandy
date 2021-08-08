@@ -99,16 +99,6 @@ module.exports = (db) => {
 
   // Assign a request to a service provider
   router.post("/:id/requests/:request_id/offers/assign", (req, res) => {
-    //console.log(`req.se`, req.params.request_id)
-    // console.log("Line63", req.body.price);
-    // console.log("Line63", req.body.price);
-    // if (
-    //   req.session &&
-    //   req.session.userId === parseInt(req.params.id) &&
-    //   req.params.request_id
-    // ) {
-
-    // }
     requestsdbHelper
       .acceptOffer(
         db,
@@ -120,17 +110,19 @@ module.exports = (db) => {
       .then((response) => {
         console.log("route was successful ");
         res.send(response);
-        return Promise.all([usersdbHelper.getUserWithId(db, req.body.provider_id), requestsdbHelper.getClientForRequest(db, req.params.request_id)])
-
+        return Promise.all([
+          usersdbHelper.getUserWithId(db, req.body.provider_id),
+          requestsdbHelper.getClientForRequest(db, req.params.request_id),
+        ]);
       })
       .then((response) => {
         const provider_details = response[0];
-        console.log("this is provider details in accept offer", response)
+        console.log("this is provider details in accept offer", response);
         const requestDetails = response[1];
-        console.log("this is req details in accept offer", requestDetails)
+        console.log("this is req details in accept offer", requestDetails);
         const message = `${provider_details.first_name} ${provider_details.last_name},
         Your offer for the request title: ${requestDetails.title} has been accepted.
-        Please check It's Handy App for more details.`
+        Please check It's Handy App for more details.`;
         sms.sendSMS(provider_details.phone_number, message);
       })
       .catch((err) => console.log(res.status(500).send(), err.message));
@@ -156,13 +148,24 @@ module.exports = (db) => {
 
   // Edit request
   router.put("/:id/requests/:request_id", (req, res) => {
-    // console.log("In request form edit", req.body);
-    requestsdbHelper
-      .deleteRequest(db, req.params.request_id)
-      .then((data) => requestsdbHelper.addNewRequest(db, req.body))
-      .then((result) => {
-        // console.log("Updated: ", result);
-        res.send(result);
+    console.log("In request form edit", req.body);
+    Promise.all([
+      requestsdbHelper.updateRequest(
+        db,
+        req.params.request_id,
+        req.body.title,
+        req.body.city,
+        req.body.street_address,
+        req.body.preferred_date,
+        req.body.img_url,
+        req.body.description,
+        req.body.category_id
+      ),
+      offersdbHelpers.deleteOffersForRequest(db, req.params.request_id),
+    ])
+      .then((response) => {
+        console.log("Updated: ", response);
+        res.send(response);
       })
       .catch((err) => {
         res.status(401).send();
@@ -171,12 +174,3 @@ module.exports = (db) => {
   });
   return router;
 };
-
-// requestDetails.title,
-// requestDetails.street_address,
-// requestDetails.city,
-// requestDetails.category_id,
-// requestDetails.preferred_date === "" ? null : requestDetails.preferred_date,
-// requestDetails.description,
-// requestDetails.client_id,
-// requestDetails.img_url,

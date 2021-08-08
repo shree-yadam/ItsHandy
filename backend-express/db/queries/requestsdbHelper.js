@@ -66,7 +66,21 @@ const deleteRequest = function (db, request_id) {
 
   const queryParams = [request_id];
   return db.query(queryString, queryParams).then((result) => {
-    //console.log("deleteNewRequest", result.rows);
+    console.log("deleteNewRequest", result.rows);
+    return result.rows[0];
+  });
+};
+
+const updateRequest = function (db, request_id, title, city, street_address, preferred_date, img_url, description, category_id) {
+  const queryString = `
+  UPDATE requests SET
+  title = $2, city = $3, street_address = $4, preferred_date = $5, img_url = $6, description = $7, category_id = $8
+  WHERE requests.id = $1
+  RETURNING *;`;
+
+  const queryParams = [request_id, title, city, street_address, preferred_date, img_url, description, category_id];
+  return db.query(queryString, queryParams).then((result) => {
+    // console.log("update Request", result.rows);
     return result.rows[0];
   });
 };
@@ -166,5 +180,6 @@ module.exports = {
   updateAssignedJob,
   acceptOffer,
   getUserRequestsCompletedById,
-  getClientForRequest
+  getClientForRequest,
+  updateRequest
 };

@@ -1,7 +1,7 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import axios from "axios";
 // App components
 
 import Home from "./Components/Home";
@@ -21,6 +21,23 @@ import CompletedRequestList from "./Components/user/CompletedRequestList";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [categories, setCategories] = useState();
+
+  useEffect(() => {
+    axios.get('/api/categories')
+    .then((res) => {
+      console.log(res.data);
+      setCategories(res.data);
+      setCategories(prev => {
+        const oldState = [...prev];
+        return oldState.map(elem => {
+          return {...elem, checked: false}
+        })
+      })
+
+    })
+    .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="App">
@@ -47,12 +64,13 @@ function App() {
               <Register
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
+                categories={categories}
               />
             </Route>
 
             {/* Route for creating new requests by logged in user */}
             <Route path={`/client/:userId/requests/new`} exact>
-              <RequestForm currentUser={currentUser} />
+              <RequestForm currentUser={currentUser} categories={categories}/>
             </Route>
 
             <Route
@@ -60,7 +78,7 @@ function App() {
               exact
               currentUser={currentUser}
             >
-              <RequestList currentUser={currentUser} />
+              <RequestList currentUser={currentUser} categories={categories}/>
             </Route>
 
 

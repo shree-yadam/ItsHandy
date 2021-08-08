@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 import "./RequestForm.scss";
@@ -11,53 +10,21 @@ export default function RequestEditForm({
   setRequestListState,
   index,
   back,
+  categories
 }) {
-  const history = useHistory();
-
-  const [newRequest, setNewRequest] = useState({...request, client_id: currentUser.id, category_id: 1});
+  console.log("REquest Edit Form: ", request);
+  console.log(currentUser);
+  const [newRequest, setNewRequest] = useState({...request, client_id: currentUser.id, category_id: categories.find(elem => elem.name === request.category_name).id});
   const [editImage, setEditImage] = useState(false);
   const [imageFile, setImageFile] = useState(null);
-  const [categories, setCategories] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(request.category_name)
 
   // console.log("current user: ", currentUser);
   // console.log("Request: ", request);
 
-  useEffect(() => {
-    axios.get('/api/categories')
-    .then((res) => {
-      // console.log(res.data);
-      setCategories(res.data);
-      setCategories(prev => {
-        const oldState = [...prev];
-        return oldState.map(elem => {
-          return {...elem, checked: false}
-        })
-      })
-
-    })
-    .catch((err) => console.log(err));
-  }, []);
-
   const handleRequestSubmit = (event) => {
-    console.log("handleRequestSunmit!!!!");
+    console.log("handleRequestSubmit!!!!");
     event.preventDefault();
-    // axios
-    //   .put(`/api/clients/${currentUser.id}/requests/${request.id}`, { ...newRequest })
-    //   .then((result) => {
-    //     console.log("This is handler form", result);
-    //     setRequestListState((prev) => {
-    //       console.log(prev);
-    //       const oldState = { ...prev };
-    //       let requestList = [...oldState.requestList];
-    //       requestList[index] = {...newRequest};
-    //       oldState.requestList = requestList;
-    //       return oldState;
-    //     });
-    //     back();
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
     const formData = new FormData();
     formData.append("file", imageFile);
 
@@ -90,7 +57,6 @@ export default function RequestEditForm({
         .then((result) => {
           // console.log("This is handler form", result);
           back();
-          // history.push(`/client/${currentUser.id}/requests`);
         })
         .catch((error) => {
           console.log(error);
@@ -109,7 +75,6 @@ export default function RequestEditForm({
             return oldState;
           });
           back();
-          // history.push(`/client/${currentUser.id}/requests`);
         })
         .catch((error) => {
           console.log(error);
@@ -125,10 +90,14 @@ export default function RequestEditForm({
   const handleDropdownChange = (event) => {
     event.preventDefault();
 
+    console.log("event: ", event.target.value);
+    setSelectedCategory(event.target.value);
     setNewRequest((prev) => ({
       ...prev,
-      category_id: event.target[event.target.selectedIndex].index,
+      category_id: categories.find(elem => elem.name === event.target.value).id,
+      category_name: event.target.value
     }));
+    console.log(categories.find(elem => elem.name === event.target.value).id);
 
   };
 
@@ -193,12 +162,11 @@ export default function RequestEditForm({
       <Form.Group className="mb-3" controlId="category">
         <label> Choose A Category </label>
         <br></br>
-        <select id="dropdown" onChange={handleDropdownChange}>
-          <option value="Plumbing">Plumbing</option>
-          <option value="Electrician">Electrician</option>
-          <option value="Painting">Painting</option>
-          <option value="Babysitter">Babysitting</option>
+        {categories &&
+        <select id="dropdown" value={selectedCategory} onChange={handleDropdownChange}>
+           {categories.map(category => <option key={category.id}  value={category.name}>{category.name}</option>) }
         </select>
+        }
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
