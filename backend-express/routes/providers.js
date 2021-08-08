@@ -3,7 +3,9 @@ const router = express.Router();
 const providersDbHelper = require("../db/queries/providersDbHelper");
 const offersDbHelper = require("../db/queries/offersdbHelper");
 const usersDbHelper = require("../db/queries/usersdbHelper");
-const requestDbHelper = require("../db/queries/requestsdbHelper")
+const requestDbHelper = require("../db/queries/requestsdbHelper");
+const sms = require("../helpers/sendSMS");
+
 const e = require("express");
 
 module.exports = (db) => {
@@ -28,7 +30,7 @@ module.exports = (db) => {
     if(req.session && req.session.userId === parseInt(req.params.id)) {
       Promise.all([providersDbHelper.getNewListingByCategory(db, req.params.id), offersDbHelper.getOffersForProvider(db, req.params.id)])
         .then(([requests, offers]) => {
-          console.log("getNewListingByCategory", requests);
+          // console.log("getNewListingByCategory", requests);
           const result = requests.map((request) => {
             const offer = offers.find(offer => offer.request_id === request.id)
             if(offer) {
@@ -100,9 +102,17 @@ module.exports = (db) => {
           res.status(400).send();
           return;
         }
-        offersDbHelper.addOfferForRequestByProvider(db, request_id, provider_id, quote, comment)
+        Promise.all([offersDbHelper.addOfferForRequestByProvider(db, request_id, provider_id, quote, comment), requestDbHelper.getClientForRequest(db, request_id)])
         .then((data) => {
-            res.send(data);
+          // console.log("Offer created exists", data);
+            res.send(data[0]);
+            const userInfo = data[1];
+            const message = `${userInfo.first_name} ${userInfo.last_name}:
+            Offer received for job title: ${userInfo.title}
+            Quote: ${quote}
+            Comment: ${comment}.
+            Please visit It's Handy App for more details.`
+            sms.sendSMS(data[1].phone_number, message);
         })
         .catch((err) => {
           console.log(err);

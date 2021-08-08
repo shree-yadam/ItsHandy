@@ -5,10 +5,11 @@ import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
 import './RequestForm.scss'
 
-export default function RequestForm({ currentUser }) {
+export default function RequestForm({ currentUser, categories }) {
   const {userId} = useParams();
   const history = useHistory();
   const [imageFile, setImageFile] = useState();
+  const [selectedCategory, setSelectedCategory] = useState(categories[0].name);
   const [newRequest, setNewRequest] = useState({
     title: "",
     street_address: "",
@@ -71,8 +72,10 @@ export default function RequestForm({ currentUser }) {
 
     const handleDropdownChange = (event) => {
       event.preventDefault();
-      setNewRequest((prev) => ({ ...prev, category_id: event.target[event.target.selectedIndex].index + 1}));
-      // console.log(event.target[event.target.selectedIndex].index);
+      setSelectedCategory(event.target.value);
+      setNewRequest((prev) => ({ ...prev, category_id: categories.find(elem => elem.name === event.target.value).id,
+        category_name: event.target.value}));
+      console.log(event.target[event.target.selectedIndex].index);
 
     };
 
@@ -138,12 +141,17 @@ export default function RequestForm({ currentUser }) {
       <Form.Group className="mb-3" controlId="category">
       <label> Choose A Category </label>
       <br></br>
-      <select id="dropdown" onChange={handleDropdownChange}>
+      {/* <select id="dropdown" onChange={handleDropdownChange}>
         <option value="Plumbing">Plumbing</option>
         <option value="Electrician">Electrician</option>
         <option value="Painting">Painting</option>
         <option value="Babysitter">Babysitting</option>
-      </select>
+      </select> */}
+      {categories &&
+        <select id="dropdown" value={selectedCategory} onChange={handleDropdownChange}>
+           {categories.map(category => <option key={category.id}  value={category.name}>{category.name}</option>) }
+        </select>
+        }
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

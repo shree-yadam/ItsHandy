@@ -1,11 +1,8 @@
-//import React, { useState, useEffect } from "react";
-//import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+
 import { useState } from "react";
 import RequestListItem from "./RequestListItem";
 import useRequestListData from "../../hooks/useRequestListData";
 import './RequestList.scss';
-import Button from 'react-bootstrap/Button';
 import './RequestListItem.scss'
 import useVisualMode from "../../hooks/useVisualMode";
 import RequestEditForm from "./RequestEditForm";
@@ -20,6 +17,9 @@ const EDIT_MODE = "EDIT_MODE"
 const RequestList = (props) => {
   const { mode, transition, back } = useVisualMode("LIST_MODE");
   const [editItemId, setEditItemId] = useState(null);
+  // const [categories, setCategories] = useState();
+
+  console.log(props);
 
   /**
    * Data Sample: List of objects like this
@@ -65,8 +65,6 @@ const RequestList = (props) => {
    */
   const { requestListState, setRequestListState, assignOffer } = useRequestListData();
 
-  const history = useHistory();
-
   //console.log('typeof assignOffer :>> RequestList ', typeof assignOffer);
 
   return (<div className="request-list">
@@ -86,7 +84,7 @@ const RequestList = (props) => {
         }</div>
     }
     {mode === EDIT_MODE &&
-      <RequestEditForm currentUser={props.currentUser} request={requestListState.requestList[editItemId]} setRequestListState={setRequestListState} index={editItemId} back={back} />
+      <RequestEditForm currentUser={props.currentUser} request={requestListState.requestList[editItemId]} setRequestListState={setRequestListState} index={editItemId} back={back} categories={props.categories}/>
     }
   </div>
   )

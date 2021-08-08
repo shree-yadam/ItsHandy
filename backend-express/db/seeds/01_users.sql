@@ -3,7 +3,7 @@ VALUES ('Joe',
 'Smith',
 'joe@smith.com',
 '$2b$10$uyamXFFxLYK1ujchK3ENVuDc8x0aKBPJk9n38gP67WT0L130yddjC',
-'437999111',
+'+12344567777',
 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png', false);
 
 INSERT INTO users(first_name, last_name, email, password, phone_number, img_url, is_provider, avg_rating)
@@ -12,7 +12,7 @@ VALUES
 'provider',
 'service@provider.com',
 '$2b$10$uyamXFFxLYK1ujchK3ENVuDc8x0aKBPJk9n38gP67WT0L130yddjC',
-'437999222',
+'+1231234444',
 'https://koolinus.files.wordpress.com/2019/03/avataaars-e28093-koolinus-1-12mar2019.png', true, 3);
 
 -- Provide account

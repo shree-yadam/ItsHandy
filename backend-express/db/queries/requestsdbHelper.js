@@ -66,7 +66,21 @@ const deleteRequest = function (db, request_id) {
 
   const queryParams = [request_id];
   return db.query(queryString, queryParams).then((result) => {
-    //console.log("deleteNewRequest", result.rows);
+    console.log("deleteNewRequest", result.rows);
+    return result.rows[0];
+  });
+};
+
+const updateRequest = function (db, request_id, title, city, street_address, preferred_date, img_url, description, category_id) {
+  const queryString = `
+  UPDATE requests SET
+  title = $2, city = $3, street_address = $4, preferred_date = $5, img_url = $6, description = $7, category_id = $8
+  WHERE requests.id = $1
+  RETURNING *;`;
+
+  const queryParams = [request_id, title, city, street_address, preferred_date, img_url, description, category_id];
+  return db.query(queryString, queryParams).then((result) => {
+    // console.log("update Request", result.rows);
     return result.rows[0];
   });
 };
@@ -124,6 +138,21 @@ const addNewRequest = function (db, requestDetails) {
   });
 };
 
+const getClientForRequest = function(db, request_id) {
+  const queryString = `
+  SELECT users.phone_number, users.first_name, users.last_name, requests.title
+  FROM users
+  JOIN requests ON users.id = requests.client_id
+  WHERE requests.id = $1;`;
+  // console.log("addNewRequest" , requestDetails)
+
+  const queryParams = [ request_id ];
+  return db.query(queryString, queryParams).then((result) => {
+    //console.log("add new request", result.rows);
+    return result.rows[0];
+  });
+}
+
 /**
  * Update request as completed with date_completed
  * @param {Integer} job_id id of request
@@ -143,11 +172,14 @@ const updateAssignedJob = function (db, job_id, date) {
   });
 };
 
+
 module.exports = {
   getUserRequestsById,
   addNewRequest,
   deleteRequest,
   updateAssignedJob,
   acceptOffer,
-  getUserRequestsCompletedById
+  getUserRequestsCompletedById,
+  getClientForRequest,
+  updateRequest
 };
