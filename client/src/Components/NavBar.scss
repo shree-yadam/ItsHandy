@@ -1,14 +1,17 @@
 nav.navbar-menu {
-  width: 90%;
-  background-color: transparent;
-  
-  color: white;
-  padding: 0.5vh;
-  position: fixed;
-  top: 0;
-  z-index: 9;
- 
+    width: 90%;
+    background-color: transparent;
+    display: flex;
+    color: white;
+    padding: 0.5vh;
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    justify-content: space-between;
 }
+
+ 
+
 
 .navbar-items-container {
   display: flex;
@@ -20,11 +23,24 @@ nav.navbar-menu {
   align-items: center;
 }
 
+ .navbar-brand img {
+  max-width: 15vh;
+  height: auto;
+}
+
+.navbar-items {
+ background-color:#e5b343;
+  margin: 1vh;
+  border:0px;
+  font-weight:bold
+}
+
 
 .user-action-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: large;
 }
 
 .user-action-nav .navbar-items{
@@ -34,5 +50,18 @@ nav.navbar-menu {
   display:flex;
   align-items: center;
   margin:2px;
-  
 }
+.user-action-nav button {
+
+font-size:x-large
+}
+
+.navbar-items-container-1 button {
+  font-size:x-large
+}
+
+.navbar-items-container-1 button:hover {
+  font-size:x-large;
+  background-color: #5E4919
+}
+

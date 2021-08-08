@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import  Breadcrumb  from 'react-bootstrap';
 import './NavBar.scss';
-
+import logo from '../images/ourlogo123.png'
 export default function NavBar ({currentUser, setCurrentUser}){
 
   const history = useHistory();
@@ -20,14 +20,19 @@ export default function NavBar ({currentUser, setCurrentUser}){
 return (
 
 <nav className = "navbar-menu">
+<div className="navbar-brand"> 
+<img src={logo} alt="pic not found" />
+{/* <img href = "./images/ourlogo.png" alt="icon-img"></img> */}
+
+</div>
       {!currentUser &&
         <div className = "navbar-items-container-1">
           
             <Button  className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
           
           <div className="user-action-nav">
-            <Button variant="dark" className="navbar-items" onClick={()=> history.push("/login")}>Login</Button>
-            <Button variant="success" className="navbar-items" onClick={()=> history.push("/register")}>Register</Button>
+            <Button  className="navbar-items" onClick={()=> history.push("/login")}>Login</Button>
+            <Button  className="navbar-items" onClick={()=> history.push("/register")}>Register</Button>
           </div>
         </div>
       }
@@ -35,23 +40,23 @@ return (
         currentUser  &&
         <div className = "navbar-items-container">
           <div className = "navbar-items-container-1">
-            <Button variant="success" className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
+            <Button  className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
             {!currentUser.is_provider &&
             <>
             <Button onClick={()=> history.push(`/client/${currentUser.id}/requests/new`)}> Request Form </Button>
-            <Button variant="success" className="navbar-items" onClick={()=> history.push(`/client/${currentUser.id}`)}>My Dashboard</Button>
+            <Button  className="navbar-items" onClick={()=> history.push(`/client/${currentUser.id}`)}>My Dashboard</Button>
             </>
             }<div className="navbar-items-container">
              {currentUser.is_provider &&
             
-            <Button variant="success" className="navbar-items" onClick={()=> history.push(`/provider/${currentUser.id}`)}>My Dashboard</Button>
+            <Button  className="navbar-items" onClick={()=> history.push(`/provider/${currentUser.id}`)}>My Dashboard</Button>
             
             }
             </div>
           </div>
           <div className="user-action-nav">
               {currentUser.first_name} {currentUser.last_name}
-              <Button variant="danger" className="navbar-items" onClick={handleLogout}>Logout</Button>
+              <Button  className="navbar-items" onClick={handleLogout}>Logout</Button>
           </div>
         </div>
       }
