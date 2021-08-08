@@ -42,7 +42,7 @@ export default function ProviderDashboard(
         }
         <br></br>
         <br></br>
-        <strong>My Rating:</strong><br></br><StarRatings rating={providerInfo.avg_rating ? providerInfo.avg_rating : 0 } starRatedColor="orange"
+        <strong>My Rating:</strong><br></br><StarRatings rating={providerInfo.avg_rating ? providerInfo.avg_rating : 0 } starRatedColor="green"
       numberOfStars={5}/>
       <div className="category-name">
         <br></br>

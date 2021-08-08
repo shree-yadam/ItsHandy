@@ -19,7 +19,7 @@ const OfferListItem = ({ service_provider_first_name, service_provider_last_name
             <div className="offerlistitem-details">
                 <img src={service_provider_img_url} alt="provider-pic" />
                 <br />
-                Provider Rating:  <StarRatings rating={avg_rating} starRatedColor="orange"
+                Provider Rating:  <StarRatings rating={avg_rating} starRatedColor="green"
                     numberOfStars={5} />
                 <br />
                 Provider Name: {service_provider_first_name} {service_provider_last_name}
