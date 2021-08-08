@@ -32,7 +32,7 @@
 }
 
 .request-list {
-  margin-top: 10vh;
+  margin-top: 25vh;
   padding: 10px;
 }
 
@@ -101,4 +101,23 @@
   flex-direction: column;
   border-color: black;
   align-items: center;
+}
+
+.btn {
+  border-color:white;
+  border-style:solid;
+  margin:1vh;
+}
+
+.btn-offer-btn{
+  border-color:black;
+  border-style:solid;
+  margin:1vh;
+
+}
+
+.btn-warning {
+  border-color:black;
+  border-style:solid;
+  margin:1vh;
 }

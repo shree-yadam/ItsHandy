@@ -20,14 +20,17 @@ nav.navbar-menu {
 
 
 .user-action-nav {
-
   display: flex;
   justify-content: space-between;
-  
+  align-items: center;
 }
 
 .user-action-nav .navbar-items{
-
   margin-left: 15px;
+}
+.navbar-items-container-1 {
+  display:flex;
+  align-items: center;
+  margin:2px;
   
 }

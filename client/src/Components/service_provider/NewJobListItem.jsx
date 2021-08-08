@@ -62,7 +62,7 @@ export default function NewJobListItem({
         </p>
       <p>City: {job.city}</p>
       {!job.offer_made && (
-        <div>
+        <div className = "provider-actions">
           <div className="make-offer">
             <label>Quote: </label>
             <input
@@ -79,18 +79,20 @@ export default function NewJobListItem({
             >
               Make a quick Offer
             </Button>
-          </div>
+          
           <Button variant="primary" type="submit" onClick={goToDetails}>
             Details
           </Button>
+          </div>
           {/* <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
             Messages
           </Button> */}
+          
         </div>
       )}
       {job.offer_made && (
         <div>
-          <p>Quote: {job.quote}</p>
+          <p>Quote Submitted: {job.quote}</p>
           <Button variant="primary" type="submit" onClick={goToDetails}>
             Details
           </Button>

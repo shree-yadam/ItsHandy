@@ -116,7 +116,7 @@ console.log("this is job", job)
       { job.offer_made &&
       <div className="offer-button">
 
-        <p>Quote: {job.quote}</p>
+        <p>Quote : {job.quote}</p>
         {/* <Button className="offer-button"
         onClick={() => {
           back();

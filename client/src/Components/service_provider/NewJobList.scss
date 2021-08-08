@@ -1,6 +1,12 @@
 .newlisting-container {
-
-  margin: 2vh;
-  border-color: black;
-  border-style: solid;
+margin: 2vh;
+border:2px;
+border-color: black;
+border-style: solid;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+align-content: center;
+flex-wrap: wrap;
+justify-content: center;
 }

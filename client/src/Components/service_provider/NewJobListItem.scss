@@ -5,12 +5,23 @@
 
 .newlisting-info {
   display: flex;
+  align-items: center;
+  align-content: space-between;
   justify-content: space-between;
-  margin: 10px;
+  margin-right: 15px;
+  flex-direction: row;
+  width: 90%;
 }
 
 .make-offer {
   padding-bottom: 5px;
+  margin: 5vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
 }
 
 .make-offer .offer-btn {
@@ -33,4 +44,10 @@ margin-left: 20px;
 .job-dates{
   display: flex;
   flex-direction: column;
+}
+
+.provider-actions{
+display:flex;
+
+
 }

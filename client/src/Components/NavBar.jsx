@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import  Breadcrumb  from 'react-bootstrap';
 import './NavBar.scss';
 
 export default function NavBar ({currentUser, setCurrentUser}){
@@ -20,10 +21,10 @@ return (
 
 <nav className = "navbar-menu">
       {!currentUser &&
-        <div className = "navbar-items-container">
-          <span>
+        <div className = "navbar-items-container-1">
+          
             <Button  className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
-          </span>
+          
           <div className="user-action-nav">
             <Button variant="dark" className="navbar-items" onClick={()=> history.push("/login")}>Login</Button>
             <Button variant="success" className="navbar-items" onClick={()=> history.push("/register")}>Register</Button>
@@ -33,21 +34,21 @@ return (
       {
         currentUser  &&
         <div className = "navbar-items-container">
-          <span className = "navbar-items-container">
-
+          <div className = "navbar-items-container-1">
             <Button variant="success" className="navbar-items" onClick={()=> history.push("/")}>Home</Button>
             {!currentUser.is_provider &&
-            <div className="navbar-items-container">
+            <>
             <Button onClick={()=> history.push(`/client/${currentUser.id}/requests/new`)}> Request Form </Button>
             <Button variant="success" className="navbar-items" onClick={()=> history.push(`/client/${currentUser.id}`)}>My Dashboard</Button>
-            </div>
-            }
+            </>
+            }<div className="navbar-items-container">
              {currentUser.is_provider &&
-            <div className="navbar-items-container">
+            
             <Button variant="success" className="navbar-items" onClick={()=> history.push(`/provider/${currentUser.id}`)}>My Dashboard</Button>
-            </div>
+            
             }
-          </span>
+            </div>
+          </div>
           <div className="user-action-nav">
               {currentUser.first_name} {currentUser.last_name}
               <Button variant="danger" className="navbar-items" onClick={handleLogout}>Logout</Button>
