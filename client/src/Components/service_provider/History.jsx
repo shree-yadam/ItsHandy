@@ -23,6 +23,8 @@ export default function History({currentUser}) {
   return(
     <div className="newlisting-main">
       <h2>Jobs Completed</h2>
+      {!oldJobs && <h3>Loading...</h3>}
+      {oldJobs && oldJobs.length === 0  && <h3>No Entries.</h3>}
         {oldJobs &&
           oldJobs.map((newJob) =>
           <HistoryListItem

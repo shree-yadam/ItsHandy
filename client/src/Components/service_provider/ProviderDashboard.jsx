@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './ProviderDashboard.scss'
 import StarRatings from 'react-star-ratings'
 
@@ -16,7 +16,14 @@ export default function ProviderDashboard(
     const [providerCategories, setProviderCategories] = useState();
     // console.log("THIS IS CURRENT PROVIDER", currentUser)
 
+    const history = useHistory();
     useEffect(() => {
+
+      //TBD: Temp fix for refresh issues
+      if(!currentUser){
+        history.push('/login');
+        return;
+      }
       axios.get(`/api/providers/${currentUser.id}`)
       .then((res) => {
         if(res.data){

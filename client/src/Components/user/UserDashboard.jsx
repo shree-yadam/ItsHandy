@@ -10,6 +10,10 @@ export default function UserDashboard({ currentUser }) {
   const history = useHistory();
   //console.log(currentUser);
   useEffect(() => {
+    if(!currentUser){
+      history.push('/login');
+      return;
+    }
     axios
       .get(`http://localhost:3001/api/clients/${currentUser.id}`)
       .then((res) => {
