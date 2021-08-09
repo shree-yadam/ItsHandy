@@ -17,22 +17,22 @@ const OfferListItem = ({ service_provider_first_name, service_provider_last_name
     return (
         <div className="offerlistitem-container">
             <div className="offerlistitem-details">
-                <img src={service_provider_img_url} alt="provider-pic" />
-                <br />
-                Provider Rating:  <StarRatings rating={avg_rating} starRatedColor="green"
-                    numberOfStars={5} />
-                <br />
-                Provider Name: {service_provider_first_name} {service_provider_last_name}
+            <br />
+                <h2>{service_provider_first_name} {service_provider_last_name}</h2>
 
                 <br />
+                <img src={service_provider_img_url} alt="provider-pic" />
                 <br />
-                Comments on request:  "{offer_comment}"
+               <h4> Provider Rating: </h4> <StarRatings rating={avg_rating} starRatedColor="green"
+                    numberOfStars={5} />
+                <br />
+                <h4>Comments on request:  "{offer_comment}"</h4>
                 <br />
 
             </div>
             <div className="offerlist-actions">
                 <div className="offerlist-quote">
-                    Quote for this request: <b> {quote}</b>
+                    Quoted by provider: <br></br> <b> {quote}</b>
                 </div>
                 <div className="offerlist-buttons">
                     <Button className="request-service-btn"

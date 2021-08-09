@@ -18,7 +18,7 @@ nav.navbar-menu {
 .navbar-items-container {
   display: flex;
   justify-content: space-between;
-  margin: 1vh;
+  margin-right: -1vh;
   flex-direction: row;
   flex-wrap: nowrap;
   align-content: stretch;
@@ -51,7 +51,7 @@ nav.navbar-menu {
 .navbar-items-container-1 {
   display:flex;
   align-items: center;
-  margin:2px;
+  margin-right: 0.5vh;
 }
 .user-action-nav button {
 

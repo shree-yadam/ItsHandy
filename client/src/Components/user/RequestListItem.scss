@@ -1,34 +1,34 @@
 .listitem-container {
   display: flex;
-  padding-top: 1vh;
   margin: top 4vh;
   margin-bottom: 8vh;
-  margin-right:8vh;
-  margin-left:8vh;
+  margin-right: 8vh;
+  margin-left: 8vh;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-radius: 2vh;
-  border-color: black;
-  border-style: solid;
   flex-direction: column;
+  color: white;
+  background-image: url(https://www.transparenttextures.com/patterns/crissxcross.png);
+  background-color: #aaaaaa;
+  border-radius: 20px;
 }
 
 .listitem-container:hover {
   display: flex;
-  padding-top: 1vh;
   margin: top 4vh;
   margin-bottom: 8vh;
-  margin-right:8vh;
-  margin-left:8vh;
+  margin-right: 8vh;
+  margin-left: 8vh;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-radius: 2vh;
-  border-color: black;
-  border-style: solid;
   flex-direction: column;
   box-shadow: 10px 10px 5px grey;
+  color: white;
+  background-image: url(https://www.transparenttextures.com/patterns/crissxcross.png);
+  background-color: #aaaaaa;
+  border-radius: 20px;
 }
 
 .request-list {
@@ -53,8 +53,8 @@
   flex-direction: row;
   align-content: stretch;
   align-items: center;
-  justify-content: flex-start;
   flex-wrap: nowrap;
+  justify-content: center;
 }
 
 .text-info-header {
@@ -62,10 +62,18 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-start;
-  width: 100%;
-  justify-content: space-between;
+  // width: 100%;
+  // justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 3vh;
+  max-width: 200px;
+  min-width:180px;
+}
+
+.text-info-header h2 {
+  color: black;
+  font-weight: larger;
+  font-size: xx-large;
 }
 
 .side-info-header {
@@ -73,10 +81,17 @@
   flex-direction: column;
   margin-left: 20px;
   margin-right: 10px;
+  max-width: 200px;
+  min-width:180px;
 }
 
 .info-items {
   display: flex;
+    flex-direction: column;
+}
+
+.description {
+  display:flex;
 }
 
 .request-service-btn {
@@ -101,23 +116,31 @@
   flex-direction: column;
   border-color: black;
   align-items: center;
+  // max-width:100px
 }
 
 .btn {
-  border-color:white;
-  border-style:solid;
-  margin:1vh;
+  border-color: white;
+  border-style: solid;
+  margin: 1vh;
 }
 
-.btn-offer-btn{
-  border-color:black;
-  border-style:solid;
-  margin:1vh;
-
+.btn-offer-btn {
+  border-color: black;
+  border-style: solid;
+  margin: 1vh;
 }
 
 .btn-warning {
-  border-color:black;
-  border-style:solid;
-  margin:1vh;
+  border-color: black;
+  border-style: solid;
+  margin: 1vh;
+}
+
+.text-info-header p {
+}
+
+.stars-requestlistiitem {
+transform: scale(0.7);
+
 }

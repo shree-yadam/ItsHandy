@@ -1,5 +1,5 @@
-import  './NewJobListItem.scss';
 import StarRatings from 'react-star-ratings';
+import './HistoryListItem.scss'
 
 export default function HistoryListItem({
   job
@@ -7,17 +7,19 @@ export default function HistoryListItem({
 
 
   return (
-    <div className="newlisting-container">
-      <div className ="newlisting-info">
-      <h2>Title: <strong>{job.title}</strong></h2>
+    <div className="history-container">
+      <div className ="historylisting-info">
+      <h2> <strong>{job.title}</strong></h2>
       <div className="job-dates">
       <p><strong>Date needed:</strong> {job.preferred_date && job.preferred_date.split('T')[0]}</p>
       <p><strong>Date completed:</strong> {job.date_completed && job.date_completed.split('T')[0]}</p>
       </div>
-      </div>
+      
 
-        <div>
+       
           <p><strong>Description:</strong> {job.description}</p>
+          </div>
+          <div className = "star-ratings-completed">
           <strong>Review given:</strong><br></br><StarRatings rating={job.review } starRatedColor="green"
           numberOfStars={5}/>
 

@@ -1,6 +1,6 @@
 
 .user-dashboard-container{
-  margin-top: 15vh;
+  margin-top: 20vh;
   border-radius: 50px;
   display: flex;
   flex-direction: column;
@@ -35,10 +35,12 @@
   background-color: #9E7A2B;
   border-radius: 50px;
   border-color:#9E7A2B;
+  font-size: larger;
 }
 
 .user-dashboard-button button:hover {
   background-color: #5E4919;
   border-radius: 50px;
+  font-size: larger;
 }
 

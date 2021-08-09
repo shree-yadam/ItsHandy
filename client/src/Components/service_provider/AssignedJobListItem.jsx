@@ -26,14 +26,14 @@ export default function AssignedJobListItem({
   }
 
   return (
-    <div className= "assigned-jobs">
+    <div className= "assigned-jobs" id="assigned-jobs-hov">
       <RequestItemInfo
         title={title}
         description={description}
         category={category}
         date={date}
       />
-      <Button onClick={handleMarkCompleted}>Mark Completed</Button>
+      {/* <Button onClick={handleMarkCompleted}>Mark Completed</Button> */}
     </div>
   )
 }

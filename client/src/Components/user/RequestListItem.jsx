@@ -142,38 +142,41 @@ export default function RequestListItem(props) {
     <div>
       <div className="listitem-container">
         <div className="info-items">
-          <div className="info-text">
-            <div className="text-info-header">
-              <h2>
-                Title: <strong>{props.OffersRequests.requestItem.title}</strong>
+        <h2>
+                {props.OffersRequests.requestItem.title}
               </h2>
-
+              
               <p>
                 {/* <p>Description: {props.OffersRequests.requestItem.description}</p> */}
-                <strong>Description:</strong>
                 {props.OffersRequests.requestItem.description}
               </p>
-
+              
+          <div className="info-text">
+          
+            <div className="text-info-header">
               <p>
                 {/* <p>Street Address: {props.OffersRequests.requestItem.street_address}</p> */}
-                <strong>Street Address:</strong>{" "}
+                <strong>Address:</strong>
                 {props.OffersRequests.requestItem.street_address}
+                
               </p>
+              
               <p>
                 <strong>City:</strong> {props.OffersRequests.requestItem.city}
-              </p>
-
+              </p> 
               <p>
                 {/* <p>Category: {props.OffersRequests.requestItem.category_name}</p> */}
-                <strong>Category:</strong>{" "}
+                <strong>Category:</strong>
                 {props.OffersRequests.requestItem.category_name}
               </p>
-
+             
+              
               <p>
                 <strong>Date Needed: </strong>
                 {props.OffersRequests.requestItem.preferred_date &&
                   props.OffersRequests.requestItem.preferred_date.slice(0, 10)}
               </p>
+              
 
             </div>
 
@@ -184,13 +187,13 @@ export default function RequestListItem(props) {
 
               {/* if offers.length>1 and provider_id is null*/}
               <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0
-                && props.OffersRequests.requestItem && !props.OffersRequests.requestItem.provider_id ? "Number of offers received:" + props.OffersRequests.requestOffers.length : ""}</p>
+                && props.OffersRequests.requestItem && !props.OffersRequests.requestItem.provider_id ? "Offers received: " + props.OffersRequests.requestOffers.length : ""}</p>
 
               {/* Displays service provider name if this request was assigned */}
               {props.OffersRequests.requestItem.service_provider_first_name &&
                 "Service Provider assigned: " +
                 props.OffersRequests.requestItem.service_provider_first_name +
-                " " +
+                " " + 
                 props.OffersRequests.requestItem.service_provider_last_name}
               <br />
               <br />
@@ -211,7 +214,9 @@ export default function RequestListItem(props) {
           {/* Renders Review and Complete button to finish a job and mark it completed if job was already assigned */}
           {props.OffersRequests.requestItem.provider_id !== null && (
             <div className="reviewstars-complete">
-              <ReviewStars rating={rating} setRating={setRating}></ReviewStars>{" "}
+              <div className="stars-requestlistiitem">
+              <ReviewStars rating={rating} setRating={setRating}></ReviewStars>
+              </div>
               <Button variant="info" onClick={submitRating}>
                 Review And Complete
               </Button>

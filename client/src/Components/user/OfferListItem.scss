@@ -36,15 +36,23 @@
   align-content: center;
 }
 
+.offerlistitem-details img {
+
+  width:18vh;
+  border-radius: 20vh;
+}
+
+.offerlistitem-details h2 {
+color:black;
+
+}
+
 .offerlist-actions{
   display: flex;
   flex-direction: column;
 }
 
 .offerlist-quote {
-  border-color: black;
-  border-radius: 2vh;
-  border-style: double;
   margin-bottom: 3vh;
   padding: 2vh;
   font-size: x-large;

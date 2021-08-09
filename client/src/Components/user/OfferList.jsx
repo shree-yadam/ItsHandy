@@ -23,7 +23,7 @@ const OfferList = (props) => {
     // state.OffersRequests && console.log("offerList assign offer", typeof state.OffersRequests.assignOffer)
     return (
         <div className="offerlist-main">
-            <h1>Offers list</h1>
+            <h1>Offers Received</h1>
             {(!state.requestOffer || state.requestOffer.length === 0) && <h3>Loading...</h3>}
             {state.requestOffer && state.requestOffer.map(offer => <OfferListItem key={offer.id} {...offer} assignOffer={assignOffer} />)}
         </div>

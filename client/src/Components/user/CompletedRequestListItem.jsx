@@ -29,7 +29,7 @@ export default function CompletedRequestListItem({request}) {
           <div className="info-text">
             <div className="text-info-header">
               <h2>
-                Title: <strong>{request.title}</strong>
+                 <strong>{request.title}</strong>
               </h2>
 
               <p>
