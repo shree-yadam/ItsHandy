@@ -41,15 +41,15 @@ export default function ProviderDashboard(
         <img src ={providerInfo.img_url} alt="provider-pic"></img>
         }
         <br></br>
-        <br></br>
-        <strong>My Rating:</strong><br></br><StarRatings rating={providerInfo.avg_rating ? providerInfo.avg_rating : 0 } starRatedColor="green"
+        <p>My Rating:</p><StarRatings rating={providerInfo.avg_rating ? providerInfo.avg_rating : 0 } starRatedColor="green"
       numberOfStars={5}/>
       <div className="category-name">
         <br></br>
-      Your Categories: {providerCategories &&
+      <p>Your Categories:</p> <div id="cat-names">{providerCategories &&
 
       providerCategories.map((category) => <span key={category.id}>   | {category.category_name} |  </span> )
       }
+      </div> 
       </div>
       <br></br>
         <p><strong> Name: </strong>{providerInfo.first_name} {providerInfo.last_name}</p>

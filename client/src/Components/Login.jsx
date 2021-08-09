@@ -57,7 +57,7 @@ export default function Login({setCurrentUser}) {
           <Form.Control type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
         </Form.Group>
         <Button variant="primary" type="submit"  onClick={handleLogin}>
-          Submit
+          Login
         </Button>
       </Form>
     </div>

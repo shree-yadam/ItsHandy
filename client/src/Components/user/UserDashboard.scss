@@ -1,18 +1,20 @@
 
 .user-dashboard-container{
-  margin-top: 10vh;
+  margin-top: 15vh;
+  border-radius: 50px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-content: stretch;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  background-color: #ebb43f;
+  background-image: url(https://www.transparenttextures.com/patterns/crissxcross.png);
 }
 
 
 .user-dashboard-items {
-
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 
 .user-dashboard-text {
@@ -22,4 +24,21 @@
   align-items: center;
   align-content: flex-end;
   margin: 2vh;
+  font-size: xx-large;
 }
+
+.user-dashboard-items img {
+  width:40%
+}
+
+.user-dashboard-button button {
+  background-color: #9E7A2B;
+  border-radius: 50px;
+  border-color:#9E7A2B;
+}
+
+.user-dashboard-button button:hover {
+  background-color: #5E4919;
+  border-radius: 50px;
+}
+

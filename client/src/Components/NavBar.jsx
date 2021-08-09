@@ -55,8 +55,11 @@ return (
             </div>
           </div>
           <div className="user-action-nav">
-              {currentUser.first_name} {currentUser.last_name}
-              <Button  className="navbar-items" onClick={handleLogout}>Logout</Button>
+              
+          <Button  className="navbar-items" onClick={handleLogout}>Logout</Button>
+          
+           <h3>{currentUser.first_name} {currentUser.last_name}
+           </h3>
           </div>
         </div>
       }

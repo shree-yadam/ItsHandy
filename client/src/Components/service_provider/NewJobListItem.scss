@@ -15,17 +15,24 @@
 
 .make-offer {
   padding-bottom: 5px;
-  margin: 5vh;
   display: flex;
-  justify-content: flex-start;
+  margin-left: 7vh;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  align-content: center;
+  align-content: space-between;
+}
+
+.make-offer .details-button {
+  margin-left: 20px;
+  border: none;
+
 }
 
 .make-offer .offer-btn {
-margin-left: 20px;
+  margin-left: 20px;
+  border: none;
 
 }
 .newlisting-container .msg-btn {
@@ -36,9 +43,11 @@ margin-left: 20px;
 
 .label-offer-made  {
   border-radius: 30%;
-  padding: 0.1em;
-  border: 0.1em solid orange;
-  color: orange;
+  padding: 0.5vh;
+  color: #ffffff;
+  background-color: green;
+  font-weight:bolder;
+
 }
 
 .job-dates{
@@ -48,6 +57,5 @@ margin-left: 20px;
 
 .provider-actions{
 display:flex;
-
-
 }
+

@@ -1,14 +1,16 @@
 nav.navbar-menu {
-    width: 90%;
-    background-color: transparent;
-    display: flex;
-    color: white;
-    padding: 0.5vh;
-    position: fixed;
-    top: 0;
-    z-index: 9;
-    justify-content: space-between;
+  width: 90%;
+  background-color: transparent;
+  display: flex;
+  color: white;
+  padding: 0.5vh;
+  position: absolute;
+  top: 0;
+  z-index: 9;
+  justify-content: space-between;
+  align-items: center;
 }
+
 
  
 
@@ -64,4 +66,10 @@ font-size:x-large
   font-size:x-large;
   background-color: #5E4919
 }
+
+h3 {
+  margin: 1px;
+  color: black;
+}
+
 
