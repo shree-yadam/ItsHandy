@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# It's Handy
+This is a single page app that allows clients a one stop place to get quotes from mutliple service providers for any jobs they need done. It shows service providers any jobs available that match the work categories they have registered for and allows them to make offers for any jobs. Before making an offer the service provider can see the images uploaded by the client related to the job and also a map showing the location of the job. The client can accept the offer made by the service provider and leave a review for the service provider once the job is completed. An SMS is sent to the client whenever they receive a new offer. Also the service provider receives an SMS when a job has been assigned to them.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tech Stack:
+ReactJs, Express, NodeJs, PSQL, Bootstrap, SASS, Google Maps API, Cloudinary API, TWILIO SMS API.
 
-## Available Scripts
+## Setup
+- Clone the repository.
+- Install dependencies with `npm install`.
+- Copy .env.example to .env in client and backend_server
+- Add DB information, Google API KEY, CLoudinary Account information and TWILIO AUTH TOKEN , SID and outgoing phone number to the respective .env
 
-In the project directory, you can run:
+## Final Product
 
-### `yarn start`
+###### Home Page
+!["Main Page"](docs/MainPage.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+###### Service Provider
+#### Provider Dashboard
+!["Provider Dashboard"]()
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### New Job Listings
+!["New Job Listings "]()
 
-### `yarn test`
+#### Job Details Page
+!["Job Details "]()
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Assigned Jobs List
+!["Assigned Jobs List"]()
 
-### `yarn build`
+#### Completed Jobs
+!["Completed Jobs"]()
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+###### Client
+#### Client Dashboard
+!["Client Dashboard"]()
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Current Requests
+!["Current Requests"]()
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Requests completed
+!["Requests completed"]()
 
-### `yarn eject`
+## DB Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```sh
+npm run db:reset
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running Backend server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```sh
+cd backend-express
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Running client React server
 
-## Learn More
+```sh
+cd client
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Dependencies
+#### Client:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Axios
+- React
+- react-dom
+- react-scripts
+- Node Sass
+- google-map-react
 
-### Code Splitting
+#### Backend server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Bcrypt
+- cookie-session
+- cookie-parser
+- CORS
+- pg
+- twilio
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
