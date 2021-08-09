@@ -113,7 +113,7 @@ function App() {
             </Route>
 
             <Route path="/assigned_jobs">
-              <AssignedJobList currentUser={currentUser} />
+              <AssignedJobList currentUser={currentUser} categories={categories}/>
             </Route>
 
             <Route path="*">

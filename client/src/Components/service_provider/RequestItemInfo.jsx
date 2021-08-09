@@ -2,15 +2,24 @@ export default function RequestItemInfo({
   title,
   description,
   category,
-  date
+  date,
+  street_address,
+  city,
 }) {
+  console.log(category, date);
   return (
     <div>
-      <div>
-      <h2>Title: <strong>{title}</strong></h2>
-      <p>Description: {description}</p>
-      <p>Category: {category}</p>
-      <p>Date needed: {date && date.split('T')[0]}</p>
+      <h2>
+        Title: <strong>{title}</strong>
+      </h2>
+      <div className="assigned-job-details">
+      <p><strong>Description: </strong>{description}</p>
+      <p>
+        <strong>Location: </strong>
+        {street_address}, {city}
+      </p>
+      <p><strong>Category: </strong>{category}</p>
+      <p><strong>Date needed: </strong>{date && date.split("T")[0]}</p>
       </div>
     </div>
   );
