@@ -4,6 +4,6 @@ CREATE TABLE offers (
   id SERIAL PRIMARY KEY NOT NULL,
   request_id INTEGER REFERENCES requests(id) ON DELETE CASCADE,
   provider_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  quote VARCHAR(15),
+  quote VARCHAR(30),
   offer_comment TEXT
 );

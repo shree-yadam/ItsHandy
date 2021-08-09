@@ -180,7 +180,7 @@ export default function RequestListItem(props) {
             <div className="side-info-header">
               {/* where provider id is null and count is 0 */}
               <p>{props.OffersRequests.requestOffers &&
-                props.OffersRequests.requestOffers.length === 0 && "No offers received yet"}</p>
+                props.OffersRequests.requestOffers.length === 0 && !props.OffersRequests.requestItem.provider_id && "No offers received yet"}</p>
 
               {/* if offers.length>1 and provider_id is null*/}
               <p>{props.OffersRequests.requestOffers && props.OffersRequests.requestOffers.length > 0
