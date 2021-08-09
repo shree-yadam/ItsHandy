@@ -6,12 +6,12 @@ import './AssignedJobList.scss';
 export default function AssignedJobListItem({
   currentUser,
   id,
-  title,
-  description,
+  job,
   category,
-  date,
   markJobCompleted
 }) {
+
+  console.log(job);
 
   function handleMarkCompleted(){
    console.log("Marking Completed");
@@ -28,10 +28,12 @@ export default function AssignedJobListItem({
   return (
     <div className= "assigned-jobs" id="assigned-jobs-hov">
       <RequestItemInfo
-        title={title}
-        description={description}
+        title={job.title}
+        description={job.description}
         category={category}
-        date={date}
+        date={job.preferred_date}
+        street_address={job.street_address}
+        city={job.city}
       />
       {/* <Button onClick={handleMarkCompleted}>Mark Completed</Button> */}
     </div>

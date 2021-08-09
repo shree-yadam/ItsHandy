@@ -4,7 +4,7 @@ import AssignedJobListItem from "./AssignedJobListItem";
 import './AssignedJobList.scss';
 import { useHistory } from "react-router-dom";
 
-export default function AssignedJobList({currentUser}){
+export default function AssignedJobList({currentUser, categories}){
 
   const [assignedJobs, setAssignedJobs] = useState(null);
   const history = useHistory();
@@ -22,7 +22,7 @@ export default function AssignedJobList({currentUser}){
         })
         .catch((err) => console.log("Error: ", err));
       }
-      // console.log(assignedJobs);
+      console.log(assignedJobs);
   },[]);
 
   function markJobCompleted(id) {
@@ -44,12 +44,8 @@ export default function AssignedJobList({currentUser}){
       {assignedJobs && assignedJobs.map((assignedJob) => <AssignedJobListItem
       key={assignedJob.id}
       currentUser={currentUser}
-      id={assignedJob.id}
-      title={assignedJob.title}
-      description={assignedJob.description}
-      category={assignedJob.name}
-      date={assignedJob.preferred_date}
-      img_url={assignedJob.img_url}
+      job={assignedJob}
+      category={categories.find((category)=> category.id === assignedJob.category_id).name}
       markJobCompleted={markJobCompleted}
       />)}
 
