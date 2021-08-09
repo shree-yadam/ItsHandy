@@ -1,6 +1,7 @@
 import axios from "axios";
 import RequestItemInfo from "./RequestItemInfo";
 import Button from 'react-bootstrap/Button';
+import './AssignedJobList.scss';
 
 export default function AssignedJobListItem({
   currentUser,
@@ -25,14 +26,14 @@ export default function AssignedJobListItem({
   }
 
   return (
-    <div>
+    <div className= "assigned-jobs">
       <RequestItemInfo
         title={title}
         description={description}
         category={category}
         date={date}
       />
-      <Button onClick={handleMarkCompleted}>MarkCompleted</Button>
+      <Button onClick={handleMarkCompleted}>Mark Completed</Button>
     </div>
   )
 }

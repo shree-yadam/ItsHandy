@@ -6,6 +6,7 @@ import JobDetails from "./JobDetails";
 import "./NewJobList.scss";
 import { useHistory } from "react-router-dom";
 
+
 const DETAIL = "DETAIL";
 const JOB_LIST = "JOB_LIST";
 
@@ -39,6 +40,7 @@ export default function NewJobList({ currentUser }) {
       {mode === JOB_LIST && (
         <>
           <h2>New Job Listings</h2>
+          <br></br>
           {!newJobs  && <h3>Loading ...</h3>}
           {newJobs && newJobs.length === 0 && <h3>No Entries. </h3>}
           {newJobs &&

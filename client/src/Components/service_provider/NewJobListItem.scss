@@ -5,12 +5,13 @@
 
 .newlisting-info {
   display: flex;
-  align-items: center;
-  align-content: space-between;
-  justify-content: space-between;
+  align-items: flex-end;
+  align-content: stretch;
   margin-right: 15px;
   flex-direction: row;
-  width: 90%;
+  width: 96%;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .make-offer {
@@ -59,3 +60,18 @@
 display:flex;
 }
 
+ .newlisting-container .newlisting-category-city {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.offer-cat-city-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  align-content: center;
+  justify-content: space-between;
+  padding-right: 3vw;
+}

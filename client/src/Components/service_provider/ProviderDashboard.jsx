@@ -43,7 +43,7 @@ export default function ProviderDashboard(
       <div className = "provider-container">
 
         <div className="provider-profile">
-        <h1>My Profile</h1>
+        <h1>{providerInfo.first_name} {providerInfo.last_name}</h1>
         {providerInfo.img_url !== "" &&
         <img src ={providerInfo.img_url} alt="provider-pic"></img>
         }
@@ -59,9 +59,8 @@ export default function ProviderDashboard(
       </div> 
       </div>
       <br></br>
-        <p><strong> Name: </strong>{providerInfo.first_name} {providerInfo.last_name}</p>
         <p><strong>Email: </strong>{providerInfo.email}</p>
-        <p><strong>Contact:</strong> {providerInfo.phone_number}</p>
+        <p><strong>Phone Number:</strong> {providerInfo.phone_number}</p>
         </div>
         <div className = "provider-grid">
 

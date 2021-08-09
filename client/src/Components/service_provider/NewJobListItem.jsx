@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import makeOffer from "../../helpers/makeOffer";
 import "./NewJobListItem.scss";
+// import "./NewJobList.scss"
 
 export default function NewJobListItem({
   job,
@@ -50,20 +51,24 @@ export default function NewJobListItem({
     <div className="newlisting-container">
       <div className="newlisting-info">
         <h2>
-          Title: <strong>{job.title}</strong>
+           <strong>{job.title}</strong>
         </h2>
        <div className="date-offer">
         <p>
           Date needed: {job.preferred_date && job.preferred_date.split("T")[0]}
         </p>
-        {job.offer_made && <p className="label-offer-made">You  made an offer!</p>}
+        
         </div>
       </div>
-   
+      <div className = "offer-cat-city-container">
+   <div className= "newlisting-category-city">
           <p>
           Category: {job.category_name}
         </p>
       <p>City: {job.city}</p>
+      </div>
+      {job.offer_made && <p className="label-offer-made">You  made an offer!</p>}
+      </div>
       {!job.offer_made && (
         <div className = "provider-actions">
           <div className="make-offer">

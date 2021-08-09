@@ -32,9 +32,13 @@ export default function AssignedJobList({currentUser}){
 
   return (
     <div className="assigned-jobs-container">
+      <br></br>
+      <br></br>
       {currentUser &&
-      <h2>Assigned Jobs</h2>
+      <h1><strong>Assigned Jobs</strong></h1>
       }
+      <br></br>
+      <br></br>
       {!assignedJobs && <h3>Loading...</h3>}
       {assignedJobs && assignedJobs.length === 0  && <h3>No Entries.</h3>}
       {assignedJobs && assignedJobs.map((assignedJob) => <AssignedJobListItem

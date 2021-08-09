@@ -1,3 +1,4 @@
+import './AssignedJobList.scss';
 export default function RequestItemInfo({
   title,
   description,
@@ -6,8 +7,8 @@ export default function RequestItemInfo({
 }) {
   return (
     <div>
-      <div>
-      <h2>Title: <strong>{title}</strong></h2>
+      <div className="assigned-jobs-box">
+      <h2> <strong>{title}</strong></h2>
       <p>Description: {description}</p>
       <p>Category: {category}</p>
       <p>Date needed: {date && date.split('T')[0]}</p>
