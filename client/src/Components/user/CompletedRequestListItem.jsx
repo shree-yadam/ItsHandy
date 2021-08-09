@@ -2,7 +2,7 @@
 // import useVisualMode from "../../hooks/useVisualMode";
 import StarRatings from 'react-star-ratings';
 // import Button from "react-bootstrap/Button";
-import "./RequestListItem.scss";
+import "./CompletedRequestListItem.scss";
 
 // const REQUEST_LIST = "REQUEST_LIST";
 // const EDIT_REQUEST = "EDIT_REQUEST";
@@ -24,23 +24,25 @@ export default function CompletedRequestListItem({request}) {
 
 
     <div>
-      <div className="listitem-container">
-        <div className="info-items">
-          <div className="info-text">
-            <div className="text-info-header">
+      <div className="completed-container">
+      <div className="completed-header">
               <h2>
                  <strong>{request.title}</strong>
               </h2>
 
               <p>
                 {/* <p>Description: {props.OffersRequests.requestItem.description}</p> */}
-                <strong>Description:</strong>
+                <strong></strong>
                 {request.description}
               </p>
+              </div>
+        <div className="completed-items">
+          
 
+              <div className="completed-text">
               <p>
                 {/* <p>Street Address: {props.OffersRequests.requestItem.street_address}</p> */}
-                <strong>Street Address:</strong>{" "}
+                <strong>Address:</strong>{" "}
                 {request.street_address}
               </p>
               <p>
@@ -61,14 +63,14 @@ export default function CompletedRequestListItem({request}) {
 
             </div>
 
-            <div className="side-info-header">
+            <div className="completed-side-info-header">
               {/* where provider id is null and count is 0 */}
               <p><strong>Service Provider: </strong> {request.service_provider_first_name + " " + request.service_provider_last_name}</p>
             </div>
           </div>
-        </div>
+       
 
-        <div className="listitem-footer">
+        <div className="completed-listitem-footer">
         <strong>Review given:</strong><br></br><StarRatings rating={request.review } starRatedColor="orange"
           numberOfStars={5}/>{" "}
               {/* <Button variant="info" onClick={submitRating}>

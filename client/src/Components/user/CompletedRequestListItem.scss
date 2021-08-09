@@ -1,0 +1,43 @@
+.completed-info-itmes {
+
+  display:flex;
+  flex-direction: row;
+}
+
+.completed-container {
+  display: flex;
+  margin: top 4vh;
+  margin-bottom: 8vh;
+  margin-right: 8vh;
+  margin-left: 8vh;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  background-image: url(https://www.transparenttextures.com/patterns/crissxcross.png);
+  background-color: #aaaaaa;
+  border-radius: 20px;
+}
+
+.completed-items {
+  display:flex;
+  align-items: center;
+  padding: 3vh;
+}
+
+.completed-text {
+  display: flex;
+  border: red;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 7vh;
+}
+
+.completed-text p {
+  color:black
+}
+
+.completed-side-info-header p{
+  color:black
+}
