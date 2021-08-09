@@ -38,7 +38,15 @@ const CompletedRequestList = ({currentUser}) => {
     price: null
   }]
    */
-  const { completedRequestData } = useCompletedRequestData(currentUser.id);
+  // useEffect(() => {
+  //   if(!currentUser){
+  //     history.push('/login');
+  //     return;
+  //   }
+
+  // }, []);
+
+  const { completedRequestData } = useCompletedRequestData(currentUser && currentUser.id);
   const history = useHistory();
 
 

@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
@@ -113,7 +113,7 @@ function App() {
             </Route>
 
             <Route path="/assigned_jobs">
-              <AssignedJobList currentUser={currentUser} />
+              <AssignedJobList currentUser={currentUser} categories={categories}/>
             </Route>
 
             <Route path="*">

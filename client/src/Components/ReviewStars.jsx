@@ -9,7 +9,7 @@ export default function ReviewStars({rating, setRating}) {
   return (
     <StarRatings
       rating={rating}
-      starRatedColor="orange"
+      starRatedColor="green"
       numberOfStars={5}
       name="rating"
       changeRating={changeRatings} //changeRating function for function

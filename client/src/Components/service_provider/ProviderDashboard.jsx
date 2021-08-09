@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './ProviderDashboard.scss'
 import StarRatings from 'react-star-ratings'
 
@@ -16,7 +16,14 @@ export default function ProviderDashboard(
     const [providerCategories, setProviderCategories] = useState();
     // console.log("THIS IS CURRENT PROVIDER", currentUser)
 
+    const history = useHistory();
     useEffect(() => {
+
+      //TBD: Temp fix for refresh issues
+      if(!currentUser){
+        history.push('/login');
+        return;
+      }
       axios.get(`/api/providers/${currentUser.id}`)
       .then((res) => {
         if(res.data){
@@ -41,15 +48,15 @@ export default function ProviderDashboard(
         <img src ={providerInfo.img_url} alt="provider-pic"></img>
         }
         <br></br>
-        <br></br>
-        <strong>My Rating:</strong><br></br><StarRatings rating={providerInfo.avg_rating ? providerInfo.avg_rating : 0 } starRatedColor="orange"
+        <p>My Rating:</p><StarRatings rating={providerInfo.avg_rating ? providerInfo.avg_rating : 0 } starRatedColor="green"
       numberOfStars={5}/>
       <div className="category-name">
         <br></br>
-      Your Categories: {providerCategories &&
+      <p>Your Categories:</p> <div id="cat-names">{providerCategories &&
 
       providerCategories.map((category) => <span key={category.id}>   | {category.category_name} |  </span> )
       }
+      </div> 
       </div>
       <br></br>
         <p><strong> Name: </strong>{providerInfo.first_name} {providerInfo.last_name}</p>
