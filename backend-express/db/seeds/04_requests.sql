@@ -1,13 +1,25 @@
+INSERT INTO requests (title, street_address, city, category_id, img_url, description, client_id, preferred_date, provider_id, date_assigned)
+
+VALUES
+('Leaky drain', '3577 Carling Avenue', 'Ottawa', 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZU3Kx2z8U_NB6984peiq3VF8Tn1OoHhK8Zw&usqp=CAU', 'Drain under kitchen sink has leak in 2 places', 1, '13-AUG-2021', 1, '12-AUG-2021');
+
 INSERT INTO requests (title, street_address, city, category_id, img_url, description, client_id, preferred_date)
 
 VALUES
-('Sink leak', '111 King Street East', 'Toronto', 1, 'https://previews.123rf.com/images/engraver/engraver1412/engraver141200045/34972389-broken-sink-old-interior.jpg', 'Sink is completely shattered. Need someone urgently to fix this', 1, '16-AUG-2021');
+('Weak water flow from faucet', '3577 Carling Avenue', 'Ottawa', 1, 'https://www.familyhandyman.com/wp-content/uploads/2018/08/shutterstock_166772414-sink.jpg?w=1200', 'The faucet in the kitchen has weak water flow for past few days.', 1, '17-AUG-2021'),
+('Slow water drain', '3004 MacLaren Street', 'Ottawa', 1, 'https://www.familyhandyman.com/wp-content/uploads/2019/01/shutterstock_735226639-sink.jpg?w=1200', 'Kitchen sink drains very slow causing it to be filled with water most of the time.', 2, '12-AUG-2021'),
+('Moisture on ceiling', '4820 Merivale Road', 'Ottawa', 1, 'https://www.familyhandyman.com/wp-content/uploads/2019/01/shutterstock_1214330980-bump.jpg?w=1200', 'Moisture causing paint on ceiling to bubble and peel.', 3, '14-AUG-2021'),
+('Slow water drain', '2740 Bank St', 'Ottawa', 1, 'https://www.familyhandyman.com/wp-content/uploads/2019/01/shutterstock_735226639-sink.jpg?w=1200', 'Kitchen sink drains very slow causing it to be filled with water most of the time.', 2, '12-AUG-2021'),
+('Moisture on ceiling', '4333 Montreal Road', 'Ottawa', 1, 'https://www.familyhandyman.com/wp-content/uploads/2019/01/shutterstock_1214330980-bump.jpg?w=1200', 'Moisture causing paint on ceiling to bubble and peel.', 3, '14-AUG-2021'),
+('No hot water', '3394 MacLaren Street', 'Ottawa', 1, 'https://www.familyhandyman.com/wp-content/uploads/2019/01/shutterstock_1214330980-bump.jpg?w=1200', 'Moisture causing paint on ceiling to bubble and peel.', 3, '14-AUG-2021'),
+('Hedge installation', '3577 Carling Avenue', 'Ottawa', 4, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLmRT4Tsw7SAGptqI4oRj4cgH5WdyhP7ctGw&usqp=CAU', 'Need hedge installed around the yard around 80ft. length', 1, '18-AUG-2021'),
+('Bathroom remodel', '3577 Carling Avenue', 'Ottawa', 4, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDZVQXo129gSjahVkhgtWEuFhpZm2LpbI23g&usqp=CAU', 'Bathroom about 300 sq.ft. nned remodel. Need quote on labor prices', 1, '18-AUG-2021');
 
-
-
+INSERT INTO requests (title, street_address, city, category_id, description, client_id, preferred_date) VALUES
+('Baby sitter needed', '3577 Carling Avenue', 7, 'Need a baby sitter for 2 kids (8y and 6y) from 1pm to 3pm', 1, '20-AUG-2021');
 
 INSERT INTO requests (title, street_address, city, category_id, img_url, description, client_id,date_assigned)
-VALUES 
+VALUES
 ('Broken Fan', '111 King Street East', 'Toronto', 2, 'https://c8.alamy.com/comp/WDF2GC/close-up-of-abandoned-floor-fan-WDF2GC.jpg', 'Fan not working. Blades are broken and need someone to replace', 1,'2021-08-01');
 
 INSERT INTO requests(

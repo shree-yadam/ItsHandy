@@ -1,5 +1,5 @@
 INSERT INTO offers (request_id, provider_id, quote, offer_comment)
-VALUES (2, 2, '$200', 'can fix it but need transport'),
-(2, 3, '$520', 'yes this could be done'),
-(3, 3, '$780', 'yes this could be done for request 3'),
-(7, 3, '$780', 'yes this could be done for request 3');
+VALUES (2, 4, '$90 per hour', 'I should be able to fix it in under an hour.'),
+(2, 5, '$200 for the job', 'I will be able to only come in on 14-AUG-2021. Material costs extra.'),
+(1, 1, '$90 per hour', 'I have good experience for this job'),
+(3, 1, '$90 per hour', 'Just give a try with clog remover. I would be happy to help otherwise.');
