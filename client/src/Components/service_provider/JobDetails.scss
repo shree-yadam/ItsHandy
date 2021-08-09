@@ -1,9 +1,8 @@
 .job-details-container {
   margin: 2vh;
   position: relative;
-  display:column;
-  border-color:black;
-  border-style: solid;
+  display:flex;
+  flex-direction:column;
   padding:30px;
 }
 
@@ -51,19 +50,20 @@
 .job-details-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 200vh;
+  width: 130vh;
+  align-items: center;
 }
 
-img{
-  border-radius:40px;
-  max-width: 30%;
+.job-detail-img{
+  max-width: 40vh;
   height: auto;
+  border-radius: 40px;
 }
 
 .map-container {
   height: 40vh;
   width: 100%;
+  border-radius:10px;
 }
 
 .offer-button {

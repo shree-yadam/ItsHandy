@@ -52,11 +52,14 @@ export default function NewJobListItem({
         <h2>
           Title: <strong>{job.title}</strong>
         </h2>
-        {job.offer_made && <p className="label-offer-made">Offer Made</p>}
+       <div className="date-offer">
         <p>
           Date needed: {job.preferred_date && job.preferred_date.split("T")[0]}
         </p>
+        {job.offer_made && <p className="label-offer-made">You  made an offer!</p>}
+        </div>
       </div>
+   
           <p>
           Category: {job.category_name}
         </p>
@@ -64,7 +67,10 @@ export default function NewJobListItem({
       {!job.offer_made && (
         <div className = "provider-actions">
           <div className="make-offer">
-            <label>Quote: </label>
+          <Button className="details-button" type="submit" onClick={goToDetails}>
+            Details
+          </Button>
+            <label>Quote:</label>
             <input
               placeholder="Enter your quote"
               name="quote"
@@ -79,10 +85,6 @@ export default function NewJobListItem({
             >
               Make a quick Offer
             </Button>
-          
-          <Button variant="primary" type="submit" onClick={goToDetails}>
-            Details
-          </Button>
           </div>
           {/* <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
             Messages
@@ -93,7 +95,7 @@ export default function NewJobListItem({
       {job.offer_made && (
         <div>
           <p>Quote Submitted: {job.quote}</p>
-          <Button variant="primary" type="submit" onClick={goToDetails}>
+          <Button className="details-button" type="submit" onClick={goToDetails}>
             Details
           </Button>
 

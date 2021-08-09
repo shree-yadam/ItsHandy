@@ -1,17 +1,19 @@
 
 .provider-container{
-  margin-top: 10vh;
+  margin-top: 15vh;
+  border-radius: 50px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-content: stretch;
   justify-content: space-around;
   align-items: flex-end;
+  background-color: #ebb43f;
+  background-image: url("https://www.transparenttextures.com/patterns/crissxcross.png");
 }
 
 .provider-grid{
-border-color:black;
-border-style: solid;
+
 padding:50px;
 display:grid
 }
@@ -21,32 +23,30 @@ display:grid
 // }
 
 .provider-grid-1 {
-  border-color: black;
-  border-style: solid;
   padding: 8vh;
   margin: 2vh;
-  background-color: rgba(222, 202, 184, 0.68);
+  background-color: #9E7A2B;
+  border-radius: 50px;
   font-family: none;
   font-weight: 400;
   font-size: large;
+  text-decoration: none;
 }
 
 .provider-grid-2 {
-  border-color: black;
-  border-style: solid;
   padding: 8vh;
   margin: 2vh;
-  background-color: rgba(184, 195, 222, 0.68);
+  background-color: #9E7A2B;
+  border-radius: 50px;
   font-family: none;
   font-weight: 400;
   font-size: large;
+  text-decoration: none;
 }
 .provider-grid-2:hover {
-  border-color: black;
-  border-style: solid;
   padding: 8vh;
   margin: 2vh;
-  background-color: rgba(58, 97, 196, 0.68);
+  background-color: #5e5919;
   font-family: none;
   font-weight: 400;
   font-size: large;
@@ -54,11 +54,9 @@ display:grid
 }
 
 .provider-grid-1:hover {
-  border-color: black;
-  border-style: solid;
   padding: 8vh;
   margin: 2vh;
-  background-color: rgba(58, 97, 196, 0.68);
+  background-color: #5e5919;
   color:white;
   font-family: none;
   font-weight: 400;
@@ -66,5 +64,35 @@ display:grid
 }
 
 .provider-profile {
-  margin-top:0.2vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.provider-profile img{
+width:30%
+}
+
+ a {
+    color: white;
+    text-decoration: none;
+}
+
+.provider-profile p {
+
+  font-size: x-large;
+}
+
+.provider-profile h1 {
+margin-top: 5vh;
+}
+
+.category-name p {
+font-size: x-large;
+font-weight: bolder;
+}
+
+#cat-names {
+font-size:x-large;
 }

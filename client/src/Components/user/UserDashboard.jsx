@@ -24,21 +24,7 @@ export default function UserDashboard({ currentUser }) {
   }, []);
   return (
     <div className="user-dashboard-container">
-      <div className="user-name-img">
-        {userInfo && (
-          <div className="user-dashboard-items">
-            {userInfo.img_url !== "" && <img src={userInfo.img_url} alt="user-pic" />}
-
-
-            <span>
-            <div className="user-dashboard-text">
-             Welcome, {userInfo.first_name} {userInfo.last_name} <br></br>
-            <strong>Email: </strong> {userInfo.email} <br></br>
-            <strong>Contact: </strong>{userInfo.phone_number}
-            </div>
-            </span>
-
-            <span>
+     <span className="user-dashboard-button">
                 <Button
                   variant="primary"
                   onClick={() => history.push(`/client/${currentUser.id}/requests`)}
@@ -50,8 +36,24 @@ export default function UserDashboard({ currentUser }) {
                   onClick={() => history.push(`/client/completed_requests`)}
                 >
                   Completed Requests
-                </Button>
-              </span>
+        </Button>
+    </span>
+      <div className="user-name-img">
+        {userInfo && (
+          <div className="user-dashboard-items">
+            
+            {userInfo.img_url !== "" && <img src={userInfo.img_url} alt="user-pic" />}
+
+
+            <span>
+            <div className="user-dashboard-text">
+             Welcome, {userInfo.first_name} {userInfo.last_name} <br></br>
+            <strong>Email: </strong> {userInfo.email} <br></br>
+            <strong>Contact: </strong>{userInfo.phone_number}
+            </div>
+            </span>
+
+
           </div>
 
         )}
