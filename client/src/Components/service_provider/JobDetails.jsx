@@ -71,7 +71,8 @@ export default function JobDetails({
 
   return (
     <div className="job-details-main">
-      <aside className="details-back-button">
+      <div className="details-back">
+      <div className="details-back-button">
         <FontAwesomeIcon icon={faAngleDoubleLeft} color="orange" size="2x" onClick={() => {
             back();}} />
         {/* <Button
@@ -81,7 +82,9 @@ export default function JobDetails({
         >
           Back
         </Button> */}
-      </aside>
+      </div>
+      <h4>Back to new listings</h4>
+      </div>
       <h2>Job Details</h2>
       <div className="job-details-container">
         <div className="details-and-map-container">
