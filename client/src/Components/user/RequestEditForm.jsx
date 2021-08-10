@@ -199,8 +199,8 @@ export default function RequestEditForm({
       </Form.Group> */}
 
       {!editImage && (
-        <>
-          <img src={newRequest.img_url} alt={"request"} />
+        <div className="edit-image">
+          <img src={newRequest.img_url} className="edit-image" alt={"request"} />
           <Button
             variant="warning"
             size="lg"
@@ -209,7 +209,7 @@ export default function RequestEditForm({
           >
             Edit
           </Button>
-        </>
+        </div>
       )}
 
       {editImage && (
@@ -223,7 +223,8 @@ export default function RequestEditForm({
           />
         </Form.Group>
       )}
-
+      <br></br>
+<div className="sub-cancel">
       <Button
         variant="success"
         size="lg"
@@ -236,6 +237,7 @@ export default function RequestEditForm({
       <Button variant="danger " size="lg" type="submit" onClick={() => back()}>
         Cancel
       </Button>
+    </div>
     </div>
   );
 }

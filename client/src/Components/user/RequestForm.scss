@@ -1,4 +1,26 @@
-.form-container {
+.form-container h2{
+  color:black;
+}
 
-  margin-top:3vh;
+.edit-image {
+  width: 30vh;
+  border-radius: 15px;
+}
+
+.form-container{
+  margin-top: 12vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sub-cancel {
+  display:flex;
+}
+
+.edit-image{
+  display:flex;
+  align-items: center;
 }

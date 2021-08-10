@@ -139,7 +139,7 @@ export default function RequestListItem(props) {
   return (
 
 
-    <div>
+    
       <div className="listitem-container">
         <div className="info-items">
         <h2>
@@ -251,6 +251,5 @@ export default function RequestListItem(props) {
 
         </div>
       </div>
-    </div>
   );
 }

@@ -68,9 +68,10 @@ const RequestList = (props) => {
   //console.log('typeof assignOffer :>> RequestList ', typeof assignOffer);
 
   return (<div className="request-list">
-    <h1>Your Requests</h1>
+    
     {mode === LIST_MODE &&
       <div>
+        <h1>Your Requests</h1>
         {/* This check is to not map if this was not loaded the first time */}
 
         {(!requestListState.requestList || requestListState.requestList.length === 0) && <h3>Loading...</h3>}
