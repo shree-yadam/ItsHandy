@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
-import ReviewStars from '../ReviewStars'
 import StarRatings from 'react-star-ratings';
 
 import './OfferListItem.scss';
@@ -23,7 +22,7 @@ const OfferListItem = ({ service_provider_first_name, service_provider_last_name
                 <br />
                 <img src={service_provider_img_url} alt="provider-pic" />
                 <br />
-               <h4> Provider Rating: </h4> <StarRatings rating={avg_rating} starRatedColor="green"
+               <h4> Provider Rating: </h4> <StarRatings rating={avg_rating || 0} starRatedColor="green"
                     numberOfStars={5} />
                 <br />
                 <h4>Comments on request:  "{offer_comment}"</h4>
