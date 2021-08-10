@@ -215,7 +215,7 @@ export default function RequestListItem(props) {
           {props.OffersRequests.requestItem.provider_id !== null && (
             <div className="reviewstars-complete">
               <div className="stars-requestlistiitem">
-              <ReviewStars rating={rating} setRating={setRating}></ReviewStars>
+              <ReviewStars rating={rating || 0} setRating={setRating}></ReviewStars>
               </div>
               <Button variant="info" onClick={submitRating}>
                 Review And Complete

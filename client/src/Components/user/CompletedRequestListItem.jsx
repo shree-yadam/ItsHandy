@@ -71,7 +71,7 @@ export default function CompletedRequestListItem({request}) {
        
 
         <div className="completed-listitem-footer">
-        <strong>Review given:</strong><br></br><StarRatings rating={request.review } starRatedColor="orange"
+        <strong>Review given:</strong><br></br><StarRatings rating={request.review || 0} starRatedColor="orange"
           numberOfStars={5}/>{" "}
               {/* <Button variant="info" onClick={submitRating}>
                 Review And Complete
