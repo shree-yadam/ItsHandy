@@ -134,3 +134,46 @@
 .offer-button p{
   font-size: xx-large;
 }
+
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateX(0);
+		-ms-transform:     translateX(0);
+		transform:         translateX(0)
+	}
+	40% {
+		-webkit-transform: translateX(-20px);
+		-ms-transform:     translateX(-20px);
+		transform:         translateX(-20px)
+	}
+	60% {
+		-webkit-transform: translateX(-10px);
+		-ms-transform:     translateX(-10px);
+		transform:         translateX(-10px)
+	}
+}
+.details-back-button {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.details-back-button:hover {
+  cursor: pointer;
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+
+.details-back{
+  display: flex;
+  color: #ebb43f;
+  justify-content: center;
+}
+.details-back p{
+  margin-top: 0.3vh;
+}

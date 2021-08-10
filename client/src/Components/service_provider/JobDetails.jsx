@@ -3,8 +3,8 @@ import Button from "react-bootstrap/Button";
 import "./JobDetails.scss";
 import makeOffer from "../../helpers/makeOffer";
 // import GoogleMapReact from 'google-map-react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faMapPin } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -71,16 +71,20 @@ export default function JobDetails({
 
   return (
     <div className="job-details-main">
-      <aside>
-        {" "}
-        <Button
+      <div className="details-back" onClick={() => {
+            back();}}>
+      <div className="details-back-button">
+        <FontAwesomeIcon icon={faAngleDoubleLeft} color="orange" size="2x"  />
+        {/* <Button
           onClick={() => {
             back();
           }}
         >
           Back
-        </Button>
-      </aside>
+        </Button> */}
+      </div>
+      <h4>Back to new listings</h4>
+      </div >
       <h2>Job Details</h2>
       <div className="job-details-container">
         <div className="details-and-map-container">
@@ -133,10 +137,10 @@ export default function JobDetails({
               <Button className="offer-button" onClick={handleOffer}>
                 Make an offer
               </Button>
-    
+
           </div>
 
-            
+
             </div>
           </div>
         )}
