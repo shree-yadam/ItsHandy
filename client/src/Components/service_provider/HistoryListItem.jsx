@@ -20,7 +20,7 @@ export default function HistoryListItem({
           <p><strong>Description:</strong> {job.description}</p>
           </div>
           <div className = "star-ratings-completed">
-          <strong>Review given:</strong><br></br><StarRatings rating={job.review } starRatedColor="green"
+          <strong>Review given:</strong><br></br><StarRatings rating={job.review || 0} starRatedColor="green"
           numberOfStars={5}/>
 
           {/* <Button className="msg-btn" variant="primary" type="submit"  onClick={checkMessages}>
