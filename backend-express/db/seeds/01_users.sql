@@ -28,14 +28,14 @@ VALUES
 'service@provider.com',
 '$2b$10$uyamXFFxLYK1ujchK3ENVuDc8x0aKBPJk9n38gP67WT0L130yddjC',
 '+18198560945',
-'https://koolinus.files.wordpress.com/2019/03/avataaars-e28093-koolinus-1-12mar2019.png', true, 3),
+'https://koolinus.files.wordpress.com/2019/03/avataaars-e28093-koolinus-1-12mar2019.png', true, 4),
 
 ('Tomothy',
 'Harrison',
 'tomothy.harrison@example.com',
 '$2b$10$uyamXFFxLYK1ujchK3ENVuDc8x0aKBPJk9n38gP67WT0L130yddjC',
 '+14379992222',
-'https://newstthomasacademy.com/gems/photo-1/photo_id_11532590209.png', true, 4),
+'https://newstthomasacademy.com/gems/photo-1/photo_id_11532590209.png', true, 3),
 
 ('Norma',
 'Mays',
@@ -49,4 +49,4 @@ VALUES
 'jack@smiley.com',
 '$2b$10$uyamXFFxLYK1ujchK3ENVuDc8x0aKBPJk9n38gP67WT0L130yddjC',
 '+14379994444',
-'https://user-images.githubusercontent.com/5709133/50445980-88299a80-0912-11e9-962a-6fd92fd18027.png', true, 4);
+'https://user-images.githubusercontent.com/5709133/50445980-88299a80-0912-11e9-962a-6fd92fd18027.png', true, 0);
