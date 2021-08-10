@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 import "./RequestForm.scss";
@@ -101,8 +101,13 @@ export default function RequestEditForm({
 
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
+
+
   return (
-    <div className="form-container">
+    <div className="form-container request-edit">
       <h2> Edit Your Request </h2>
 
       <Form.Group className="mb-3" controlId="title">
