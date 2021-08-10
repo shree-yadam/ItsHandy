@@ -71,10 +71,10 @@ export default function JobDetails({
 
   return (
     <div className="job-details-main">
-      <div className="details-back">
+      <div className="details-back" onClick={() => {
+            back();}}>
       <div className="details-back-button">
-        <FontAwesomeIcon icon={faAngleDoubleLeft} color="orange" size="2x" onClick={() => {
-            back();}} />
+        <FontAwesomeIcon icon={faAngleDoubleLeft} color="orange" size="2x"  />
         {/* <Button
           onClick={() => {
             back();
@@ -84,7 +84,7 @@ export default function JobDetails({
         </Button> */}
       </div>
       <h4>Back to new listings</h4>
-      </div>
+      </div >
       <h2>Job Details</h2>
       <div className="job-details-container">
         <div className="details-and-map-container">
