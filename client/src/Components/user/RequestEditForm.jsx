@@ -152,7 +152,7 @@ export default function RequestEditForm({
       <Form.Group className="mb-3" controlId="preferred-date">
         <Form.Label>Preferred Date</Form.Label>
         <Form.Control
-          type="text"
+          type="date"
           placeholder="Enter YYYY-MM-DD"
           value={newRequest.preferred_date && newRequest.preferred_date.split('T')[0]}
           onChange={(event) =>
