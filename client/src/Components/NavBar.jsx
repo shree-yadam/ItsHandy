@@ -84,7 +84,7 @@ export default function NavBar({ currentUser, setCurrentUser }) {
             </Button>
 
             <h3>
-              {currentUser.first_name} {currentUser.last_name}
+              <i>{currentUser.first_name} {currentUser.last_name}</i>
             </h3>
           </div>
         </div>
