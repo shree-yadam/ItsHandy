@@ -27,12 +27,13 @@ export default function JobDetailsDescription({
       <div className="job-details-text">
         <br />
         <div className="job-deets">
-        <h4>{title}</h4>
+        <h2>{title}</h2>
         
-        <span id ="wrapped-desc"> {description}</span>
+        <span id ="wrapped-desc"> <i> "{description}"</i></span>
+        <br></br>
 
-        <span>Job Type: {category}</span>
-        <span>Preferred Date: {date && date.split("T")[0]}</span>
+        <span>Job Type: <i> {category}</i></span>
+        <span>Preferred Date: <i>{date && date.split("T")[0]} </i></span>
         </div>
         <div>
       <div className="map-container">

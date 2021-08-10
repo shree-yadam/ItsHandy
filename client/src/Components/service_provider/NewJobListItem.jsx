@@ -98,7 +98,7 @@ export default function NewJobListItem({
         </div>
       )}
       {job.offer_made && (
-        <div>
+        <div className="offer-submitted">
           <p>Quote Submitted: {job.quote}</p>
           <Button className="details-button" type="submit" onClick={goToDetails}>
             Details

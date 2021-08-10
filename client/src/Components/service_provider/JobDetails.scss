@@ -1,10 +1,11 @@
 .job-details-container {
   margin-top: 0vh;
-  margin-left: -20vh;
+  margin-left: -21vh;
   position: relative;
   display: flex;
   flex-direction: column;
   padding: 30px;
+  
 }
 
 .details-and-map-container {
@@ -43,12 +44,14 @@
 
 #quote-input {
   margin-left: 0em;
-  margin-right: -7.8em;
+  margin-right: -13.8em;
   width: 50.3%;
 }
 
 .job-details-main {
-  margin-top:5em;
+  margin-top: 5em;
+  margin-left: -11vh;
+ 
 }
 
 .job-details-text {
@@ -65,17 +68,19 @@
 }
 
 .job-detail-img{
-  width: 41vh;
-  height: 33vh;
+  width: 400px;
+  height: 400px;
   border-radius: 43px;
+  margin-left: 13vh;
 }
 
 
 .map-container {
   height: 35vh;
-  width: 100%;
+  width: 179%;
   border-radius: 40px;
   overflow: hidden;
+  margin-left: -9vh;
 }
 
 .offer-button {
@@ -87,7 +92,7 @@
   align-content: center;
   align-items: flex-end;
   justify-content: space-between;
-  margin-left: 28vh;
+  margin-left: 17vw;
 }
 
 .detail-map {
@@ -99,8 +104,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: larger;
-  max-width: 50%;
+  font-size: x-large;
+  // max-width: 50%;
+  width: 400px;
+    margin-right: 5vh;
 }
 
 #wrapped-desc {
@@ -120,7 +127,8 @@
 
 .quote-input-button{
   display:flex;
-  flex-direction: row;;
+  flex-direction: row;
+  margin-left: 6vw;
 }
 
 .offer-button p{
