@@ -63,7 +63,7 @@ export default function NavBar({ currentUser, setCurrentUser }) {
                   className="navbar-items"
                   onClick={() => history.push(`/client/${currentUser.id}`)}
                 >
-                  My Dashboard
+                  Dashboard
                 </Button>
               </>
             )}
@@ -73,7 +73,7 @@ export default function NavBar({ currentUser, setCurrentUser }) {
                   className="navbar-items"
                   onClick={() => history.push(`/provider/${currentUser.id}`)}
                 >
-                  My Dashboard
+                  Dashboard
                 </Button>
               )}
             </div>
