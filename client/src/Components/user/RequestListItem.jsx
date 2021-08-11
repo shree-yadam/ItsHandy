@@ -156,7 +156,7 @@ export default function RequestListItem(props) {
             <div className="text-info-header">
               <p>
                 {/* <p>Street Address: {props.OffersRequests.requestItem.street_address}</p> */}
-                <strong>Address:</strong>
+                <strong>Address: </strong>
                 {props.OffersRequests.requestItem.street_address}
                 
               </p>
@@ -166,7 +166,7 @@ export default function RequestListItem(props) {
               </p> 
               <p>
                 {/* <p>Category: {props.OffersRequests.requestItem.category_name}</p> */}
-                <strong>Category:</strong>
+                <strong>Category: </strong>
                 {props.OffersRequests.requestItem.category_name}
               </p>
              

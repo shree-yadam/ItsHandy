@@ -1,6 +1,5 @@
 .main-container {
   display: flex;
-  margin-top: 5vh;
   align-content: space-around;
   flex-direction: row;
   flex-wrap: wrap;
@@ -10,7 +9,7 @@
   background-image: url(../images/background-image.jpeg);
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
-  height: 95vh;
+  height: 100vh;
 }
 
 .home-container {

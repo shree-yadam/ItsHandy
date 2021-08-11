@@ -52,7 +52,7 @@ const CompletedRequestList = ({currentUser}) => {
 
   return (<div className="request-list">
       <div>
-          <h1>Requests Completed</h1>
+          <h1>Completed Requests</h1>
         {(!completedRequestData ) && <h3>Loading ...</h3>}
         {completedRequestData && completedRequestData.map(completedRequestItem =>
             <CompletedRequestListItem key={completedRequestItem.id} request={completedRequestItem} />
